@@ -9,8 +9,8 @@ const Login = () => {
     const { logInUser } = useUserStore((state) => state);
 
     const [userData, setUserData] = useState({
-        id: "",
-        password: ""
+        id: "hihihi333",
+        password: "hihihi333"
     });
 
     const { mutate } = useMutation({
