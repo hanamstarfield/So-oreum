@@ -10,6 +10,9 @@ const SpeedMeetList = () => {
 
     return (
         <div className="h-lvh bg-[#214A00] flex justify-center items-center">
+            <Link to="/speed-meet-write">
+                <button className="fixed top-48 right-10 bg-lime-300">작성</button>
+            </Link>
             <ul className="bg-white h-[500px] w-[1200px]">
                 {speedMeets.map((item) => {
                     return (
