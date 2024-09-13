@@ -1,24 +1,27 @@
-import { Map } from "react-kakao-maps-sdk";
+import { useEffect } from "react";
 
 const KakaoMap = () => {
-    // useKakaoLoaderOrigin({
-    //     /**
-    //      * ※주의※ appkey의 경우 본인의 appkey를 사용하셔야 합니다.
-    //      * 해당 키는 docs를 위해 발급된 키 이므로, 임의로 사용하셔서는 안됩니다.
-    //      *
-    //      * @참고 https://apis.map.kakao.com/web/guide/
-    //      */
-    //     appkey: "e2b039aa5f89c943061602c561dc7a59",
-    //     libraries: ["clusterer", "drawing", "services"]
-    // });
+    useEffect(() => {
+        kakao.maps.load(() => {
+            const mapContainer = document.getElementById("map"), // 지도를 표시할 div
+                mapOption = {
+                    center: new kakao.maps.LatLng(37.566535, 126.9779692), // 지도의 중심좌표
+                    level: 9 // 지도의 확대 레벨
+                };
+
+            // 지도를 표시할 div와  지도 옵션으로  지도를 생성
+            const map = new kakao.maps.Map(mapContainer, mapOption);
+        });
+    }, []);
 
     return (
-        <Map
+        <div
             id="map"
-            center={{ lat: 33.5563, lng: 126.79581 }} // 지도의 중심 좌표
-            style={{ width: "800px", height: "600px" }} // 지도 크기
-            level={3} // 지도 확대 레벨
-        ></Map>
+            style={{
+                width: "600px",
+                height: "750px"
+            }}
+        ></div>
     );
 };
 
