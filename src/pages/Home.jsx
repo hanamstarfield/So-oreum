@@ -1,13 +1,11 @@
-import { Link } from "react-router-dom";
+import KakaoMap from "@/components/KakaoMap";
 
 const Home = () => {
     return (
-        <>
-            <div>Home</div>
-            <Link to="/speed-meet">
-                <span>speed-meet 바로가기 (임시)</span>
-            </Link>
-        </>
+        <div>
+            <KakaoMap />
+            <span>speed-meet 바로가기 (임시)</span>
+        </div>
     );
 };
 

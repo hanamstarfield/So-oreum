@@ -7,7 +7,9 @@ const Layout = ({ children }) => {
     const { user, logOutUser } = useUserStore((state) => state);
 
     useEffect(() => {
-        navigate("/");
+        if (!user.success) {
+            navigate("/");
+        }
     }, [user.success]);
 
     const handleLogout = () => {
