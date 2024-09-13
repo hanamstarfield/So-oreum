@@ -8,6 +8,8 @@ import HikeEventForm from "../pages/HikeEventForm";
 import Home from "../pages/Home";
 import Layout from "../components/Layout";
 import ProtectedRoute from "../components/ProtectedRoute";
+import SpeedMeetList from "@/pages/SpeedMeetList";
+import SpeedMeetDetail from "@/pages/SpeedMeetDetail";
 
 const Router = () => {
     return (
@@ -48,6 +50,22 @@ const Router = () => {
                         element={
                             <ProtectedRoute>
                                 <HikeEventForm />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/speed-meet"
+                        element={
+                            <ProtectedRoute>
+                                <SpeedMeetList />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/speed-meet-detail/:id"
+                        element={
+                            <ProtectedRoute>
+                                <SpeedMeetDetail />
                             </ProtectedRoute>
                         }
                     />
