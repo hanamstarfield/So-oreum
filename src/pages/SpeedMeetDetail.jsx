@@ -1,7 +1,6 @@
 import useGetSpeedMeetByIdQuery from "@/queries/useGetSpeedMeetByIdQuery";
 import handleCopyClipBoard from "@/utils/clipBoard";
 import useUserStore from "@/zustand/useUserStore";
-import React from "react";
 import { useParams } from "react-router-dom";
 
 const SpeedMeetDetail = () => {
@@ -15,14 +14,14 @@ const SpeedMeetDetail = () => {
     }
 
     console.log("user", user);
-    console.log("speedMeet", speedMeet);
+    console.log("speedMeet", speedMeet.userId);
 
     return (
         <div className="flex bg-[#214A00] w-[100%] h-svh items-center">
             <div className="w-[150px] h-[300px] mx-auto flex flex-col items-center bg-white">
                 <h2 className="text-xl">{user.nickname}</h2>
                 <span>{`참가인원 ${speedMeet.attendance}명`}</span>
-                <button className="bg-cyan-600">신청하기</button>
+                {user.userId !== speedMeet.userId && <button className="bg-cyan-600">신청하기</button>}
             </div>
             <div className="max-w-[1200px] h-[600px] mx-auto flex flex-col justify-center items-center gap-12 bg-white">
                 <div className="flex items-center justify-center">
