@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    body{
+        background-color: #214A00;
+    }
+}
+
+@layer components {
+    .main_Container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .Profile {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    .cowProfile{
+        width: 200px;
+        height: auto;
+    }
+}
+
