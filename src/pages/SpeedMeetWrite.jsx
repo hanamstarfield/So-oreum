@@ -13,7 +13,7 @@ const SpeedMeetWrite = () => {
         content: "",
         chatLink: ""
     });
-    const [selectedMountain, setSelectedMountain] = useState({});
+    const [selectedMountain, setSelectedMountain] = useState(null);
 
     const [searchBoxVisible, setSearchBoxVisible] = useState(false);
     const [mountainSearchResult, setMountainSearchResult] = useState([]);
@@ -42,6 +42,10 @@ const SpeedMeetWrite = () => {
                 [name]: value
             };
         });
+
+        if (name === "mountainName") {
+            setSelectedMountain(null);
+        }
     };
 
     const handleSetMountain = (mountain) => {
@@ -73,7 +77,7 @@ const SpeedMeetWrite = () => {
                         placeholder="산"
                         onChange={handleChange}
                     />
-                    {searchBoxVisible && (
+                    {searchBoxVisible && !selectedMountain && (
                         <SearchBox list={mountainSearchResult} handleSetMountain={handleSetMountain} />
                     )}
                 </div>
