@@ -1,7 +1,6 @@
 import React from "react";
 
 const SearchBox = ({ list, handleSetMountain }) => {
-    console.log("list", list);
     return (
         <ul className="absolute top-0 left-52 bg-slate-300 w-[150px]">
             {list.map((item) => {

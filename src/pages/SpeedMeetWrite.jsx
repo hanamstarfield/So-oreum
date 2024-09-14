@@ -1,67 +1,13 @@
-import meetApi from "@/api/meet";
 import SearchBox from "@/components/SearchBox";
 import { useQuery } from "@tanstack/react-query";
-import React, { useCallback, useEffect, useState } from "react";
 import ReactCalendar from "@/components/ReactCalendar";
+import useSpeedMeetWrite from "@/hooks/useSpeedMeetWrite";
+import { useEffect, useRef } from "react";
 
 const SpeedMeetWrite = () => {
-    const [formState, setFormState] = useState({
-        title: "",
-        date: "",
-        mountainName: "",
-        capacity: "",
-        content: "",
-        chatLink: ""
-    });
-    const [selectedMountain, setSelectedMountain] = useState(null);
-
-    const [searchBoxVisible, setSearchBoxVisible] = useState(false);
-    const [mountainSearchResult, setMountainSearchResult] = useState([]);
-
-    const { data: mountains = [], isPending } = useQuery({
-        queryKey: "dummy-mountain",
-        queryFn: () => meetApi.getDummyMountain()
-    });
-
-    useEffect(() => {
-        if (mountains.length > 0) {
-            const result = mountains.filter((mountain) => mountain.mntnnm.includes(formState.mountainName));
-            setMountainSearchResult(result);
-
-            const condition = !!formState.mountainName;
-
-            setSearchBoxVisible(condition);
-        }
-    }, [formState.mountainName]);
-
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormState((prev) => {
-            return {
-                ...prev,
-                [name]: value
-            };
-        });
-
-        if (name === "mountainName") {
-            setSelectedMountain(null);
-        }
-    };
-
-    const handleSetMountain = (mountain) => {
-        setFormState((prev) => {
-            return {
-                ...prev,
-                mountainName: mountain.mntnnm
-            };
-        });
-
-        setSelectedMountain(mountain);
-        setSearchBoxVisible(false);
-        console.log("mountain", mountain);
-    };
-
-    console.log("setFormState", formState);
+    const mountainInputRef = useRef();
+    const { formState, selectedMountain, searchBoxVisible, mountainSearchResult, handleChange, handleSetMountain } =
+        useSpeedMeetWrite(mountainInputRef);
 
     return (
         <div className="flex bg-[#214A00] w-[100%] h-svh items-center m-0">
@@ -76,6 +22,7 @@ const SpeedMeetWrite = () => {
                         value={formState.mountainName}
                         placeholder="산"
                         onChange={handleChange}
+                        ref={mountainInputRef}
                     />
                     {searchBoxVisible && !selectedMountain && (
                         <SearchBox list={mountainSearchResult} handleSetMountain={handleSetMountain} />
