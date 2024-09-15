@@ -32,15 +32,6 @@ const SpeedMeetWrite = () => {
                 <input type="text" name="title" value={formState.title} onChange={handleChange} placeholder="제목" />
 
                 <div className="relative">
-                    {/* <input
-                        type="text"
-                        name="date"
-                        value={""}
-                        onChange={handleChange}
-                        placeholder="일정"
-                        onFocus={() => setShowCalendar(true)}
-                        onBlur={() => setShowCalendar(false)}
-                    /> */}
                     <input type="date" name="date" min={today} value={formState.date} onChange={handleChange} />
                 </div>
                 <div className="flex relative">
