@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import defaultMntnImg from "@/assets/mntn.jpg";
 import { useSearchParams } from "react-router-dom";
 
 const MtDetail = () => {
