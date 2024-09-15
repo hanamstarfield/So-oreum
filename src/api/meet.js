@@ -13,10 +13,18 @@ const getDummyMountain = async () => {
   return data;
 }
 
+
+const createSpeedMeet = async (speedMeet) => {
+  const { data } = await api.post('/', speedMeet);
+  return data;
+}
+
 const meetApi = {
   getSpeedMeets,
   getSpeedMeetById,
-  getDummyMountain
+  createSpeedMeet,
+  getDummyMountain,
+
 }
 
 const api = axios.create({

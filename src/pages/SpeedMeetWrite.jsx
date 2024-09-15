@@ -1,28 +1,61 @@
 import SearchBox from "@/components/SearchBox";
-import { useQuery } from "@tanstack/react-query";
-import ReactCalendar from "@/components/ReactCalendar";
+import Calendar from "@/components/ReactCalendar";
 import useSpeedMeetWrite from "@/hooks/useSpeedMeetWrite";
-import { useEffect, useRef } from "react";
+import { useState } from "react";
+import useCreateSpeedMeetMutation from "@/mutations/useCreateSpeedMeetMutation";
+import useUserStore from "@/zustand/useUserStore";
 
 const SpeedMeetWrite = () => {
-    const mountainInputRef = useRef();
-    const { formState, selectedMountain, searchBoxVisible, mountainSearchResult, handleChange, handleSetMountain } =
-        useSpeedMeetWrite(mountainInputRef);
+    const [showCalendar, setShowCalendar] = useState(false);
+    const { user } = useUserStore((state) => state);
+    const {
+        formState,
+        selectedMountain,
+        handleMountainChange,
+        searchBoxVisible,
+        mountainSearchResult,
+        handleChange,
+        handleMountainNameBlur,
+        handleSetMountain
+    } = useSpeedMeetWrite();
+
+    const mutation = useCreateSpeedMeetMutation();
+
+    const handleWrite = () => {
+        mutation.mutate({ ...formState, userId: user.userId });
+    };
+
+    console.log("showCalendar", showCalendar);
 
     return (
         <div className="flex bg-[#214A00] w-[100%] h-svh items-center m-0">
             <div className="w-[1200px] h-[500px] mx-auto flex flex-col justify-center items-start gap-4 bg-white">
                 <input type="text" name="title" value={formState.title} onChange={handleChange} placeholder="제목" />
-                <input type="text" name="date" value={""} onChange={handleChange} placeholder="일정" />
-                {/* <ReactCalendar></ReactCalendar> */}
+
+                <div className="relative">
+                    <input
+                        type="text"
+                        name="date"
+                        value={""}
+                        onChange={handleChange}
+                        placeholder="일정"
+                        onFocus={() => setShowCalendar(true)}
+                        onBlur={() => setShowCalendar(false)}
+                    />
+                    {showCalendar && (
+                        <div className="w-[150px] h-[100px] absolute z-10">
+                            <Calendar className="w-[150px] h-[100px]" />
+                        </div>
+                    )}
+                </div>
                 <div className="flex relative">
                     <input
                         type="text"
                         name="mountainName"
                         value={formState.mountainName}
                         placeholder="산"
-                        onChange={handleChange}
-                        ref={mountainInputRef}
+                        onChange={handleMountainChange}
+                        onBlur={handleMountainNameBlur}
                     />
                     {searchBoxVisible && !selectedMountain && (
                         <SearchBox list={mountainSearchResult} handleSetMountain={handleSetMountain} />
@@ -40,7 +73,7 @@ const SpeedMeetWrite = () => {
                     name="content"
                     value={formState.content}
                     onChange={handleChange}
-                    placeholder="소개"
+                    placeholder="내용"
                 />
                 <input
                     type="text"
@@ -49,6 +82,10 @@ const SpeedMeetWrite = () => {
                     onChange={handleChange}
                     placeholder="오픈카톡 링크"
                 />
+                {/* TODO 글 작성 진행중 */}
+                <button className="bg-slate-500 rounded-sm" onClick={handleWrite}>
+                    작성
+                </button>
             </div>
         </div>
     );
