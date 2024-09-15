@@ -1,13 +1,11 @@
 import SearchBox from "@/components/SearchBox";
-import Calendar from "@/components/ReactCalendar";
 import useSpeedMeetWrite from "@/hooks/useSpeedMeetWrite";
 import { useState } from "react";
 import useCreateSpeedMeetMutation from "@/mutations/useCreateSpeedMeetMutation";
 import useUserStore from "@/zustand/useUserStore";
+import { getToday } from "@/utils/common";
 
 const SpeedMeetWrite = () => {
-    const [showCalendar, setShowCalendar] = useState(false);
-    const { user } = useUserStore((state) => state);
     const {
         formState,
         selectedMountain,
@@ -19,13 +17,14 @@ const SpeedMeetWrite = () => {
         handleSetMountain
     } = useSpeedMeetWrite();
 
+    const { user } = useUserStore((state) => state);
     const mutation = useCreateSpeedMeetMutation();
+
+    const today = getToday();
 
     const handleWrite = () => {
         mutation.mutate({ ...formState, userId: user.userId });
     };
-
-    console.log("showCalendar", showCalendar);
 
     return (
         <div className="flex bg-[#214A00] w-[100%] h-svh items-center m-0">
@@ -33,7 +32,7 @@ const SpeedMeetWrite = () => {
                 <input type="text" name="title" value={formState.title} onChange={handleChange} placeholder="제목" />
 
                 <div className="relative">
-                    <input
+                    {/* <input
                         type="text"
                         name="date"
                         value={""}
@@ -41,12 +40,8 @@ const SpeedMeetWrite = () => {
                         placeholder="일정"
                         onFocus={() => setShowCalendar(true)}
                         onBlur={() => setShowCalendar(false)}
-                    />
-                    {showCalendar && (
-                        <div className="w-[150px] h-[100px] absolute z-10">
-                            <Calendar className="w-[150px] h-[100px]" />
-                        </div>
-                    )}
+                    /> */}
+                    <input type="date" name="date" min={today} value={formState.date} onChange={handleChange} />
                 </div>
                 <div className="flex relative">
                     <input

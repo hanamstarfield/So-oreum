@@ -152,6 +152,18 @@
       "chatLink": "네이버",
       "attendance": 0,
       "userId": "hihihi444"
+    },
+    {
+      "id": "ab9d",
+      "title": "됐나",
+      "date": "2024-09-17",
+      "mountainId": "10000",
+      "mountainName": "설악산",
+      "capacity": "3",
+      "content": "아무나",
+      "chatLink": "네이버닷컴",
+      "attendance": 0,
+      "userId": "hihihi333"
     }
   ],
   "items": [
