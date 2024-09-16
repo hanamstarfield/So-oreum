@@ -21,7 +21,7 @@ const Pagination = ({ last, url, current }) => {
     );
 
     return (
-        <div className="absolute w-[60%] h-[30px] bottom-20 bg-slate-600 flex justify-center items-center gap-4">
+        <div className="w-[100%] h-[30px] flex justify-center items-center gap-4 text-2xl">
             {hasPreviousSection && (
                 <Link to={`${url}/${currentSectionStart - pagesPerSection}`}>
                     <span>◁ </span>
@@ -30,9 +30,11 @@ const Pagination = ({ last, url, current }) => {
 
             {pages.map((page) => {
                 return (
-                    <Link to={`${url}/${page}`} key={page}>
-                        <span className={current == page ? "text-white" : ""}>{page}</span>
-                    </Link>
+                    <div key={page} className="w-[30px]">
+                        <Link to={`${url}/${page}`}>
+                            <span className={current == page ? "text-white" : ""}>{page}</span>
+                        </Link>
+                    </div>
                 );
             })}
 
