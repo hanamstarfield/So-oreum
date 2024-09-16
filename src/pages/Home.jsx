@@ -6,7 +6,7 @@ const Home = () => {
         <div>
             <KakaoMap />
             <div className="fixed top-0 right-4">
-                <Link to="/speed-meet">
+                <Link to="/speed-meet/1">
                     <span>speed-meet 바로가기 (임시)</span>
                 </Link>
             </div>

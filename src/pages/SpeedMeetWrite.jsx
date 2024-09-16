@@ -1,6 +1,4 @@
-import SearchBox from "@/components/SearchBox";
 import useSpeedMeetWrite from "@/hooks/useSpeedMeetWrite";
-import { useState } from "react";
 import useCreateSpeedMeetMutation from "@/mutations/useCreateSpeedMeetMutation";
 import useUserStore from "@/zustand/useUserStore";
 import { getToday } from "@/utils/common";
@@ -26,6 +24,8 @@ const SpeedMeetWrite = () => {
         mutation.mutate({ ...formState, userId: user.userId });
     };
 
+    let test = true;
+
     return (
         <div className="flex bg-[#214A00] w-[100%] h-svh items-center m-0">
             <div className="w-[1200px] h-[500px] mx-auto flex flex-col justify-center items-start gap-4 bg-white">
@@ -35,16 +35,53 @@ const SpeedMeetWrite = () => {
                     <input type="date" name="date" min={today} value={formState.date} onChange={handleChange} />
                 </div>
                 <div className="flex relative">
+                    {/* ref  */}
+                    {/* 
+                    click outside 
+                    div 바깥의 ... 클릭시 
+                    */}
                     <input
                         type="text"
                         name="mountainName"
                         value={formState.mountainName}
                         placeholder="산"
                         onChange={handleMountainChange}
-                        onBlur={handleMountainNameBlur}
+                        onBlur={() => {
+                            if (test) {
+                                handleMountainNameBlur();
+                            }
+                        }}
+                        onFocus={() => {
+                            test = true;
+                        }}
                     />
                     {searchBoxVisible && !selectedMountain && (
-                        <SearchBox list={mountainSearchResult} handleSetMountain={handleSetMountain} />
+                        <ul className="absolute top-0 left-52 bg-slate-300 w-[150px]">
+                            {mountainSearchResult.map((item) => {
+                                return (
+                                    <li
+                                        key={item.id}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleSetMountain(item);
+                                        }}
+                                        onMouseEnter={() => {
+                                            test = false;
+                                        }}
+                                        onMouseLeave={() => {
+                                            test = true;
+                                        }}
+                                    >
+                                        {item.mntnnm}
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                        // <SearchBox
+                        //     list={mountainSearchResult}
+                        //     handleSetMountain={handleSetMountain}
+                        //     handleHover={handleTest}
+                        // />
                     )}
                 </div>
                 <input

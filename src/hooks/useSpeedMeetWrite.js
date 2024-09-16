@@ -42,9 +42,32 @@ const useSpeedMeetWrite = () => {
   }
 
   const handleMountainNameBlur = () => {
-    if (searchBoxVisible) {
-      handleSetMountain(mountainSearchResult[0]);
+    if (!searchBoxVisible) {
+      return;
+      //   handleSetMountain(mountainSearchResult[0]);
     }
+
+    // handleSetMountain(mountainSearchResult[0]);
+
+    setFormState((prev) => {
+      // console.log('first', first)
+      // const isExist = mountainSearchResult.some(mountain => mountain.mntnid === prev.mountainId);
+
+      // if (isExist) {
+      //   return prev;
+      // }
+      setSelectedMountain(mountainSearchResult[0]);
+      setSearchBoxVisible(false);
+
+      return {
+        ...prev,
+        mountainName: mountainSearchResult[0].mntnnm,
+        mountainId: mountainSearchResult[0].mntnid,
+      };
+
+    });
+    // setSelectedMountain(mountainSearchResult[0]);
+    // setSearchBoxVisible(false);
   }
 
   const handleChange = (event) => {
@@ -58,6 +81,7 @@ const useSpeedMeetWrite = () => {
   };
 
   const handleSetMountain = (mountain) => {
+    console.log('mountain', mountain);
     setFormState((prev) => {
       return {
         ...prev,

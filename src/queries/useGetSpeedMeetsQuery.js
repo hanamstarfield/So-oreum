@@ -1,11 +1,19 @@
 import meetApi from '@/api/meet';
 import queryKey from './queryKeys'
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
-const useGetSpeedMeetsQuery = () => {
-  return useQuery({
+const useGetSpeedMeetsQuery = (pageParam) => {
+  console.log('pageParam', pageParam);
+  return useInfiniteQuery({
     queryKey: [queryKey.default.speedMeets],
-    queryFn: meetApi.getSpeedMeets,
+    queryFn: () => meetApi.getSpeedMeets({ pageParam }),
+    // pages : 누적 (무한 스크롤경우)
+    // lastPAge: 현재
+    getNextPageParam: (lastPage, pages) => {
+      console.log('lastPage', lastPage);
+      console.log('pages', pages);
+      return lastPage.nextPage ?? false;
+    },
     onError: (error) => {
       alert(error);
     }
