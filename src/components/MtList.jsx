@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 
 const MtList = () => {
     const navigate = useNavigate();
@@ -31,9 +30,9 @@ const MtList = () => {
             {data.map((item) => {
                 return (
                     <div
-                        className="w-[250px]  bg-white rounded-[15px] p-[15px] my-[10px] mx-[5px] box-contents brightness-px100  hover:brightness-90 duration-100"
+                        className="w-[250px]  bg-white rounded-[15px] p-[15px] my-[10px] mx-[5px] box-contents brightness-100  hover:brightness-90 duration-100"
                         key={item.mntnid}
-                        onClick={() => navigate(`/mntn-detail?mntnNm=${item.mntnnm}`)}
+                        onClick={() => navigate(`/mntn-detail?mntnId=${item.mntnid}`)}
                     >
                         <img className="w-[220px] h-[150px] object-cover rounded-[15px]" src={item.mntnattchimageseq} />
                         <div className="flex justify-between items-center mt-[5px] px-[10px]">
@@ -51,7 +50,3 @@ const MtList = () => {
 };
 
 export default MtList;
-
-// const MntnDiv = styled.div`
-
-// `
