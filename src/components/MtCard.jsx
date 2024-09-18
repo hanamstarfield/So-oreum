@@ -1,26 +1,31 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const MtCard = ({ mount }) => {
+    const navigate = useNavigate();
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {mount.map((item) => (
-                <Link
-                    key={item.mntnid}
-                    to={`/mntn-detail?mntnNm=${item.mntnnm}`}
-                    className="border-gray-300 rounded-lg bg-white shadow-md block"
-                >
-                    <div className="overflow-hidden">
-                        <img
-                            src={item.mntnattchimageseq}
-                            className="w-full h-72 object-cover rounded-t-lg"
-                            alt={item.mntnnm}
-                        />
+        <div className="flex flex-wrap w-[800px] h-[800px] leading-loose overflow-y-scroll cursor-pointer">
+            {mount.map((item) => {
+                return (
+                    <div key={item.mntnid}>
+                        <div
+                            className="w-[250px]  bg-white rounded-[15px] p-[15px] my-[10px] mx-[5px] box-contents brightness-100  hover:brightness-90 duration-100"
+                            onClick={() => navigate(`/mntn-detail?mntnNm=${item.mntnnm}`)}
+                        >
+                            <img
+                                className="w-[220px] h-[150px] object-cover rounded-[15px]"
+                                src={item.mntnattchimageseq}
+                            />
+                            <div className="flex justify-between items-center mt-[5px] px-[10px]">
+                                <p>
+                                    <strong>{item.mntnnm}</strong>
+                                </p>
+                                <p className="text-[12px]"> 정상 {item.mntninfohght}m</p>
+                            </div>
+                            <p className="text-[12px]  px-[10px]">{item.mntninfopoflc}</p>
+                        </div>
                     </div>
-                    <div className="p-4">
-                        <h3 className="text-lg font-semibold">{item.mntnnm}</h3>
-                    </div>
-                </Link>
-            ))}
+                );
+            })}
         </div>
     );
 };
