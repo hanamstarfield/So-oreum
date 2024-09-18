@@ -30,7 +30,7 @@ const Home = () => {
             <div className="flex-1 p-4">
                 <MtCard mount={mount} />
             </div>
-            <div className="flex-2">
+            <div className="flex-1">
                 <KakaoMap mount={mount} />
             </div>
 

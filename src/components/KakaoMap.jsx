@@ -1,6 +1,8 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const KakaoMap = ({ mount }) => {
+    const navigate = useNavigate();
     useEffect(() => {
         kakao.maps.load(() => {
             const mapContainer = document.getElementById("map");
@@ -13,6 +15,7 @@ const KakaoMap = ({ mount }) => {
 
             const map = new kakao.maps.Map(mapContainer, mapOption);
 
+            map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
             const infowindow = new kakao.maps.InfoWindow({
                 removable: true
             });
@@ -28,8 +31,13 @@ const KakaoMap = ({ mount }) => {
                     const content = `
                         <div class="p-4 w-64 rounded-lg shadow-lg">
                             <img src="${item.mntnattchimageseq}" class="w-full h-32 rounded-md mb-2""/>
-                            <h4>${item.mntnnm}</h4>
-                            <p>${item.mntninfopoflc}</p>
+                            <div class="flex justify-between items-center mt-[5px] px-[10px]">
+                                <p>
+                                    <strong>${item.mntnnm}</strong>
+                                </p>
+                                <p class="text-[12px]"> 정상 ${item.mntninfohght}m</p>
+                            </div>
+                            <p class="text-[12px]  px-[10px]">${item.mntninfopoflc}</p>
                         </div>
                     `;
                     infowindow.setContent(content);
