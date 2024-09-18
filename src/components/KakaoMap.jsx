@@ -1,19 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 
-const KakaoMap = ({ fetchMount }) => {
-    const {
-        data: mount,
-        isLoading,
-        isError
-    } = useQuery({
-        queryKey: ["items"],
-        queryFn: fetchMount
-    });
-
+const KakaoMap = ({ mount }) => {
     useEffect(() => {
-        if (isLoading || isError || !mount) return;
-
         kakao.maps.load(() => {
             const mapContainer = document.getElementById("map");
             if (!mapContainer) return;
@@ -34,14 +22,6 @@ const KakaoMap = ({ fetchMount }) => {
             });
         });
     }, [mount]);
-
-    if (isLoading) {
-        return <div>로딩중...</div>;
-    }
-
-    if (isError) {
-        return <div>다시 시도해주세요...</div>;
-    }
 
     return (
         <div
