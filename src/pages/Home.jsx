@@ -26,6 +26,7 @@ const Home = () => {
     }
 
     return (
+<<<<<<< HEAD
         <div className="flex h-screen">
             <div className="flex-1 p-4">
                 <MtCard mount={mount} />
@@ -34,6 +35,10 @@ const Home = () => {
                 <KakaoMap mount={mount} />
             </div>
 
+=======
+        <div>
+            <KakaoMap mount={mount} />
+>>>>>>> e386e35785db59c06447662dd721fcd7bde2abb5
             <span>speed-meet 바로가기 (임시)</span>
         </div>
     );

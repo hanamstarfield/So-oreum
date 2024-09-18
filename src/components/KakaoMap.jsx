@@ -2,7 +2,10 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const KakaoMap = ({ mount }) => {
+<<<<<<< HEAD
     const navigate = useNavigate();
+=======
+>>>>>>> e386e35785db59c06447662dd721fcd7bde2abb5
     useEffect(() => {
         kakao.maps.load(() => {
             const mapContainer = document.getElementById("map");
@@ -15,17 +18,21 @@ const KakaoMap = ({ mount }) => {
 
             const map = new kakao.maps.Map(mapContainer, mapOption);
 
+<<<<<<< HEAD
             map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
             const infowindow = new kakao.maps.InfoWindow({
                 removable: true
             });
 
+=======
+>>>>>>> e386e35785db59c06447662dd721fcd7bde2abb5
             mount.forEach((item) => {
                 const markerPosition = new kakao.maps.LatLng(item.Latitude, item.Longitude);
                 const marker = new kakao.maps.Marker({
                     position: markerPosition
                 });
                 marker.setMap(map);
+<<<<<<< HEAD
 
                 kakao.maps.event.addListener(marker, "click", () => {
                     const content = `
@@ -43,6 +50,8 @@ const KakaoMap = ({ mount }) => {
                     infowindow.setContent(content);
                     infowindow.open(map, marker);
                 });
+=======
+>>>>>>> e386e35785db59c06447662dd721fcd7bde2abb5
             });
         });
     }, [mount]);
