@@ -1,5 +1,5 @@
-import KakaoMap from "@/components/KakaoMap";
 import MtCard from "@/components/MtCard";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const Home = () => {
@@ -8,10 +8,25 @@ const Home = () => {
         return response.data;
     };
 
+    const {
+        data: mount,
+        isLoading,
+        isError
+    } = useQuery({
+        queryKey: ["items"],
+        queryFn: fetchMount
+    });
+    if (isLoading) {
+        return <div>로딩중...</div>;
+    }
+
+    if (isError) {
+        return <div>다시 시도해주세요...</div>;
+    }
+
     return (
         <div>
-            <MtCard fetchMount={fetchMount} />
-            <KakaoMap fetchMount={fetchMount} />
+            <MtCard mount={mount} />
             <span>speed-meet 바로가기 (임시)</span>
         </div>
     );
