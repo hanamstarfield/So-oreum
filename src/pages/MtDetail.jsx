@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-// import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const MtDetail = () => {
-    // const [searchParams, setSearchParams] = useSearchParams();
-    // const mntnNm = searchParams.get("mntnNm");
+    const [searchParams, setSearchParams] = useSearchParams();
+    const mntnNm = searchParams.get("mntnNm");
 
     const API_URL = "http://localhost:4000/items";
 
@@ -29,18 +29,49 @@ const MtDetail = () => {
     return (
         <div>
             {data.map((item) => {
-                // if (item.mntnnm === mntnNm) {
-                return (
-                    <div key={item.mntnid}>
-                        <h2>{item.mntnnm}</h2>
-                        <img src={item.mntnattchimageseq} />
-                        <p>높이: {item.mntninfohght}</p>
-                        <p>소재지: {item.mntninfopoflc}</p>
-                        <p>개관: {item.mntninfodscrt}</p>
-                        <p>상세정보: {item.mntninfodtlinfocont}</p>
-                    </div>
-                );
-                // }
+                if (item.mntnnm === mntnNm) {
+                    return (
+                        <div classNamekey={item.mntnid}>
+                            <div className=" bg-[#214A00] min-w-[900px] w-[100%] ">
+                                <div className="flex flex-col justify-start items-center h-[561px] w-[900px] text-[#ffffff] m-[auto] pt-[30px] gap-[20px]">
+                                    <h2 className="text-[64px] font-bold">{item.mntnnm}</h2>
+                                    <div className="flex w-[900px] justify-start gap-[20px]">
+                                        <div className="mt-[40px]">
+                                            <img
+                                                className="min-w-[500px] w-[500px] max-h-[300px] h-[300px] object-cover"
+                                                src={item.mntnattchimageseq}
+                                            />
+                                        </div>
+
+                                        <div className="flex flex-col justify-end gap-[50px] leading-loose">
+                                            <p>
+                                                <strong>높이</strong> <br />
+                                                고도 {item.mntninfohght}m
+                                            </p>
+                                            <p>
+                                                <strong>소재지</strong>
+                                                <br />
+                                                {item.mntninfopoflc}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex flex-col justify-center items-start m-[auto] w-[900px] text-justify mt-[50px] gap-[50px] leading-loose">
+                                <p>
+                                    <strong>개관</strong>
+                                    <br />
+                                    {item.mntninfodscrt}
+                                </p>
+                                <p>
+                                    <strong>상세정보</strong>
+                                    <br />
+                                    {item.mntninfodtlinfocont}
+                                </p>
+                            </div>
+                        </div>
+                    );
+                }
             })}
         </div>
     );
