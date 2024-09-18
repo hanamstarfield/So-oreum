@@ -1,4 +1,5 @@
 import MtCard from "@/components/MtCard";
+import KakaoMap from "@/components/KakaoMap";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
@@ -25,8 +26,14 @@ const Home = () => {
     }
 
     return (
-        <div>
-            <MtCard mount={mount} />
+        <div className="flex h-screen">
+            <div className="flex-1 p-4">
+                <MtCard mount={mount} />
+            </div>
+            <div className="flex-2">
+                <KakaoMap mount={mount} />
+            </div>
+
             <span>speed-meet 바로가기 (임시)</span>
         </div>
     );
