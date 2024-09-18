@@ -37,7 +37,27 @@ const Router = () => {
                         }
                     />
                     <Route
+<<<<<<< HEAD
                         path="/speed-meet"
+=======
+                        path="/hikeEventDetail"
+                        element={
+                            <ProtectedRoute>
+                                <HikeEventDetail />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/hikeEventForm"
+                        element={
+                            <ProtectedRoute>
+                                <HikeEventForm />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/speed-meet/:page"
+>>>>>>> a70991b5b9c8b8dcf7b6114b4355319eb07e2dfc
                         element={
                             <ProtectedRoute>
                                 <SpeedMeetList />
