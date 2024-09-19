@@ -26,6 +26,8 @@ const SpeedMeetWrite = () => {
 
     let test = true;
 
+    console.log("formState", formState);
+
     return (
         <div className="flex bg-[#214A00] w-[100%] h-svh items-center m-0">
             <div className="w-[1200px] h-[500px] mx-auto flex flex-col justify-center items-start gap-4 bg-white">
@@ -43,7 +45,7 @@ const SpeedMeetWrite = () => {
                     <input
                         type="text"
                         name="mountainName"
-                        value={formState.mountainName}
+                        value={formState.mntnnm}
                         placeholder="산"
                         onChange={handleMountainChange}
                         onBlur={() => {
