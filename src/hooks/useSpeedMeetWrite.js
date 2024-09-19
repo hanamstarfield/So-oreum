@@ -1,8 +1,4 @@
-import meetApi from "@/api/meet";
-import mntnApi from "@/api/mntn";
-import queryKey from "@/queries/queryKeys";
 import useGetMountainQuery from "@/queries/useGetMountainQuery";
-import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
 const useSpeedMeetWrite = () => {
@@ -20,11 +16,6 @@ const useSpeedMeetWrite = () => {
   const [selectedMountain, setSelectedMountain] = useState(null);
   const [searchBoxVisible, setSearchBoxVisible] = useState(false);
   const [mountainSearchResult, setMountainSearchResult] = useState(null);
-
-  // const { data: mountains = [], isPending } = useQuery({
-  //   queryKey: ["dummy-mountain"],
-  //   queryFn: () => meetApi.getDummyMountain()
-  // });
 
   const { data: mountains = [], isPending } = useGetMountainQuery();
 
