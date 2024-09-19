@@ -37,9 +37,6 @@ const Home = () => {
                 <MtCard mount={mount} latlng={latlng} />
                 <KakaoMap mount={mount} setLatlng={setLatlng} />
             </div>
-            <div>
-                <span>speed-meet 바로가기 (임시)</span>
-            </div>
         </div>
     );
 };

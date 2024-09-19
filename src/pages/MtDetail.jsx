@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import LightningImg from "@/assets/Lightning.png";
-import SpCardDefaultImg from "@/assets/SpCardDefault.jpg";
+import SpCardDefaultImg from "@/assets/SpCardDefault.png";
 
 const MtDetail = () => {
     const navigate = useNavigate();
@@ -121,7 +121,7 @@ const MtDetail = () => {
 
                                                         <img
                                                             src={SpCardDefaultImg}
-                                                            className="flex m-[auto] w-[100%] h-[130px] object-cover rounded-[30px]"
+                                                            className="flex m-[auto] w-[110px] h-[auto] object-cover rounded-[30px]"
                                                         />
                                                         <div className="flex justify-end px-[10px]">
                                                             <p className="text-[12px]">{sp.date}</p>
