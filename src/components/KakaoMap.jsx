@@ -21,7 +21,7 @@ const KakaoMap = ({ mount }) => {
             });
 
             mount.forEach((item) => {
-                const markerPosition = new kakao.maps.LatLng(item.Latitude, item.Longitude);
+                const markerPosition = new kakao.maps.LatLng(item.latitude, item.longitude);
                 const marker = new kakao.maps.Marker({
                     position: markerPosition
                 });
@@ -30,7 +30,7 @@ const KakaoMap = ({ mount }) => {
                 kakao.maps.event.addListener(marker, "click", () => {
                     const content = `
                         <div class="p-4 w-64 rounded-lg shadow-lg">
-                            <img src="${item.mntnattchimageseq}" class="w-full h-32 rounded-md mb-2""/>
+                            <img src="${item.mntnattchimageseq}" class="w-full h-32 object-cover rounded-md mb-2""/>
                             <div class="flex justify-between items-center mt-[5px] px-[10px]">
                                 <p>
                                     <strong>${item.mntnnm}</strong>
@@ -51,8 +51,8 @@ const KakaoMap = ({ mount }) => {
         <div
             id="map"
             style={{
-                width: "600px",
-                height: "750px"
+                width: "800px",
+                height: "800px"
             }}
         ></div>
     );

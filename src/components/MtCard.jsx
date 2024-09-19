@@ -9,7 +9,7 @@ const MtCard = ({ mount }) => {
                     <div key={item.mntnid}>
                         <div
                             className="w-[250px]  bg-white rounded-[15px] p-[15px] my-[10px] mx-[5px] box-contents brightness-100  hover:brightness-90 duration-100"
-                            onClick={() => navigate(`/mntn-detail?mntnNm=${item.mntnnm}`)}
+                            onClick={() => navigate(`/mntn-detail?mntnId=${item.mntnid}`)}
                         >
                             <img
                                 className="w-[220px] h-[150px] object-cover rounded-[15px]"
