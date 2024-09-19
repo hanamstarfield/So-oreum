@@ -2,6 +2,7 @@ import useSpeedMeetWrite from "@/hooks/useSpeedMeetWrite";
 import useCreateSpeedMeetMutation from "@/mutations/useCreateSpeedMeetMutation";
 import useUserStore from "@/zustand/useUserStore";
 import { getToday } from "@/utils/common";
+import { useNavigate } from "react-router-dom";
 
 const SpeedMeetWrite = () => {
     const {
@@ -17,11 +18,13 @@ const SpeedMeetWrite = () => {
 
     const { user } = useUserStore((state) => state);
     const mutation = useCreateSpeedMeetMutation();
+    const navigate = useNavigate();
 
     const today = getToday();
 
     const handleWrite = () => {
         mutation.mutate({ ...formState, userId: user.userId });
+        navigate("/speed-meet/1");
     };
 
     let test = true;
