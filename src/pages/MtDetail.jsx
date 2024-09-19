@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 
 const MtDetail = () => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const mntnNm = searchParams.get("mntnNm");
+    const mntnId = searchParams.get("mntnId");
 
     const API_URL = "http://localhost:4000/items";
 
@@ -29,7 +29,7 @@ const MtDetail = () => {
     return (
         <div>
             {data.map((item) => {
-                if (item.mntnnm === mntnNm) {
+                if (item.mntnid === Number(mntnId)) {
                     return (
                         <div classNamekey={item.mntnid}>
                             <div className=" bg-[#214A00] min-w-[900px] w-[100%] ">
