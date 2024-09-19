@@ -1,21 +1,4 @@
 {
-    "dummyMnt": [
-        {
-            "mntnid": "10000",
-            "mntnnm": "설악산",
-            "mntninfopoflc": "서울특별시 마포구"
-        },
-        {
-            "mntnid": "10001",
-            "mntnnm": "관악산",
-            "mntninfopoflc": "서울특별시 종로구"
-        },
-        {
-            "mntnid": "10002",
-            "mntnnm": "북한산",
-            "mntninfopoflc": "서울특별시 서초구 염곡동ㆍ내곡동, 강남구 개포동"
-        }
-    ],
     "speedMeets": [
         {
             "id": "4acb",
@@ -27,7 +10,8 @@
             "content": "ㅇㅇㅇ",
             "chatLink": "",
             "attendance": 0,
-            "userId": "hihihi333"
+            "userId": "hihihi333",
+            "createdAt": "2024-09-15T11:49:46.415Z"
         },
         {
             "id": "09c1",
@@ -39,7 +23,8 @@
             "content": "",
             "chatLink": "",
             "attendance": 1,
-            "userId": "hihihi333"
+            "userId": "hihihi333",
+            "createdAt": "2024-09-16T11:49:46.415Z"
         },
         {
             "id": "a7a4",
@@ -51,7 +36,8 @@
             "content": "ㅇㅇ",
             "chatLink": "nav.corm",
             "attendance": 1,
-            "userId": "hihihi444"
+            "userId": "hihihi444",
+            "createdAt": "2024-09-17T11:49:46.415Z"
         },
         {
             "id": "fe0e",
@@ -63,7 +49,21 @@
             "content": "ㅇㅇㅇ",
             "chatLink": "카톡.com",
             "attendance": 0,
-            "userId": "hihihi333"
+            "userId": "hihihi333",
+            "createdAt": "2024-09-18T11:49:46.415Z"
+        },
+        {
+            "id": "d76d",
+            "title": "ㅇㅇㅇ",
+            "date": "",
+            "mntnid": "",
+            "mntnnm": "",
+            "capacity": "1",
+            "content": "",
+            "chatLink": "",
+            "attendance": 0,
+            "userId": "hihihi333",
+            "createdAt": "2024-09-19T11:49:46.415Z"
         }
     ],
     "speedMeetAttendee": [

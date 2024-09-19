@@ -18,7 +18,9 @@ const getDummyMountain = async () => {
 }
 
 const createSpeedMeet = async (speedMeet) => {
-  const { data } = await api.post('/speedMeets', speedMeet);
+  const createdAt = new Date().toISOString();
+
+  const { data } = await api.post('/speedMeets', { ...speedMeet, createdAt });
   return data;
 }
 
