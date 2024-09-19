@@ -53,7 +53,7 @@ const Router = () => {
                         }
                     />
                     <Route
-                        path="/speed-meet-write/"
+                        path="/speed-meet-write"
                         element={
                             <ProtectedRoute>
                                 <SpeedMeetWrite />

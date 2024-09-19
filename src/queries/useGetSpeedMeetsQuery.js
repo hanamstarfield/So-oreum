@@ -16,8 +16,6 @@ const useGetSpeedMeetsQuery = (pageParam) => {
 
   const sortList = speedMeetListService.sortSpeedMeetList(data);
 
-  console.log('sortList', sortList);
-
   return { data: sortList, isPending };
 }
 

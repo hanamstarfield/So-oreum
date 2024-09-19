@@ -1,8 +1,6 @@
 import axios from "axios";
 
 const getSpeedMeets = async (pageParam = 1) => {
-  console.log('axios pageParam =>> ', pageParam);
-  console.log(`url =>>>>   /speedMeets?_page=${pageParam}&_per_page=10`)
   const data = (await api.get(`/speedMeets?_page=${pageParam}&_per_page=10`)).data;
 
   return data;
@@ -37,12 +35,20 @@ const createAttendee = async (attendee) => {
   await api.post(`/speedMeetAttendee`, attendee);
 }
 
-// attendance를 ..
-
 const getAttendeeByUserId = async (userId) => {
   const { data } = await api.get(`/speedMeetAttendee?userId?=${userId}`);
   return data;
 }
+
+const deleteSpeedMeetById = async (id) => {
+  try {
+    await api.delete(`/speedMeets/${id}`);
+    return true;
+  } catch (error) {
+    console.error("Error deleting speed meet:", error);
+    return false;
+  }
+};
 
 
 const meetApi = {
@@ -54,6 +60,7 @@ const meetApi = {
   getAttendeesBySpeedMeetId,
   getAttendeeByUserId,
   createAttendee,
+  deleteSpeedMeetById,
 
 }
 

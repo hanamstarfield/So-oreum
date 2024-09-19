@@ -14,19 +14,6 @@
       "createdAt": "2024-09-15T11:49:46.415Z"
     },
     {
-      "id": "09c1",
-      "title": "ㅋㅋㅋㅋㅋ",
-      "date": "2024-09-27",
-      "mntnid": 40006653,
-      "mntnnm": "망우산",
-      "capacity": "1",
-      "content": "",
-      "chatLink": "",
-      "attendance": 1,
-      "userId": "hihihi333",
-      "createdAt": "2024-09-16T11:49:46.415Z"
-    },
-    {
       "id": "a7a4",
       "title": "어디산을 갈까요",
       "date": "2024-09-27",
@@ -40,49 +27,23 @@
       "createdAt": "2024-09-17T11:49:46.415Z"
     },
     {
-      "id": "fe0e",
-      "title": "됐나",
-      "date": "2024-09-28",
-      "mntnid": 40006648,
-      "mntnnm": "궁산",
+      "id": "f286",
+      "title": "개화산~~~!",
+      "date": "2024-09-26",
+      "mntnid": 20001457,
+      "mntnnm": "개화산",
       "capacity": "2",
-      "content": "ㅇㅇㅇ",
-      "chatLink": "카톡.com",
+      "content": "멋진 개화산 놀러가유",
+      "chatLink": "chat.com/124mklasfd",
       "attendance": 0,
       "userId": "hihihi333",
-      "createdAt": "2024-09-18T11:49:46.415Z"
-    },
-    {
-      "id": "d76d",
-      "title": "ㅇㅇㅇ",
-      "date": "",
-      "mntnid": "",
-      "mntnnm": "",
-      "capacity": "1",
-      "content": "",
-      "chatLink": "",
-      "attendance": 0,
-      "userId": "hihihi333",
-      "createdAt": "2024-09-19T11:49:46.415Z"
-    },
-    {
-      "id": "f74b",
-      "title": "ㅇ",
-      "date": "2024-09-19",
-      "mntnid": 40006653,
-      "mntnnm": "망우산",
-      "capacity": "2",
-      "content": "ㅇ",
-      "chatLink": "ㅇ",
-      "attendance": 0,
-      "userId": "hihihi444",
-      "createdAt": "2024-09-19T12:24:43.285Z"
+      "createdAt": "2024-09-19T14:05:34.288Z"
     }
   ],
   "speedMeetAttendee": [
     {
       "id": "efd1",
-      "speedMeetId": "09c1",
+      "speedMeetId": null,
       "userId": "hihihi444"
     },
     {
