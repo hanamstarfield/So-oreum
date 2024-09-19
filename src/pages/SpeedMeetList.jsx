@@ -34,9 +34,9 @@ const SpeedMeetList = () => {
                     {speedMeetList.map((item) => {
                         return (
                             <li key={item.id} className="w-[100%] flex p-4 border-b-2 border-zinc-600 ">
-                                <span className="w-[10%]">{item.mountainName}</span>
+                                <span className="w-[10%]">{item.mntnnm}</span>
                                 <div className="w-[60%]">
-                                    <Link to={`/speed-meet-detail/${item.id}`}>
+                                    <Link to={`/speed-meet-detail/${item.mntnid}`}>
                                         <p>{item.title}</p>
                                     </Link>
                                 </div>
