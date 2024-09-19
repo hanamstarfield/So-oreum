@@ -1,33 +1,31 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 const KakaoMap = ({ mount }) => {
-    const navigate = useNavigate();
     useEffect(() => {
-        kakao.maps.load(() => {
+        window.kakao.maps.load(() => {
             const mapContainer = document.getElementById("map");
             if (!mapContainer) return;
 
             const mapOption = {
-                center: new kakao.maps.LatLng(37.566535, 126.9779692),
+                center: new window.kakao.maps.LatLng(37.566535, 126.9779692),
                 level: 9
             };
 
-            const map = new kakao.maps.Map(mapContainer, mapOption);
+            const map = new window.kakao.maps.Map(mapContainer, mapOption);
 
-            map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
-            const infowindow = new kakao.maps.InfoWindow({
+            map.addOverlayMapTypeId(window.kakao.maps.MapTypeId.TERRAIN);
+            const infowindow = new window.kakao.maps.InfoWindow({
                 removable: true
             });
 
             mount.forEach((item) => {
-                const markerPosition = new kakao.maps.LatLng(item.latitude, item.longitude);
-                const marker = new kakao.maps.Marker({
+                const markerPosition = new window.kakao.maps.LatLng(item.latitude, item.longitude);
+                const marker = new window.kakao.maps.Marker({
                     position: markerPosition
                 });
                 marker.setMap(map);
 
-                kakao.maps.event.addListener(marker, "click", () => {
+                window.kakao.maps.event.addListener(marker, "click", () => {
                     const content = `
                         <div class="p-4 w-64 rounded-lg shadow-lg">
                             <img src="${item.mntnattchimageseq}" class="w-full h-32 object-cover rounded-md mb-2""/>
@@ -52,7 +50,7 @@ const KakaoMap = ({ mount }) => {
             id="map"
             style={{
                 width: "800px",
-                height: "800px"
+                height: "840px"
             }}
         ></div>
     );
