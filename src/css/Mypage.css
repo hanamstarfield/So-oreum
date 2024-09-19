@@ -1,24 +1,23 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @font-face {
-    font-family: 'LeeSeoyun';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff') format('woff');
+    font-family: "LeeSeoyun";
+    src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
 
-@layer base{
-    body{
-        background-color: #214A00;
-        font-family: 'LeeSeoyun';
+@layer base {
+    body {
+        background-color: #214a00;
+        font-family: "LeeSeoyun";
     }
 }
 
 @layer components {
-    .main_Container{
+    .main_Container {
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -30,9 +29,14 @@
         border-radius: 15px;
     }
 
-    .cowProfile{
+    .cowProfile {
         width: 200px;
         height: auto;
     }
-}
 
+    .postBody {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 15px;
+    }
+}
