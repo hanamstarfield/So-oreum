@@ -2,11 +2,12 @@ import { useState } from "react";
 import { login } from "../api/auth";
 import useUserStore from "../zustand/useUserStore";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MtSign from "../assets/MtSign.png";
 
 const Login = () => {
     const queryClient = useQueryClient();
+    const navigate = useNavigate();
     const { logInUser } = useUserStore((state) => state);
 
     const [userData, setUserData] = useState({
@@ -21,6 +22,7 @@ const Login = () => {
                 alert("로그인 되었습니다.");
                 logInUser(data);
                 queryClient.invalidateQueries(["user"]);
+                navigate("/");
             } else {
                 alert(data.message);
                 setUserData({

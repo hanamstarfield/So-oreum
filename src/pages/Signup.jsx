@@ -49,35 +49,28 @@ const Signup = () => {
                             type="text"
                             value={userData.id}
                             onChange={(e) => setUserData({ ...userData, id: e.target.value })}
-                            placeholder="ID"
                             className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                            placeholder="ID"
                             required
                         />
-                    </div>
-                    <div>
                         <input
                             type="password"
                             value={userData.password}
                             onChange={(e) => setUserData({ ...userData, password: e.target.value })}
-                            placeholder="PW"
                             className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                            placeholder="PW"
                             required
                         />
-                    </div>
-                    <div>
                         <input
                             type="text"
                             value={userData.nickname}
                             onChange={(e) => setUserData({ ...userData, nickname: e.target.value })}
-                            placeholder="NickName"
                             className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                            placeholder="NickName"
                             required
                         />
                     </div>
-                    <button
-                        type="submit"
-                        className="w-full bg-green-600 text-white p-3 rounded hover:bg-green-700 transition"
-                    >
+                    <button className="w-full bg-green-500 text-white p-3 rounded hover:bg-green-700 transition">
                         회원가입
                     </button>
                 </form>
