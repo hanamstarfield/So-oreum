@@ -1,13 +1,13 @@
-import useGetSpeedMeetAndMountainQuery from "@/queries/useGetSpeedMeetAndMountainQuery";
+// import useGetSpeedMeetAndMountainQuery from "@/queries/useGetSpeedMeetAndMountainQuery";
 
-const splitSpeedMeetResult = (id) => {
-  const { data: result } = useGetSpeedMeetAndMountainQuery(id);
-  console.log('result', result);
-  return result;
-}
+// const splitSpeedMeetResult = (id) => {
+//   const { data: result } = useGetSpeedMeetAndMountainQuery(id);
+//   console.log('result', result);
+//   return result;
+// }
 
-const speedMeetDetailService = {
-  splitSpeedMeetResult,
-}
+// const speedMeetDetailService = {
+//   splitSpeedMeetResult,
+// }
 
-export default speedMeetDetailService
+// export default speedMeetDetailService
