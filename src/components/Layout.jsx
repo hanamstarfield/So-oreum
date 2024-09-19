@@ -14,6 +14,7 @@ const Layout = ({ children }) => {
 
     const handleLogout = () => {
         logOutUser();
+        alert("로그아웃 되었습니다.");
         return <Navigate to="/" />;
     };
 
