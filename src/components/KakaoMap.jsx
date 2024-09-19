@@ -3,6 +3,15 @@ import { useNavigate } from "react-router-dom";
 
 const KakaoMap = ({ mount }) => {
     const navigate = useNavigate();
+
+    const debounce = (calback, delay) => {
+        let timer;
+        return () => {
+            if (timer) clearTimeout(timer);
+            timer = setTimeout(calback, delay);
+        };
+    };
+
     useEffect(() => {
         kakao.maps.load(() => {
             const mapContainer = document.getElementById("map");
@@ -44,6 +53,26 @@ const KakaoMap = ({ mount }) => {
                     infowindow.open(map, marker);
                 });
             });
+
+            kakao.maps.event.addListener(
+                map,
+                "bounds_changed",
+                debounce(() => {
+                    const bounds = map.getBounds();
+                    const swLatlng = bounds.getSouthWest();
+                    const nwLatlng = bounds.getNorthEast();
+                    setLatlng({
+                        swLatlng: {
+                            La: swLatlng.La,
+                            Ma: swLatlng.Ma
+                        },
+                        nwLatlng: {
+                            La: nwLatlng.La,
+                            Ma: nwLatlng.Ma
+                        }
+                    });
+                }, 300)
+            );
         });
     }, [mount]);
 

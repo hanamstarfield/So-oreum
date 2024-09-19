@@ -54,7 +54,7 @@ const SpeedMeetDetail = () => {
                         </div>
                         <div className="h-[200px] flex flex-col bg-slate-400">
                             <h1 className="text-2xl">장소</h1>
-                            <p>{speedMeet.mountainName}</p>
+                            <p>{speedMeet.mntnnm}</p>
                         </div>
                     </div>
                     <div className="w-[500px] flex flex-col items-center">
