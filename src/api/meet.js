@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const getSpeedMeets = async ({ pageParam = 1 }) => {
+const getSpeedMeets = async (pageParam = 1) => {
+  console.log('axios pageParam =>> ', pageParam);
+  console.log(`url =>>>>   /speedMeets?_page=${pageParam}&_per_page=10`)
   const data = (await api.get(`/speedMeets?_page=${pageParam}&_per_page=10`)).data;
 
   return data;

@@ -1,6 +1,6 @@
 const queryKey = {
   default: {
-    speedMeets: ['speedMeets'],
+    speedMeets: (page) => [`speedMeets${page}`],
     speedMeet: (id) => `speedMeet${id}`,
     attendee: ['attendee']
   }

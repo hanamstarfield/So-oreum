@@ -36,8 +36,24 @@ const Router = () => {
                             </ProtectedRoute>
                         }
                     />
+                    {/* <Route
+                        path="/hikeEventDetail"
+                        element={
+                            <ProtectedRoute>
+                                <HikeEventDetail />
+                            </ProtectedRoute>
+                        }
+                    />
                     <Route
-                        path="/speed-meet"
+                        path="/hikeEventForm"
+                        element={
+                            <ProtectedRoute>
+                                <HikeEventForm />
+                            </ProtectedRoute>
+                        }
+                    /> */}
+                    <Route
+                        path="/speed-meet/:page"
                         element={
                             <ProtectedRoute>
                                 <SpeedMeetList />

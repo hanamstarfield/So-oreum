@@ -1,5 +1,6 @@
 import MtCard from "@/components/MtCard";
 import KakaoMap from "@/components/KakaoMap";
+import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
@@ -26,15 +27,14 @@ const Home = () => {
     }
 
     return (
-        <div className="flex h-screen">
-            <div className="flex-1 p-4">
+        <div>
+            <div className="flex mx-[50px]">
                 <MtCard mount={mount} />
-            </div>
-            <div className="flex-1">
                 <KakaoMap mount={mount} />
             </div>
-
-            <span>speed-meet 바로가기 (임시)</span>
+            <div>
+                <span>speed-meet 바로가기 (임시)</span>
+            </div>
         </div>
     );
 };
