@@ -1,14 +1,39 @@
+import MtCard from "@/components/MtCard";
 import KakaoMap from "@/components/KakaoMap";
-import MtList from "@/components/MtList";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const Home = () => {
+    const fetchMount = async () => {
+        const response = await axios.get("http://localhost:4000/items");
+        return response.data;
+    };
+
+    const {
+        data: mount,
+        isLoading,
+        isError
+    } = useQuery({
+        queryKey: ["items"],
+        queryFn: fetchMount
+    });
+    if (isLoading) {
+        return <div>로딩중...</div>;
+    }
+
+    if (isError) {
+        return <div>다시 시도해주세요...</div>;
+    }
+
     return (
         <div>
             <div className="flex mx-[50px]">
-                <MtList />
-                <KakaoMap />
+                <MtCard mount={mount} />
+                <KakaoMap mount={mount} />
             </div>
-            <span>speed-meet 바로가기 (임시)</span>
+            <div>
+                <span>speed-meet 바로가기 (임시)</span>
+            </div>
         </div>
     );
 };
