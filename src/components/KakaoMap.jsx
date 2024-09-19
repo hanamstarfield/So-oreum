@@ -1,31 +1,33 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const KakaoMap = ({ mount }) => {
+const KakaoMap = ({ mount, setLatlng }) => {
+    const navigate = useNavigate();
     useEffect(() => {
-        window.kakao.maps.load(() => {
+        kakao.maps.load(() => {
             const mapContainer = document.getElementById("map");
             if (!mapContainer) return;
 
             const mapOption = {
-                center: new window.kakao.maps.LatLng(37.566535, 126.9779692),
+                center: new kakao.maps.LatLng(37.566535, 126.9779692),
                 level: 9
             };
 
-            const map = new window.kakao.maps.Map(mapContainer, mapOption);
+            const map = new kakao.maps.Map(mapContainer, mapOption);
 
-            map.addOverlayMapTypeId(window.kakao.maps.MapTypeId.TERRAIN);
-            const infowindow = new window.kakao.maps.InfoWindow({
+            // map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
+            const infowindow = new kakao.maps.InfoWindow({
                 removable: true
             });
 
             mount.forEach((item) => {
-                const markerPosition = new window.kakao.maps.LatLng(item.latitude, item.longitude);
-                const marker = new window.kakao.maps.Marker({
+                const markerPosition = new kakao.maps.LatLng(item.latitude, item.longitude);
+                const marker = new kakao.maps.Marker({
                     position: markerPosition
                 });
                 marker.setMap(map);
 
-                window.kakao.maps.event.addListener(marker, "click", () => {
+                kakao.maps.event.addListener(marker, "click", () => {
                     const content = `
                         <div class="p-4 w-64 rounded-lg shadow-lg">
                             <img src="${item.mntnattchimageseq}" class="w-full h-32 object-cover rounded-md mb-2""/>
@@ -66,7 +68,7 @@ const KakaoMap = ({ mount }) => {
             id="map"
             style={{
                 width: "800px",
-                height: "840px"
+                height: "800px"
             }}
         ></div>
     );
