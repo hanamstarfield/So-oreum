@@ -23,6 +23,34 @@ const SpeedMeetWrite = () => {
     const today = getToday();
 
     const handleWrite = () => {
+        const { title, date, mntnid, mntnnm, capacity, content, chatLink } = formState;
+
+        // 유효성 검사
+        if (!title) {
+            alert("제목을 입력해주세요.");
+            return;
+        }
+        if (!date) {
+            alert("날짜를 입력해주세요.");
+            return;
+        }
+        if (!mntnid || !mntnnm) {
+            alert("산 정보를 입력해주세요.");
+            return;
+        }
+        if (!capacity) {
+            alert("인원 수를 정확하게 입력해주세요.");
+            return;
+        }
+        if (!content) {
+            alert("내용을 입력해주세요.");
+            return;
+        }
+        if (!chatLink) {
+            alert("채팅 링크를 입력해주세요.");
+            return;
+        }
+
         mutation.mutate({ ...formState, userId: user.userId });
         navigate("/speed-meet/1");
     };
