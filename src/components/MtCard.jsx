@@ -84,7 +84,7 @@ const MtCard = ({ mount, latlng }) => {
             <div className="flex flex-wrap w-[800px] h-[800px] leading-loose overflow-y-scroll cursor-pointer">
                 {filteredByCategory.length > 0 ? (
                     filteredByCategory.map((item) => (
-                        <div key={item.mntnid} className="w-[250px]">
+                        <div key={item.mntnid} className="flex w-[250px] h-[320px]">
                             <div
                                 className="bg-white rounded-[15px] p-[15px] my-[10px] mx-[5px] box-contents brightness-100 hover:brightness-90 duration-100"
                                 onClick={() => navigate(`/mntn-detail?mntnId=${item.mntnid}`)}
