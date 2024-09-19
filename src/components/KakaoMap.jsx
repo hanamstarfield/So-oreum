@@ -1,6 +1,11 @@
 import { useEffect } from "react";
 
+<<<<<<< HEAD
 const KakaoMap = ({ mount }) => {
+=======
+const KakaoMap = ({ mount, setLatlng }) => {
+    const navigate = useNavigate();
+>>>>>>> c77ab9b41d88b345e5028465057c49350055267f
     useEffect(() => {
         kakao.maps.load(() => {
             const mapContainer = document.getElementById("map");
@@ -13,6 +18,14 @@ const KakaoMap = ({ mount }) => {
 
             const map = new kakao.maps.Map(mapContainer, mapOption);
 
+<<<<<<< HEAD
+=======
+            // map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
+            const infowindow = new kakao.maps.InfoWindow({
+                removable: true
+            });
+
+>>>>>>> c77ab9b41d88b345e5028465057c49350055267f
             mount.forEach((item) => {
                 const markerPosition = new kakao.maps.LatLng(item.latitude, item.longitude);
                 const marker = new kakao.maps.Marker({
@@ -35,6 +48,22 @@ const KakaoMap = ({ mount }) => {
                     `;
                     infowindow.setContent(content);
                     infowindow.open(map, marker);
+                });
+
+                kakao.maps.event.addListener(map, "bounds_changed", () => {
+                    const bounds = map.getBounds();
+                    const swLatlng = bounds.getSouthWest();
+                    const nwLatlng = bounds.getNorthEast();
+                    setLatlng({
+                        swLatlng: {
+                            La: swLatlng.La,
+                            Ma: swLatlng.Ma
+                        },
+                        nwLatlng: {
+                            La: nwLatlng.La,
+                            Ma: nwLatlng.Ma
+                        }
+                    });
                 });
             });
         });
