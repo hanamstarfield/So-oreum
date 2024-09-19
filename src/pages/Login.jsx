@@ -3,6 +3,7 @@ import { login } from "../api/auth";
 import useUserStore from "../zustand/useUserStore";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
+import MtSign from "../assets/MtSign.png";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -38,7 +39,10 @@ const Login = () => {
     };
 
     return (
-        <div className="flex h-screen bg-green-50 items-center justify-center p-8">
+        <div
+            className="flex h-screen bg-green-200 items-center justify-center p-8"
+            style={{ backgroundImage: `url(${MtSign})`, backgroundSize: "cover", backgroundPosition: "center" }}
+        >
             <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-md border border-gray-300">
                 <h2 className="text-3xl font-bold text-center mb-6 text-green-800">로그인</h2>
                 <form onSubmit={onSubmitHandler} className="space-y-4">
