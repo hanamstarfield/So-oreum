@@ -21,9 +21,35 @@ const SpeedMeetDetail = () => {
     const hasBeenAttendee = attendees?.some((attendee) => attendee.userId === user.userId);
     const isDeadline = speedMeet.attendance >= speedMeet.capacity;
 
+    const showChatLink = user.userId === speedMeet.userId || hasBeenAttendee;
+
     const handleEnrollAttendee = () => {
         mutation.mutate({ speedMeetId: id, userId: user.userId });
     };
+
+    const getMasking = (url) => {
+        const urlPattern = /^(https?:\/\/)?([^\/]+)(\/.*)?$/;
+        const match = url.match(urlPattern);
+
+        if (match) {
+            const protocol = match[1] || "";
+            const domain = match[2];
+            const path = match[3] || "";
+
+            // 도메인 마스킹: "example.com" -> "e*****.com"
+            // const maskedDomain = domain.charAt(0) + "*****" + domain.slice(domain.lastIndexOf("."));
+            const maskedDomain = domain;
+
+            // 경로 마스킹: "/path/to/resource" -> "/path/***"
+            const maskedPath = path.length > 0 ? path.replace(/[^\/]+$/, "***") : "";
+
+            return `${protocol}${maskedDomain}${maskedPath}`;
+        }
+
+        return url;
+    };
+
+    console.log("url", getMasking("http://naver.com/asdf/123411"));
 
     return (
         <div className="flex bg-[#214A00] w-[100%] h-svh items-center">
@@ -65,7 +91,9 @@ const SpeedMeetDetail = () => {
                         <div>
                             <h1 className="text-2xl">오픈채팅</h1>
                             <div className="bg-slate-300">
-                                <p onClick={() => handleCopyClipBoard(speedMeet.chatLink)}>{`${speedMeet.chatLink}`}</p>
+                                <p onClick={() => handleCopyClipBoard(speedMeet.chatLink)}>{`${
+                                    showChatLink ? speedMeet.chatLink : getMasking(speedMeet.chatLink)
+                                }`}</p>
                             </div>
                         </div>
                     </div>
