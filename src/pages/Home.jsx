@@ -9,7 +9,6 @@ const Home = () => {
         swLatlng: { La: 126.74830859822728, Ma: 37.33778210260892 },
         nwLatlng: { La: 127.24016828673027, Ma: 37.7991147734346 }
     });
-    // console.log(latlng);
 
     const fetchMount = async () => {
         const response = await axios.get("http://localhost:4000/items");

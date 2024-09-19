@@ -48,7 +48,6 @@ const KakaoMap = ({ mount, setLatlng }) => {
                     const bounds = map.getBounds();
                     const swLatlng = bounds.getSouthWest();
                     const nwLatlng = bounds.getNorthEast();
-                    console.log(swLatlng, nwLatlng);
                     setLatlng({
                         swLatlng: {
                             La: swLatlng.La,
