@@ -2,11 +2,10 @@ import { useState } from "react";
 import { login } from "../api/auth";
 import useUserStore from "../zustand/useUserStore";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import MtSign from "../assets/MtSign.png";
 
 const Login = () => {
-    const navigate = useNavigate();
     const queryClient = useQueryClient();
     const { logInUser } = useUserStore((state) => state);
 
@@ -22,7 +21,6 @@ const Login = () => {
                 alert("로그인 되었습니다.");
                 logInUser(data);
                 queryClient.invalidateQueries(["user"]);
-                navigate("/");
             } else {
                 alert(data.message);
                 setUserData({
@@ -51,21 +49,20 @@ const Login = () => {
                             type="text"
                             value={userData.id}
                             onChange={(e) => setUserData({ ...userData, id: e.target.value })}
-                            placeholder="ID"
                             className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                            placeholder="ID"
                             required
                         />
-                    </div>
-                    <div>
                         <input
                             type="password"
                             value={userData.password}
                             onChange={(e) => setUserData({ ...userData, password: e.target.value })}
-                            placeholder="PW"
                             className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                            placeholder="PW"
                             required
                         />
                     </div>
+
                     <button
                         type="submit"
                         className="w-full bg-green-500 text-white p-3 rounded hover:bg-green-600 transition"
