@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const KakaoMap = ({ mount }) => {
+const KakaoMap = ({ mount, setLatlng }) => {
     const navigate = useNavigate();
     useEffect(() => {
         kakao.maps.load(() => {
@@ -15,7 +15,7 @@ const KakaoMap = ({ mount }) => {
 
             const map = new kakao.maps.Map(mapContainer, mapOption);
 
-            map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
+            // map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
             const infowindow = new kakao.maps.InfoWindow({
                 removable: true
             });
@@ -42,6 +42,22 @@ const KakaoMap = ({ mount }) => {
                     `;
                     infowindow.setContent(content);
                     infowindow.open(map, marker);
+                });
+
+                kakao.maps.event.addListener(map, "bounds_changed", () => {
+                    const bounds = map.getBounds();
+                    const swLatlng = bounds.getSouthWest();
+                    const nwLatlng = bounds.getNorthEast();
+                    setLatlng({
+                        swLatlng: {
+                            La: swLatlng.La,
+                            Ma: swLatlng.Ma
+                        },
+                        nwLatlng: {
+                            La: nwLatlng.La,
+                            Ma: nwLatlng.Ma
+                        }
+                    });
                 });
             });
         });
