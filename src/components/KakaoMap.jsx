@@ -41,6 +41,22 @@ const KakaoMap = ({ mount }) => {
                     infowindow.setContent(content);
                     infowindow.open(map, marker);
                 });
+
+                kakao.maps.event.addListener(map, "bounds_changed", () => {
+                    const bounds = map.getBounds();
+                    const swLatlng = bounds.getSouthWest();
+                    const nwLatlng = bounds.getNorthEast();
+                    setLatlng({
+                        swLatlng: {
+                            La: swLatlng.La,
+                            Ma: swLatlng.Ma
+                        },
+                        nwLatlng: {
+                            La: nwLatlng.La,
+                            Ma: nwLatlng.Ma
+                        }
+                    });
+                });
             });
         });
     }, [mount]);

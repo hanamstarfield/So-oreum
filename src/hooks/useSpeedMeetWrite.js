@@ -1,13 +1,12 @@
-import meetApi from "@/api/meet";
-import { useQuery } from "@tanstack/react-query";
+import useGetMountainQuery from "@/queries/useGetMountainQuery";
 import { useState } from "react";
 
 const useSpeedMeetWrite = () => {
   const [formState, setFormState] = useState({
     title: "",
     date: "",
-    mountainId: "",
-    mountainName: "",
+    mntnid: "",
+    mntnnm: "",
     capacity: "",
     content: "",
     chatLink: "",
@@ -18,24 +17,23 @@ const useSpeedMeetWrite = () => {
   const [searchBoxVisible, setSearchBoxVisible] = useState(false);
   const [mountainSearchResult, setMountainSearchResult] = useState(null);
 
-  const { data: mountains = [], isPending } = useQuery({
-    queryKey: ["dummy-mountain"],
-    queryFn: () => meetApi.getDummyMountain()
-  });
+  const { data: mountains = [], isPending } = useGetMountainQuery();
+
+  console.log('mountains', mountains);
 
   const handleMountainChange = (e) => {
-    const mountainName = e.target.value;
+    const mntnnm = e.target.value;
     setFormState((prev) => {
       return {
         ...prev,
-        mountainName: mountainName
+        mntnnm
       };
     });
     if (mountains.length > 0) {
-      const result = mountains.filter((mountain) => mountain.mntnnm.includes(mountainName));
+      const result = mountains.filter((mountain) => mountain.mntnnm.includes(mntnnm));
       setMountainSearchResult(result);
 
-      const condition = !!mountainName;
+      const condition = !!mntnnm;
       setSearchBoxVisible(condition);
       setSelectedMountain(null);
     }
@@ -44,30 +42,19 @@ const useSpeedMeetWrite = () => {
   const handleMountainNameBlur = () => {
     if (!searchBoxVisible) {
       return;
-      //   handleSetMountain(mountainSearchResult[0]);
     }
 
-    // handleSetMountain(mountainSearchResult[0]);
-
     setFormState((prev) => {
-      // console.log('first', first)
-      // const isExist = mountainSearchResult.some(mountain => mountain.mntnid === prev.mountainId);
-
-      // if (isExist) {
-      //   return prev;
-      // }
       setSelectedMountain(mountainSearchResult[0]);
       setSearchBoxVisible(false);
 
       return {
         ...prev,
-        mountainName: mountainSearchResult[0].mntnnm,
-        mountainId: mountainSearchResult[0].mntnid,
+        mntnnm: mountainSearchResult[0].mntnnm,
+        mntnid: mountainSearchResult[0].mntnid,
       };
 
     });
-    // setSelectedMountain(mountainSearchResult[0]);
-    // setSearchBoxVisible(false);
   }
 
   const handleChange = (event) => {
@@ -85,8 +72,8 @@ const useSpeedMeetWrite = () => {
     setFormState((prev) => {
       return {
         ...prev,
-        mountainName: mountain.mntnnm,
-        mountainId: mountain.mntnid,
+        mntnnm: mountain.mntnnm,
+        mntnid: mountain.mntnid,
       };
     });
 
