@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const KakaoMapSpeedMeet = ({ lat, lng }) => {
+const KakaoMapSpeedMeet = ({ lat, lng, ...style }) => {
     useEffect(() => {
         mapscript();
     }, []);
@@ -30,7 +30,8 @@ const KakaoMapSpeedMeet = ({ lat, lng }) => {
         });
     };
 
-    return <div id="map" style={{ width: "400px", height: "400px" }}></div>;
+    // return <div id="map" className={`w-[${width}] h-[${height}]`}></div>;
+    return <div id="map" style={{ ...style }}></div>;
     // <Map // 지도를 표시할 Container
     //     center={{
     //         // 지도의 중심좌표

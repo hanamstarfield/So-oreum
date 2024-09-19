@@ -76,27 +76,61 @@ const SpeedMeetDetail = () => {
                         </button>
                     ))}
             </div>
-            <div className="max-w-[1200px] h-[700px] mx-auto flex flex-col justify-center items-center gap-12 bg-white rounded-lg">
+            <div className="w-[1000px] h-[800px] mx-auto flex flex-col justify-center items-center gap-12 bg-white rounded-lg">
                 <div className="flex items-center justify-center">
                     <h1 className="text-4xl">{speedMeet.title}</h1>
                 </div>
-                <div className="w-[100%] flex justify-center p-4 gap-8">
+                <div className="w-[100%] flex justify-start p-4 gap-8">
                     <div className="flex flex-col gap-3 w-[200px]">
-                        <div className="h-[200px] flex flex-col gap-2 border-[#214A00] border-2 rounded-lg p-2">
-                            <div className="w-[70px] bg-gray-600 flex justify-center rounded-2xl p-1">
-                                <h2 className="text-lg text-white">등반일</h2>
+                        <div className="h-[600px] flex flex-col gap-6 border-[#214A00] border-2 rounded-lg p-2">
+                            <div className="flex flex-col gap-2">
+                                <div className="w-[70px] bg-gray-600 flex justify-center rounded-2xl p-1">
+                                    <h2 className="text-lg text-white">등반일</h2>
+                                </div>
+                                <p>{speedMeet.date}</p>
                             </div>
-                            <p>{speedMeet.date}</p>
-                        </div>
-                        <div className="h-[200px] flex flex-col gap-2 border-[#214A00] border-2 rounded-lg p-2">
-                            <div className="w-[70px] bg-gray-600 flex justify-center rounded-2xl p-1">
-                                <h1 className="text-lg text-white">장소</h1>
+                            <div className="flex flex-col gap-2">
+                                <div className="w-[70px] bg-gray-600 flex justify-center rounded-2xl p-1">
+                                    <h2 className="text-lg text-white">장소</h2>
+                                </div>
+                                <p>{speedMeet.mntnnm}</p>
                             </div>
-                            <p>{speedMeet.mntnnm}</p>
+                            <div className="flex flex-col gap-2">
+                                <div className="w-[80px] bg-gray-600 flex justify-center rounded-2xl p-1">
+                                    <h2 className="text-lg text-white">모집인원</h2>
+                                </div>
+                                <p>{`${speedMeet.capacity}명`}</p>
+                            </div>
+                            <div className="flex flex-col gap-2">
+                                <div className="w-[80px] bg-gray-600 flex justify-center rounded-2xl p-1">
+                                    <h2 className="text-lg text-white">오픈채팅</h2>
+                                </div>
+                                <div className="bg-slate-300">
+                                    {showChatLink ? (
+                                        <p onClick={() => handleCopyClipBoard(speedMeet.chatLink)}>
+                                            {speedMeet.chatLink}
+                                        </p>
+                                    ) : (
+                                        <p>{getMasking(speedMeet.chatLink)}</p>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="flex flex-col gap-2">
+                                <div className="w-[70px] bg-gray-600 flex justify-center rounded-2xl p-1">
+                                    <h1 className="text-lg text-white">내용</h1>
+                                </div>
+                                <p>{speedMeet.content}</p>
+                            </div>
                         </div>
                     </div>
                     <div className="w-[500px] flex flex-col">
-                        <KakaoMapSpeedMeet lat={mntn?.latitude} lng={mntn?.longitude} />
+                        <KakaoMapSpeedMeet
+                            lat={mntn?.latitude}
+                            lng={mntn?.longitude}
+                            width="720px"
+                            height="600px"
+                            borderRadius="8px"
+                        />
                         {/* <div>
                             <h1 className="text-2xl">모집인원</h1>
                             <p>{`${speedMeet.capacity}명`}</p>
