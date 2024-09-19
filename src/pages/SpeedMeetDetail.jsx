@@ -1,3 +1,5 @@
+import useCreateAttendeeMutation from "@/mutations/useCreateAttendeeMutation";
+import useGetAttendees from "@/queries/useGetAttendees";
 import useGetSpeedMeetByIdQuery from "@/queries/useGetSpeedMeetByIdQuery";
 import handleCopyClipBoard from "@/utils/clipBoard";
 import useUserStore from "@/zustand/useUserStore";
@@ -5,23 +7,39 @@ import { useParams } from "react-router-dom";
 
 const SpeedMeetDetail = () => {
     const { id } = useParams();
+    const mutation = useCreateAttendeeMutation();
 
-    const { data: speedMeet, isPending } = useGetSpeedMeetByIdQuery(id);
+    const { data: speedMeet, isPending: speedMeetPending } = useGetSpeedMeetByIdQuery(id);
     const { user } = useUserStore((state) => state);
 
-    if (isPending) {
+    const { data: attendees, isPending: attendeePending } = useGetAttendees(id);
+
+    if (speedMeetPending || attendeePending) {
         return <>...로딩중</>;
     }
 
-    console.log("user", user);
-    console.log("speedMeet", speedMeet.userId);
+    const hasBeenAttendee = attendees?.some((attendee) => attendee.userId === user.userId);
+    const isDeadline = speedMeet.attendance >= speedMeet.capacity;
+
+    const handleEnrollAttendee = () => {
+        mutation.mutate({ speedMeetId: id, userId: user.userId });
+    };
 
     return (
         <div className="flex bg-[#214A00] w-[100%] h-svh items-center">
             <div className="w-[150px] h-[300px] mx-auto flex flex-col items-center bg-white">
                 <h2 className="text-xl">{user.nickname}</h2>
-                <span>{`참가인원 ${speedMeet.attendance}명`}</span>
-                {user.userId !== speedMeet.userId && <button className="bg-cyan-600">신청하기</button>}
+                <span>{`참가인원 ${speedMeet?.attendance}명`}</span>
+                {user.userId !== speedMeet.userId &&
+                    (hasBeenAttendee ? (
+                        <button className="bg-slate-600 cursor-default">신청완료</button>
+                    ) : isDeadline ? (
+                        <button className="bg-slate-600 cursor-default">신청마감</button>
+                    ) : (
+                        <button className="bg-cyan-600" onClick={handleEnrollAttendee}>
+                            신청하기
+                        </button>
+                    ))}
             </div>
             <div className="max-w-[1200px] h-[600px] mx-auto flex flex-col justify-center items-center gap-12 bg-white">
                 <div className="flex items-center justify-center">

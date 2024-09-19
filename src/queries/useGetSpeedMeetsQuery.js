@@ -1,14 +1,17 @@
 import meetApi from '@/api/meet';
 import queryKey from './queryKeys'
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
-const useGetSpeedMeetsQuery = () => {
+
+const useGetSpeedMeetsQuery = (pageParam) => {
+  console.log('useQuery  pageParam => ', pageParam);
   return useQuery({
-    queryKey: [queryKey.default.speedMeets],
-    queryFn: meetApi.getSpeedMeets,
+    queryKey: [queryKey.default.speedMeets(pageParam)],
+    queryFn: () => meetApi.getSpeedMeets(pageParam),
     onError: (error) => {
       alert(error);
-    }
+    },
+    staleTime: 0,
   });
 }
 

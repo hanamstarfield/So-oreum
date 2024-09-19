@@ -1,47 +1,114 @@
-import meetApi from "@/api/meet";
-import SearchBox from "@/components/SearchBox";
-import { useQuery } from "@tanstack/react-query";
-import React, { useCallback, useEffect, useState } from "react";
+import useSpeedMeetWrite from "@/hooks/useSpeedMeetWrite";
+import useCreateSpeedMeetMutation from "@/mutations/useCreateSpeedMeetMutation";
+import useUserStore from "@/zustand/useUserStore";
+import { getToday } from "@/utils/common";
 
 const SpeedMeetWrite = () => {
-    const [mountainInput, setMountainInput] = useState("");
-    const [searchBoxVisible, setSearchBoxVisible] = useState(false);
-    const [mountainSearchResult, setMountainSearchResult] = useState([]);
+    const {
+        formState,
+        selectedMountain,
+        handleMountainChange,
+        searchBoxVisible,
+        mountainSearchResult,
+        handleChange,
+        handleMountainNameBlur,
+        handleSetMountain
+    } = useSpeedMeetWrite();
 
-    const { data: mountains = [], isPending } = useQuery({
-        queryKey: "dummy-mountain",
-        queryFn: () => meetApi.getDummyMountain()
-    });
+    const { user } = useUserStore((state) => state);
+    const mutation = useCreateSpeedMeetMutation();
 
-    useEffect(() => {
-        if (mountains.length > 0) {
-            const result = mountains.filter((mountain) => mountain.mntnnm.includes(mountainInput));
-            setMountainSearchResult(result);
+    const today = getToday();
 
-            const condition = !!mountainInput;
-
-            setSearchBoxVisible(condition);
-
-            console.log("result", result);
-        }
-    }, [mountainInput]);
-
-    const handleMountainInput = (e) => {
-        setMountainInput(e.target.value);
+    const handleWrite = () => {
+        mutation.mutate({ ...formState, userId: user.userId });
     };
 
+    let test = true;
+
     return (
-        <div className="flex bg-[#214A00] w-[100%] h-svh items-center">
+        <div className="flex bg-[#214A00] w-[100%] h-svh items-center m-0">
             <div className="w-[1200px] h-[500px] mx-auto flex flex-col justify-center items-start gap-4 bg-white">
-                <input type="text" value={""} placeholder="제목" />
-                <input type="text" value={""} placeholder="일정" />
-                <div className="flex">
-                    <input type="text" value={mountainInput} placeholder="산" onChange={handleMountainInput} />
-                    {searchBoxVisible && <SearchBox />}
+                <input type="text" name="title" value={formState.title} onChange={handleChange} placeholder="제목" />
+
+                <div className="relative">
+                    <input type="date" name="date" min={today} value={formState.date} onChange={handleChange} />
                 </div>
-                <input type="number" value={""} placeholder="인원수" />
-                <input type="text" value={""} placeholder="소개" />
-                <input type="text" value={""} placeholder="오픈카톡 링크" />
+                <div className="flex relative">
+                    {/* ref  */}
+                    {/* 
+                    click outside 
+                    div 바깥의 ... 클릭시 
+                    */}
+                    <input
+                        type="text"
+                        name="mountainName"
+                        value={formState.mountainName}
+                        placeholder="산"
+                        onChange={handleMountainChange}
+                        onBlur={() => {
+                            if (test) {
+                                handleMountainNameBlur();
+                            }
+                        }}
+                        onFocus={() => {
+                            test = true;
+                        }}
+                    />
+                    {searchBoxVisible && !selectedMountain && (
+                        <ul className="absolute top-0 left-52 bg-slate-300 w-[150px]">
+                            {mountainSearchResult.map((item) => {
+                                return (
+                                    <li
+                                        key={item.id}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleSetMountain(item);
+                                        }}
+                                        onMouseEnter={() => {
+                                            test = false;
+                                        }}
+                                        onMouseLeave={() => {
+                                            test = true;
+                                        }}
+                                    >
+                                        {item.mntnnm}
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                        // <SearchBox
+                        //     list={mountainSearchResult}
+                        //     handleSetMountain={handleSetMountain}
+                        //     handleHover={handleTest}
+                        // />
+                    )}
+                </div>
+                <input
+                    type="number"
+                    name="capacity"
+                    value={formState.capacity}
+                    onChange={handleChange}
+                    placeholder="정원"
+                />
+                <input
+                    type="text"
+                    name="content"
+                    value={formState.content}
+                    onChange={handleChange}
+                    placeholder="내용"
+                />
+                <input
+                    type="text"
+                    name="chatLink"
+                    value={formState.chatLink}
+                    onChange={handleChange}
+                    placeholder="오픈카톡 링크"
+                />
+                {/* TODO 글 작성 진행중 */}
+                <button className="bg-slate-500 rounded-sm" onClick={handleWrite}>
+                    작성
+                </button>
             </div>
         </div>
     );

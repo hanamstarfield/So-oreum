@@ -1,5 +1,6 @@
 import MtCard from "@/components/MtCard";
 import KakaoMap from "@/components/KakaoMap";
+import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
