@@ -9,7 +9,7 @@ const getSpeedMeets = async (pageParam = 1) => {
 }
 
 const getSpeedMeetById = async (id) => {
-  return (await api.get(`/speedMeets?mntnid=${id}`)).data[0];
+  return (await api.get(`/speedMeets?id=${id}`)).data[0];
 }
 
 const getDummyMountain = async () => {
