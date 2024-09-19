@@ -1,22 +1,33 @@
+import KakaoMap from "@/components/KakaoMap";
+import KakaoMapSpeedMeet from "@/components/KakaoMapSpeedMeet";
 import useCreateAttendeeMutation from "@/mutations/useCreateAttendeeMutation";
 import useGetAttendees from "@/queries/useGetAttendees";
+import useGetMountainById from "@/queries/useGetMountainById";
+import useGetSpeedMeetAndMountainQuery from "@/queries/useGetSpeedMeetAndMountainQuery";
 import useGetSpeedMeetByIdQuery from "@/queries/useGetSpeedMeetByIdQuery";
 import handleCopyClipBoard from "@/utils/clipBoard";
 import useUserStore from "@/zustand/useUserStore";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 const SpeedMeetDetail = () => {
     const { id } = useParams();
-    const mutation = useCreateAttendeeMutation();
-
-    const { data: speedMeet, isPending: speedMeetPending } = useGetSpeedMeetByIdQuery(id);
     const { user } = useUserStore((state) => state);
 
+    const mutation = useCreateAttendeeMutation();
+
+    const { data: result, isPending: speedMeetPending } = useGetSpeedMeetAndMountainQuery(id);
+    // const { data: mntn, isPending: mntnPending } = useGetMountainById(speedMeet?.mntnid);
     const { data: attendees, isPending: attendeePending } = useGetAttendees(id);
 
     if (speedMeetPending || attendeePending) {
         return <>...로딩중</>;
     }
+
+    const { speedMeet, mntn } = result;
+
+    console.log("speedMeet", speedMeet);
+    console.log("mntn", mntn);
 
     const hasBeenAttendee = attendees?.some((attendee) => attendee.userId === user.userId);
     const isDeadline = speedMeet.attendance >= speedMeet.capacity;
@@ -49,11 +60,9 @@ const SpeedMeetDetail = () => {
         return url;
     };
 
-    console.log("url", getMasking("http://naver.com/asdf/123411"));
-
     return (
         <div className="flex bg-[#214A00] w-[100%] h-svh items-center">
-            <div className="w-[150px] h-[300px] mx-auto flex flex-col items-center bg-white">
+            <div className="w-[150px] h-[300px] mx-auto flex flex-col items-center bg-white rounded-lg">
                 <h2 className="text-xl">{user.nickname}</h2>
                 <span>{`참가인원 ${speedMeet?.attendance}명`}</span>
                 {user.userId !== speedMeet.userId &&
@@ -67,24 +76,28 @@ const SpeedMeetDetail = () => {
                         </button>
                     ))}
             </div>
-            <div className="max-w-[1200px] h-[600px] mx-auto flex flex-col justify-center items-center gap-12 bg-white">
+            <div className="max-w-[1200px] h-[700px] mx-auto flex flex-col justify-center items-center gap-12 bg-white rounded-lg">
                 <div className="flex items-center justify-center">
                     <h1 className="text-4xl">{speedMeet.title}</h1>
                 </div>
-                <div className="max-w-[1200px] flex justify-center">
+                <div className="w-[100%] flex justify-center p-4 gap-8">
                     <div className="flex flex-col gap-3 w-[200px]">
-                        <div className="h-[300px] flex flex-col gap-2 bg-slate-400">
-                            <h1 className="text-2xl">일정</h1>
-                            <h2 className="text-xl">등반일</h2>
-                            <span>{speedMeet.date}</span>
+                        <div className="h-[200px] flex flex-col gap-2 border-[#214A00] border-2 rounded-lg p-2">
+                            <div className="w-[70px] bg-gray-600 flex justify-center rounded-2xl p-1">
+                                <h2 className="text-lg text-white">등반일</h2>
+                            </div>
+                            <p>{speedMeet.date}</p>
                         </div>
-                        <div className="h-[200px] flex flex-col bg-slate-400">
-                            <h1 className="text-2xl">장소</h1>
+                        <div className="h-[200px] flex flex-col gap-2 border-[#214A00] border-2 rounded-lg p-2">
+                            <div className="w-[70px] bg-gray-600 flex justify-center rounded-2xl p-1">
+                                <h1 className="text-lg text-white">장소</h1>
+                            </div>
                             <p>{speedMeet.mntnnm}</p>
                         </div>
                     </div>
-                    <div className="w-[500px] flex flex-col items-center">
-                        <div>
+                    <div className="w-[500px] flex flex-col">
+                        <KakaoMapSpeedMeet lat={mntn?.latitude} lng={mntn?.longitude} />
+                        {/* <div>
                             <h1 className="text-2xl">모집인원</h1>
                             <p>{`${speedMeet.capacity}명`}</p>
                         </div>
@@ -96,6 +109,12 @@ const SpeedMeetDetail = () => {
                                 }`}</p>
                             </div>
                         </div>
+                        <div>
+                            <h1 className="text-2xl">내용</h1>
+                            <div className="">
+                                <p>{speedMeet.content}</p>
+                            </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
