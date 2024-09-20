@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import move from "../assets/VectorIcon.png";
 
 const KakaoMap = ({ mount, setLatlng }) => {
     const navigate = useNavigate();
@@ -83,7 +84,22 @@ const KakaoMap = ({ mount, setLatlng }) => {
                 width: "800px",
                 height: "850px"
             }}
-        ></div>
+        >
+            <div
+                style={{
+                    zIndex: 1000,
+                    position: "absolute",
+                    bottom: "20px",
+                    right: "20px",
+                    cursor: "pointer"
+                }}
+                onClick={() => {
+                    navigate("/speed-meet-write");
+                }}
+            >
+                <img src={move} alt="" style={{ width: "60px", height: "60px" }} />
+            </div>
+        </div>
     );
 };
 
