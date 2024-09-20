@@ -21,10 +21,11 @@ const SpeedMeetList = () => {
 
     return (
         <div className="h-lvh bg-[#214A00] flex flex-col justify-center items-center">
-            <div className="bg-white w-[1200px] rounded-lg flex flex-col">
+            {/* <div className="h-lvh mx-auto flex flex-col justify-center items-center"> */}
+            <div className="bg-white w-[1200px] rounded-xl flex flex-col mb-6">
                 <div className="w-[100%] h-[50px] flex p-4 border-b-4 border-slate-500">
-                    <span className="w-[10%]">산</span>
-                    <span className="w-[60%]">제목</span>
+                    <span className="w-[15%]">산</span>
+                    <span className="w-[50%]">제목</span>
                     <span className="w-[]">모집인원</span>
                     <div className="ml-auto">
                         <Link to="/speed-meet-write">
@@ -37,8 +38,8 @@ const SpeedMeetList = () => {
                     {speedMeetList.map((item) => {
                         return (
                             <li key={item.id} className="w-[100%] flex p-4 border-b-2 border-zinc-600 ">
-                                <span className="w-[10%]">{item.mntnnm}</span>
-                                <div className="w-[60%]">
+                                <span className="w-[15%]">{item.mntnnm}</span>
+                                <div className="w-[50%]">
                                     <Link to={`/speed-meet-detail/${item.id}`}>
                                         <p>{item.title}</p>
                                     </Link>
