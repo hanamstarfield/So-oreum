@@ -91,10 +91,17 @@ const KakaoMap = ({ mount, setLatlng }) => {
                     position: "absolute",
                     bottom: "20px",
                     right: "20px",
-                    cursor: "pointer"
+                    cursor: "pointer",
+                    transition: "transform 0.3s ease"
                 }}
                 onClick={() => {
                     navigate("/speed-meet-write");
+                }}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "scale(1.2)";
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "scale(1)";
                 }}
             >
                 <img src={move} alt="" style={{ width: "60px", height: "60px" }} />
