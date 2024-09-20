@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "../css/dlatl.css";
 import move from "../assets/VectorIcon.png";
 
 const KakaoMap = ({ mount, setLatlng, searchMt }) => {
@@ -25,7 +26,7 @@ const KakaoMap = ({ mount, setLatlng, searchMt }) => {
 
             const map = new kakao.maps.Map(mapContainer, mapOption);
 
-            // map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
+            map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
             const infowindow = new kakao.maps.InfoWindow({
                 removable: true
             });
@@ -92,7 +93,8 @@ const KakaoMap = ({ mount, setLatlng, searchMt }) => {
             id="map"
             style={{
                 width: "800px",
-                height: "850px"
+                height: "850px",
+                borderRadius: "20px"
             }}
         >
             <div

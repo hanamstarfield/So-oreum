@@ -3,6 +3,7 @@ import KakaoMap from "@/components/KakaoMap";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
+import "../css/dlatl.css";
 
 const Home = () => {
     const [searchMt, setSearchMt] = useState("");
@@ -33,7 +34,7 @@ const Home = () => {
     }
 
     return (
-        <div>
+        <div className="cardMt">
             <div className="flex mx-[50px]">
                 <MtCard mount={mount} latlng={latlng} setSearchMt={setSearchMt} searchMt={searchMt} />
                 <KakaoMap mount={mount} setLatlng={setLatlng} searchMt={searchMt} />
