@@ -60,8 +60,8 @@ const MtDetail = () => {
                     <div className="flex relative flex-col bg-[#214A00] min-w-[1200px] w-[100%]">
                         <div className="flex flex-col justify-start items-center h-[561px] w-[1200px] text-[#ffffff] m-[auto] pt-[30px] gap-[20px]">
                             <h2 className="text-[64px] font-bold">{selectedMntn.mntnnm}</h2>
-                            <div className="flex w-[1200px] justify-start gap-[20px]">
-                                <div className="mt-[40px]">
+                            <div className="flex w-[1250px] justify-start gap-[20px]">
+                                <div className="mt-[30px]">
                                     <img
                                         className="min-w-[500px] w-[500px] max-h-[300px] h-[300px] object-cover"
                                         src={selectedMntn.mntnattchimageseq}
@@ -80,7 +80,7 @@ const MtDetail = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex absolute bottom-[10%] right-[20%] gap-4">
+                        <div className="flex absolute bottom-[15%] right-[11%] gap-4">
                             <button
                                 onClick={() => setShowDetails(true)}
                                 className={`px-4 py-2 ${showDetails ? "bg-green-700" : "bg-gray-300"}`}
