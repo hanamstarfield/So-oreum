@@ -112,7 +112,7 @@ const MtCard = ({ mount, latlng }) => {
                                     </p>
                                     <p className="text-[12px]">정상 {item.mntninfohght}m</p>
                                 </div>
-                                <p className="text-[12px] px-[10px]">{item.mntninfopoflc}</p>
+                                <p className="text-[12px] px-[10px] ">{item.mntninfopoflc}</p>
                             </div>
                         </div>
                     ))
