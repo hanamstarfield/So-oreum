@@ -21,6 +21,7 @@ const MtCard = ({ mount, latlng }) => {
     const navigate = useNavigate();
     const { swLatlng, nwLatlng } = latlng;
     const [selectedCategory, setSelectedCategory] = useState("all");
+    const [searchMt, setSearchMt] = useState("");
 
     const filteredMntns = mount.filter(
         (item) =>
@@ -36,6 +37,8 @@ const MtCard = ({ mount, latlng }) => {
         if (selectedCategory === "high") return item.mntninfohght > 400;
         return item;
     });
+
+    const filteredBySearch = filteredByCategory.filter((item) => item.mntnnm.includes(searchMt));
 
     if (isLoading) {
         return <div>로딩 중입니다...</div>;
@@ -87,8 +90,8 @@ const MtCard = ({ mount, latlng }) => {
                 </button>
             </div>
             <div className="flex flex-wrap w-[800px] h-[750px] leading-loose overflow-y-scroll cursor-pointer">
-                {filteredByCategory.length > 0 ? (
-                    filteredByCategory.map((item) => (
+                {filteredBySearch.length > 0 ? (
+                    filteredBySearch.map((item) => (
                         <div key={item.mntnid} className="flex w-[250px] h-[320px]">
                             <div
                                 className="bg-white rounded-[15px] p-[15px] my-[10px] mx-[5px] box-contents brightness-100 hover:brightness-90 duration-100"
