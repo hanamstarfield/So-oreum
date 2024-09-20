@@ -1,4 +1,5 @@
 import meetApi from "@/api/meet";
+import homeImg from "../assets/SpCardDefault.png";
 import KakaoMapSpeedMeet from "@/components/KakaoMapSpeedMeet";
 import useCreateAttendeeMutation from "@/mutations/useCreateAttendeeMutation";
 import useDeleteSpeedMeetMutation from "@/mutations/useDeleteSpeedMeetMutation";
@@ -138,7 +139,7 @@ const SpeedMeetDetail = () => {
     //             </div>
 
     return (
-        <div className="flex flex-col justify-center gap-12 w-[70%] max-w-[1200px] min-w-[700px] bg-white rounded-[20px] mx-auto p-12">
+        <div className="flex flex-col justify-center gap-12 w-[70%] max-w-[1200px] min-w-[950px] bg-white rounded-[20px] mx-auto p-12">
             <section className="flex justify-between border-b-2">
                 <div className="flex flex-col gap-4">
                     <h1 className="text-4xl text-[#214A00]">{speedMeet?.mntnnm}</h1>
@@ -169,6 +170,13 @@ const SpeedMeetDetail = () => {
                                         if (condition) {
                                             handleUpdate();
                                         }
+                                    },
+                                    custom: {
+                                        icon: {
+                                            iconUrl: homeImg,
+                                            width: "48px",
+                                            height: "48px"
+                                        }
                                     }
                                 });
                             }}
@@ -181,9 +189,18 @@ const SpeedMeetDetail = () => {
                                 showToast({
                                     message: "삭제?",
                                     position: "top-center",
+                                    theme: "error",
+                                    bg: true,
                                     confirm: (condition) => {
                                         if (condition) {
                                             handleDelete();
+                                        }
+                                    },
+                                    custom: {
+                                        icon: {
+                                            iconUrl: homeImg,
+                                            width: "48px",
+                                            height: "48px"
                                         }
                                     }
                                 });
@@ -214,18 +231,22 @@ const SpeedMeetDetail = () => {
                     </div>
                     <section className="flex flex-col gap-2">
                         <h1 className="text-2xl text-[#214A00]">오픈채팅</h1>
-                        <div>
+                        <div
+                            className={`bg-gray-200 h-[60px] p-4 flex justify-center items-center rounded-lg relative ${
+                                showChatLink ? "cursor-pointer" : ""
+                            }`}
+                            onClick={showChatLink ? () => handleCopyClipBoard(speedMeet?.chatLink) : () => {}}
+                        >
+                            <div className="bg-slate-900 w-4 h-4 top-3 right-2 absolute"></div>
                             {showChatLink ? (
-                                <span
-                                    className="bg-slate-600 cursor-pointer"
-                                    onClick={() => handleCopyClipBoard(speedMeet?.chatLink)}
-                                >
-                                    {speedMeet?.chatLink}
-                                </span>
+                                <span>{speedMeet?.chatLink}</span>
                             ) : (
-                                <p>{getUrlMasking(speedMeet?.chatLink)}</p>
+                                <span>{getUrlMasking(speedMeet?.chatLink)}</span>
                             )}
                         </div>
+                        <a href="https://open.kakao.com/o/gd73n2Pg" target="_blank">
+                            오픈 카톡
+                        </a>
                     </section>
                     <section className="flex flex-col gap-2">
                         <h1 className="text-2xl text-[#214A00]">내용</h1>

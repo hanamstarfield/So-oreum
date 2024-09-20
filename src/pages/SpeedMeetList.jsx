@@ -1,10 +1,22 @@
+import meetApi from "@/api/meet";
 import Pagination from "@/components/Pagination";
+import queryKey from "@/queries/queryKeys";
 import useGetSpeedMeetsQuery from "@/queries/useGetSpeedMeetsQuery";
+import { useQueryClient } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 
 const SpeedMeetList = () => {
+    const queryClient = useQueryClient();
+
     const { page } = useParams();
     const { data, isPending } = useGetSpeedMeetsQuery(page);
+
+    const onMouseOver = (page) => {
+        queryClient.prefetchQuery({
+            queryKey: [queryKey.default.speedMeets(page)],
+            queryFn: () => meetApi.getSpeedMeets(page)
+        });
+    };
 
     if (isPending) {
         return <>... 로딩</>;
@@ -15,9 +27,6 @@ const SpeedMeetList = () => {
     const speedMeetList = data.data;
 
     console.log("speedMeetList", speedMeetList);
-    // 산, 제목 조금 띄우기
-    // 페이지 버튼이랑 게시글 띄우기 (패딩)
-    // 보더래디우스 주기
 
     return (
         <div className="h-lvh bg-[#214A00] flex flex-col justify-center items-center">
@@ -51,7 +60,7 @@ const SpeedMeetList = () => {
                 </ul>
             </div>
             <div className="">
-                <Pagination last={last} url="/speed-meet" current={page}></Pagination>
+                <Pagination last={last} url="/speed-meet" current={page} onMouseOver={onMouseOver}></Pagination>
             </div>
         </div>
     );
