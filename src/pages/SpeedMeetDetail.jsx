@@ -66,20 +66,20 @@ const SpeedMeetDetail = () => {
 
     const handleUpdate = () => {
         const { title, date, capacity, content, chatLink, attendance } = speedMeet;
-
         const { mntnid, mntnnm } = mntn;
 
-        setFormState({
-            title,
-            date,
-            mntnid,
-            mntnnm,
-            capacity,
-            content,
-            chatLink,
-            attendance
-        });
-        navigate(`/speed-meet-write`);
+        // setFormState({
+        //     title,
+        //     date,
+        //     mntnid,
+        //     mntnnm,
+        //     capacity,
+        //     content,
+        //     chatLink,
+        //     attendance
+        // });
+        navigate(`/speed-meet-edit/${id}`);
+
     };
 
     const handleDelete = () => {

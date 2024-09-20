@@ -5,7 +5,7 @@ import MtCardDefaultImg from "@/assets/MtCardDefault.jpg";
 import LightningImg from "@/assets/Lightning.png";
 import { useState } from "react";
 
-const MtCard = ({ mount, latlng }) => {
+const MtCard = ({ mount, latlng, setSearchMt, searchMt }) => {
     const API_URL = "http://localhost:4000/speedMeets";
 
     const fetchData = async () => {
@@ -29,6 +29,7 @@ const MtCard = ({ mount, latlng }) => {
             swLatlng.Ma <= item.latitude &&
             nwLatlng.Ma >= item.latitude
     );
+
     const filteredByCategory = filteredMntns.filter((item) => {
         if (selectedCategory === "low") return item.mntninfohght <= 200;
         if (selectedCategory === "mid") return item.mntninfohght > 200 && item.mntninfohght <= 400;
@@ -48,6 +49,14 @@ const MtCard = ({ mount, latlng }) => {
     return (
         <div>
             <div className="flex justify-center mb-[10px] mt-[10px]">
+                <input type="text" placeholder="산 검색" onChange={(e) => setSearchMt(e.target.value)} />
+                <button
+                    onClick={() => {
+                        setSearchMt(searchMt);
+                    }}
+                >
+                    검색
+                </button>
                 <button
                     className={`mx-2 px-3 py-1 rounded-full ${
                         selectedCategory === "all" ? "bg-lime-600 text-white" : "bg-gray-300"
@@ -84,7 +93,7 @@ const MtCard = ({ mount, latlng }) => {
             <div className="flex flex-wrap w-[800px] h-[800px] leading-loose overflow-y-scroll cursor-pointer">
                 {filteredByCategory.length > 0 ? (
                     filteredByCategory.map((item) => (
-                        <div key={item.mntnid} className="w-[250px]">
+                        <div key={item.mntnid} className="flex w-[250px] h-[320px]">
                             <div
                                 className="bg-white rounded-[15px] p-[15px] my-[10px] mx-[5px] box-contents brightness-100 hover:brightness-90 duration-100"
                                 onClick={() => navigate(`/mntn-detail?mntnId=${item.mntnid}`)}
