@@ -65,10 +65,13 @@ const MtDetail = () => {
                                     <img
                                         className="min-w-[500px] w-[500px] max-h-[300px] h-[300px] object-cover"
                                         src={selectedMntn.mntnattchimageseq}
+                                        alt={selectedMntn.mntnnm}
                                     />
-                                    <div className="flex flex-col justify-end w-[50px] h-[300px] ml-[10px] bg-gray-300 rounded">
+                                    <div className="flex flex-col justify-end items-center w-[40px] h-[300px] ml-[10px] bg-gray-300 rounded">
+                                        <p className="text-[13px] text-[#525252]">{selectedMntn.mntninfohght}m</p>
+                                        <img src={SpCardDefaultImg} className="h-[30px] w-[30px] object-cover" />
                                         <div
-                                            className="bg-green-500 w-full rounded-b"
+                                            className="bg-[#bc6c25] w-full rounded-b"
                                             style={{
                                                 height: `${(selectedMntn.mntninfohght / 1000) * 100}%`
                                             }}
@@ -80,7 +83,7 @@ const MtDetail = () => {
                                         <strong>높이</strong> <br />
                                         고도 {selectedMntn.mntninfohght}m
                                     </p>
-                                    <p className="text-[19px]">
+                                    <p className="text-[19px] whitespace-pre-line">
                                         <strong>소재지</strong>
                                         <br />
                                         {selectedMntn.mntninfopoflc}
@@ -132,7 +135,7 @@ const MtDetail = () => {
                     <div>
                         <div className="flex flex-col justify-center items-start m-[auto] w-[1200px] text-justify my-[50px]">
                             <div className="flex items-center mb-[20px]">
-                                <img src={LightningImg} className="w-[30px] h-[30px] object-cover" />
+                                <img src={LightningImg} alt="LightningImg" className="w-[30px] h-[30px] object-cover" />
                                 <h3 className="text-[22px]">
                                     <strong>벙개 목록</strong>
                                 </h3>

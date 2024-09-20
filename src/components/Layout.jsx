@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
 
     return (
         <div>
-            <header className="h-[60px] box-border py-[5px] pl-[50px] pr-[100px] bg-[#FEFAE0]">
+            <header className="fixed z-[99999] w-[100%] h-[60px] box-border py-[5px] pl-[50px] pr-[100px] bg-[#FEFAE0]">
                 <nav className="flex flex-row justify-between text-[16px] min-w-[800px] items-center">
                     <Link to="/">
                         <img src={homeImg} alt="홈" className="w-[40px]" />
@@ -45,7 +45,7 @@ const Layout = ({ children }) => {
                     )}
                 </nav>
             </header>
-            <main>{children}</main>
+            <main className="pt-[60px]">{children}</main>
             <footer className="relative text-white py-3">
                 <div className="container mx-auto px-4">
                     <ul className="flex flex-wrap justify-center gap-8">
