@@ -79,7 +79,7 @@ const MtDetail = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="flex absolute bottom-[10%] right-[15%] gap-4">
+                                    <div className="flex absolute bottom-[10%] right-[20%] gap-4">
                                         <button
                                             onClick={() => setShowDetails(true)}
                                             className={`px-4 py-2 ${showDetails ? "bg-green-700" : "bg-gray-300"}`}
