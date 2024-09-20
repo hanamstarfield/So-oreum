@@ -156,6 +156,41 @@ const SpeedMeetDetail = () => {
                                     신청하기
                                 </button>
                             ))}
+                        <button className="bg-cyan-600" onClick={handleEnrollAttendee}>
+                            신청하기
+                        </button>
+                        <button
+                            className="bg-yellow-400"
+                            onClick={() => {
+                                showToast({
+                                    message: "수정?",
+                                    position: "top-center",
+                                    confirm: (condition) => {
+                                        if (condition) {
+                                            handleUpdate();
+                                        }
+                                    }
+                                });
+                            }}
+                        >
+                            수정
+                        </button>
+                        <button
+                            className="bg-red-400"
+                            onClick={() => {
+                                showToast({
+                                    message: "삭제?",
+                                    position: "top-center",
+                                    confirm: (condition) => {
+                                        if (condition) {
+                                            handleDelete();
+                                        }
+                                    }
+                                });
+                            }}
+                        >
+                            삭제
+                        </button>
                     </div>
                 </div>
             </section>
@@ -194,7 +229,7 @@ const SpeedMeetDetail = () => {
                     </section>
                     <section className="flex flex-col gap-2">
                         <h1 className="text-2xl text-[#214A00]">내용</h1>
-                        <pre>{speedMeet?.content}</pre>
+                        <p>{speedMeet?.content}</p>
                     </section>
                 </div>
                 <div className="flex flex-col gap-12 w-[50%]">
