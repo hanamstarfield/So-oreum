@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const getSpeedMeets = async (pageParam = 1) => {
-  const data = (await api.get(`/speedMeets?_page=${pageParam}&_per_page=10`)).data;
-
+  const data = (await api.get(`/speedMeets?_page=${pageParam}&_per_page=10&_sort=-createdAt`)).data;
   return data;
 }
 
@@ -23,7 +22,6 @@ const createSpeedMeet = async (speedMeet) => {
 }
 
 const editSpeedMeet = async (id, edit) => {
-  debugger;
   await api.patch(`/speedMeets/${id}`, edit);
 }
 

@@ -14,9 +14,10 @@ const useGetSpeedMeetsQuery = (pageParam) => {
     staleTime: 0,
   });
 
-  const sortList = speedMeetListService.sortSpeedMeetList(data);
+  // const sortList = speedMeetListService.sortSpeedMeetList(data);
 
-  return { data: sortList, isPending };
+  // return { data: sortList, isPending };
+  return { data, isPending };
 }
 
 export default useGetSpeedMeetsQuery
