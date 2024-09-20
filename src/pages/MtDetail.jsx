@@ -4,6 +4,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import LightningImg from "@/assets/Lightning.png";
 import SpCardDefaultImg from "@/assets/SpCardDefault.png";
+import CowImg from "@/assets/Cow.png";
 
 const MtDetail = () => {
     const navigate = useNavigate();
@@ -69,9 +70,9 @@ const MtDetail = () => {
                                     />
                                     <div className="flex flex-col justify-end items-center w-[40px] h-[300px] ml-[10px] bg-gray-300 rounded">
                                         <p className="text-[13px] text-[#525252]">{selectedMntn.mntninfohght}m</p>
-                                        <img src={SpCardDefaultImg} className="h-[30px] w-[30px] object-cover" />
+                                        <img src={CowImg} className="h-[35px] w-[35px] object-cover" />
                                         <div
-                                            className="bg-[#bc6c25] w-full rounded-b"
+                                            className="bg-[#bc6c25] w-full rounded-t-lg"
                                             style={{
                                                 height: `${(selectedMntn.mntninfohght / 1000) * 100}%`
                                             }}
