@@ -2,7 +2,7 @@ import meetApi from "@/api/meet";
 import queryKey from "@/queries/queryKeys";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-const useCreateSpeedMeetMutation = () => {
+const usePatchSpeedMeetMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (speedMeet) => meetApi.createSpeedMeet(speedMeet),
@@ -14,4 +14,4 @@ const useCreateSpeedMeetMutation = () => {
 
 }
 
-export default useCreateSpeedMeetMutation;
+export default usePatchSpeedMeetMutation;

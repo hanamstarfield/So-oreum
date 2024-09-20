@@ -1,24 +1,31 @@
+import meetApi from "@/api/meet";
 import KakaoMap from "@/components/KakaoMap";
 import KakaoMapSpeedMeet from "@/components/KakaoMapSpeedMeet";
 import useCreateAttendeeMutation from "@/mutations/useCreateAttendeeMutation";
+import useDeleteSpeedMeetMutation from "@/mutations/useDeleteSpeedMeetMutation";
 import useGetAttendees from "@/queries/useGetAttendees";
 import useGetMountainById from "@/queries/useGetMountainById";
 import useGetSpeedMeetAndMountainQuery from "@/queries/useGetSpeedMeetAndMountainQuery";
 import useGetSpeedMeetByIdQuery from "@/queries/useGetSpeedMeetByIdQuery";
+import { showToast } from "@/toast/showToast";
 import handleCopyClipBoard from "@/utils/clipBoard";
+import useSpeedMeetStore from "@/zustand/useSpeedMeetStore";
 import useUserStore from "@/zustand/useUserStore";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const SpeedMeetDetail = () => {
     const { id } = useParams();
     const { user } = useUserStore((state) => state);
+    const { setFormState } = useSpeedMeetStore();
 
     const mutation = useCreateAttendeeMutation();
 
     const { data: result, isPending: speedMeetPending } = useGetSpeedMeetAndMountainQuery(id);
     // const { data: mntn, isPending: mntnPending } = useGetMountainById(speedMeet?.mntnid);
     const { data: attendees, isPending: attendeePending } = useGetAttendees(id);
+    const deleteMutation = useDeleteSpeedMeetMutation();
+    const navigate = useNavigate();
 
     if (speedMeetPending || attendeePending) {
         return <>...로딩중</>;
@@ -26,13 +33,10 @@ const SpeedMeetDetail = () => {
 
     const { speedMeet, mntn } = result;
 
-    console.log("speedMeet", speedMeet);
-    console.log("mntn", mntn);
-
     const hasBeenAttendee = attendees?.some((attendee) => attendee.userId === user.userId);
     const isDeadline = speedMeet.attendance >= speedMeet.capacity;
-
-    const showChatLink = user.userId === speedMeet.userId || hasBeenAttendee;
+    const hasWrittenPost = user.userId === speedMeet.userId;
+    const showChatLink = hasWrittenPost || hasBeenAttendee;
 
     const handleEnrollAttendee = () => {
         mutation.mutate({ speedMeetId: id, userId: user.userId });
@@ -60,12 +64,35 @@ const SpeedMeetDetail = () => {
         return url;
     };
 
+    const handleUpdate = () => {
+        const { title, date, capacity, content, chatLink, attendance } = speedMeet;
+        const { mntnid, mntnnm } = mntn;
+
+        // setFormState({
+        //     title,
+        //     date,
+        //     mntnid,
+        //     mntnnm,
+        //     capacity,
+        //     content,
+        //     chatLink,
+        //     attendance
+        // });
+        navigate(`/speed-meet-edit/${id}`);
+    };
+
+    const handleDelete = () => {
+        deleteMutation.mutate(id);
+        meetApi.deleteSpeedMeetById(id);
+        navigate("/speed-meet/1");
+    };
+
     return (
         <div className="flex bg-[#214A00] w-[100%] h-svh items-center">
-            <div className="w-[150px] h-[300px] mx-auto flex flex-col items-center bg-white rounded-lg">
+            <div className="w-[150px] h-[300px] mx-auto flex flex-col items-center bg-white rounded-lg ">
                 <h2 className="text-xl">{user.nickname}</h2>
                 <span>{`참가인원 ${speedMeet?.attendance}명`}</span>
-                {user.userId !== speedMeet.userId &&
+                {!hasWrittenPost &&
                     (hasBeenAttendee ? (
                         <button className="bg-slate-600 cursor-default">신청완료</button>
                     ) : isDeadline ? (
@@ -76,7 +103,41 @@ const SpeedMeetDetail = () => {
                         </button>
                     ))}
             </div>
-            <div className="w-[1000px] h-[800px] mx-auto flex flex-col justify-center items-center gap-12 bg-white rounded-lg">
+            <div className="w-[1000px] h-[800px] mx-auto flex flex-col justify-center items-center gap-12 bg-white rounded-lg relative">
+                <div className="absolute top-2 right-2 flex gap-4">
+                    <button
+                        className="bg-yellow-400"
+                        onClick={() => {
+                            showToast({
+                                message: "수정?",
+                                position: "top-center",
+                                confirm: (condition) => {
+                                    if (condition) {
+                                        handleUpdate();
+                                    }
+                                }
+                            });
+                        }}
+                    >
+                        수정
+                    </button>
+                    <button
+                        className="bg-red-400"
+                        onClick={() => {
+                            showToast({
+                                message: "삭제?",
+                                position: "top-center",
+                                confirm: (condition) => {
+                                    if (condition) {
+                                        handleDelete();
+                                    }
+                                }
+                            });
+                        }}
+                    >
+                        삭제
+                    </button>
+                </div>
                 <div className="flex items-center justify-center">
                     <h1 className="text-4xl">{speedMeet.title}</h1>
                 </div>
@@ -131,24 +192,6 @@ const SpeedMeetDetail = () => {
                             height="600px"
                             borderRadius="8px"
                         />
-                        {/* <div>
-                            <h1 className="text-2xl">모집인원</h1>
-                            <p>{`${speedMeet.capacity}명`}</p>
-                        </div>
-                        <div>
-                            <h1 className="text-2xl">오픈채팅</h1>
-                            <div className="bg-slate-300">
-                                <p onClick={() => handleCopyClipBoard(speedMeet.chatLink)}>{`${
-                                    showChatLink ? speedMeet.chatLink : getMasking(speedMeet.chatLink)
-                                }`}</p>
-                            </div>
-                        </div>
-                        <div>
-                            <h1 className="text-2xl">내용</h1>
-                            <div className="">
-                                <p>{speedMeet.content}</p>
-                            </div>
-                        </div> */}
                     </div>
                 </div>
             </div>

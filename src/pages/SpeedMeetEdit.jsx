@@ -2,26 +2,79 @@ import useSpeedMeetWrite from "@/hooks/useSpeedMeetWrite";
 import useCreateSpeedMeetMutation from "@/mutations/useCreateSpeedMeetMutation";
 import useUserStore from "@/zustand/useUserStore";
 import { getToday } from "@/utils/common";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { showToast } from "@/toast/showToast";
+import useGetSpeedMeetByIdQuery from "@/queries/useGetSpeedMeetByIdQuery";
+import { useState } from "react";
+import useGetMountainQuery from "@/queries/useGetMountainQuery";
 
-const SpeedMeetWrite = () => {
-    const {
-        formState,
-        selectedMountain,
-        handleMountainChange,
-        searchBoxVisible,
-        mountainSearchResult,
-        handleChange,
-        handleMountainNameBlur,
-        handleSetMountain
-    } = useSpeedMeetWrite();
-
+const SpeedMeetEdit = () => {
+    // TODO 여기부터 하면됨 Detail 값 받아와서 뭐 알아서 해보셈
+    const { id } = useParams();
     const { user } = useUserStore((state) => state);
+    const [selectedMountain, setSelectedMountain] = useState(null);
+    const [searchBoxVisible, setSearchBoxVisible] = useState(false);
+    const [mountainSearchResult, setMountainSearchResult] = useState(null);
+    const [formState, setFormState] = useState({
+        title: "",
+        date: "",
+        mntnid: "",
+        mntnnm: "",
+        capacity: "",
+        content: "",
+        chatLink: "",
+        attendance: 0
+    });
+    const { data: speedMeet, isPending: isSpeedMeetPending } = useGetSpeedMeetByIdQuery(id);
+    const { data: mountains = [], isMountainsPending } = useGetMountainQuery();
+
+    console.log("speedMeet", speedMeet);
+
     const mutation = useCreateSpeedMeetMutation();
     const navigate = useNavigate();
 
     const today = getToday();
+    const handleMountainChange = (e) => {
+        const mntnnm = e.target.value;
+        setFormState((prev) => {
+            return {
+                ...prev,
+                mntnnm
+            };
+        });
+        if (mountains.length > 0) {
+            const result = mountains.filter((mountain) => mountain.mntnnm.includes(mntnnm));
+            setMountainSearchResult(result);
+
+            const condition = !!mntnnm;
+            setSearchBoxVisible(condition);
+            setSelectedMountain(null);
+        }
+    };
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormState((prev) => {
+            return {
+                ...prev,
+                [name]: value
+            };
+        });
+    };
+
+    const handleSetMountain = (mountain) => {
+        console.log("mountain", mountain);
+        setFormState((prev) => {
+            return {
+                ...prev,
+                mntnnm: mountain.mntnnm,
+                mntnid: mountain.mntnid
+            };
+        });
+
+        setSelectedMountain(mountain);
+        setSearchBoxVisible(false);
+    };
 
     const handleWrite = () => {
         const { title, date, mntnid, mntnnm, capacity, content, chatLink } = formState;
@@ -146,4 +199,4 @@ const SpeedMeetWrite = () => {
     );
 };
 
-export default SpeedMeetWrite;
+export default SpeedMeetEdit;

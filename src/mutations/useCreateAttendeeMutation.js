@@ -16,7 +16,6 @@ const useCreateAttendeeMutation = () => {
   return useMutation({
     mutationFn: handleCreateAttendee,
     onSuccess: () => {
-      console.log("attendee 추가 성공")
       queryClient.invalidateQueries(queryKey.default.speedMeet)
     }
   })
