@@ -82,7 +82,7 @@ const KakaoMap = ({ mount }) => {
             id="map"
             style={{
                 width: "800px",
-                height: "830px",
+                height: "850px",
                 borderRadius: "20px"
             }}
         ></div>

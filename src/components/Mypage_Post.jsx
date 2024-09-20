@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 import Pagination from "react-js-pagination";
-import openChat from "../img/chat.png";
+import openChat from "../assets/chat.png";
 
 const Mypage_Post = () => {
     // const { data: PostData, isPending: postPending } = getPostData();
@@ -49,7 +49,7 @@ const Mypage_Post = () => {
                                         navigate(`/speed-meet-detail/${post.id}`);
                                     }}
                                 >
-                                    {post.title}
+                                    <span style={{color:"#383838"}}>[{post.mntnnm}]</span> {post.title}
                                 </p>
                                 <img src={openChat} alt="오픈채팅 링크" className="openChat" onClick={post.chatLink} />
                             </div>
