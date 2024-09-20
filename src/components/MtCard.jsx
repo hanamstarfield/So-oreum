@@ -37,12 +37,6 @@ const MtCard = ({ mount, latlng }) => {
         return item;
     });
 
-    const [searchMt, setSearchMt] = useState("");
-
-    const filteredBySearch = filteredByCategory.filter(
-        (item) => item.mntnnm.toLowerCase().includes(searchMt.toLowerCase()) // 검색 필터링
-    );
-
     if (isLoading) {
         return <div>로딩 중입니다...</div>;
     }
@@ -92,9 +86,9 @@ const MtCard = ({ mount, latlng }) => {
                     400m 이상
                 </button>
             </div>
-            <div className="flex flex-wrap w-[800px] h-[800px] leading-loose overflow-y-scroll cursor-pointer">
-                {filteredBySearch.length > 0 ? (
-                    filteredBySearch.map((item) => (
+            <div className="flex flex-wrap w-[800px] h-[750px] leading-loose overflow-y-scroll cursor-pointer">
+                {filteredByCategory.length > 0 ? (
+                    filteredByCategory.map((item) => (
                         <div key={item.mntnid} className="flex w-[250px] h-[320px]">
                             <div
                                 className="bg-white rounded-[15px] p-[15px] my-[10px] mx-[5px] box-contents brightness-100 hover:brightness-90 duration-100"
