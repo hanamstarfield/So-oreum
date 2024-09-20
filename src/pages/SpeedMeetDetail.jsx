@@ -31,6 +31,7 @@ const SpeedMeetDetail = () => {
         return <>...로딩중</>;
     }
 
+    console.log("result", result);
     const { speedMeet, mntn } = result;
 
     const hasBeenAttendee = attendees?.some((attendee) => attendee.userId === user.userId);
@@ -65,19 +66,6 @@ const SpeedMeetDetail = () => {
     };
 
     const handleUpdate = () => {
-        const { title, date, capacity, content, chatLink, attendance } = speedMeet;
-        const { mntnid, mntnnm } = mntn;
-
-        // setFormState({
-        //     title,
-        //     date,
-        //     mntnid,
-        //     mntnnm,
-        //     capacity,
-        //     content,
-        //     chatLink,
-        //     attendance
-        // });
         navigate(`/speed-meet-edit/${id}`);
     };
 
@@ -187,13 +175,15 @@ const SpeedMeetDetail = () => {
                         </div>
                     </div>
                     <div className="w-[500px] flex flex-col">
-                        <KakaoMapSpeedMeet
-                            lat={mntn?.latitude}
-                            lng={mntn?.longitude}
-                            width="720px"
-                            height="600px"
-                            borderRadius="8px"
-                        />
+                        {mntn && (
+                            <KakaoMapSpeedMeet
+                                lat={mntn.latitude}
+                                lng={mntn.longitude}
+                                width="720px"
+                                height="600px"
+                                borderRadius="8px"
+                            />
+                        )}
                     </div>
                 </div>
             </div>
