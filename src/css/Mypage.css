@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "LeeSeoyun";
+    src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@layer base {
+    body {
+        background-color: #FEFAE0;
+        font-family: "LeeSeoyun";
+    }
+}
+
+@layer components {
+    .up_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main_Container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .Profile {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 15px;
+        display: inline-block;
+        margin-right: 20px;
+    }
+
+    .Profile > p {
+        font-size: 25px;
+    }
+
+    .cowProfile {
+        width: 200px;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    .postBody {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 15px;
+        width: 50vw;
+    }
+
+    .postMainBody {
+        border-top: 3px solid #909090;
+        border-bottom: 2px solid #909090;
+    }
+
+    .post {
+        border-bottom: 1px solid #909090;
+        padding: 8px 10px;
+        display: flex;
+        flex-direction: row;
+        position: relative;
+    }
+
+    .openChat {
+        width: 21px;
+        height: 21px;
+        position: absolute;
+        right: 40px;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    ul.pagination li {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1rem;
+    }
+    ul.pagination li a {
+        text-decoration: none;
+        color: #000000;
+        font-size: 1rem;
+    }
+    ul.pagination li.active a {
+        color: white;
+    }
+    ul.pagination li.active {
+        background-color: #214a00;
+        border-radius: 30px;
+    }
+    ul.pagination li a:hover,
+    ul.pagination li a.active {
+        color: rgb(255, 196, 0);
+    }
+}

@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "../css/dlatl.css";
+import move from "../assets/VectorIcon.png";
 
-const KakaoMap = ({ mount, setLatlng }) => {
+const KakaoMap = ({ mount, setLatlng, searchMt }) => {
     const navigate = useNavigate();
 
     const debounce = (calback, delay) => {
@@ -24,7 +26,7 @@ const KakaoMap = ({ mount, setLatlng }) => {
 
             const map = new kakao.maps.Map(mapContainer, mapOption);
 
-            // map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
+            map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
             const infowindow = new kakao.maps.InfoWindow({
                 removable: true
             });
@@ -54,6 +56,16 @@ const KakaoMap = ({ mount, setLatlng }) => {
                 });
             });
 
+            if (searchMt) {
+                const filteredMount = mount.filter((item) => item.mntnnm.includes(searchMt));
+                if (filteredMount.length > 0) {
+                    const targetItem = filteredMount[0];
+                    const position = new kakao.maps.latLng(targetItem.latitude, targetItem.longitude);
+                    map.panTo(position);
+                    map.setLevel(6);
+                }
+            }
+
             kakao.maps.event.addListener(
                 map,
                 "bounds_changed",
@@ -81,9 +93,32 @@ const KakaoMap = ({ mount, setLatlng }) => {
             id="map"
             style={{
                 width: "800px",
-                height: "830px"
+                height: "850px",
+                borderRadius: "20px"
             }}
-        ></div>
+        >
+            <div
+                style={{
+                    zIndex: 1000,
+                    position: "absolute",
+                    bottom: "20px",
+                    right: "20px",
+                    cursor: "pointer",
+                    transition: "transform 0.3s ease"
+                }}
+                onClick={() => {
+                    navigate("/speed-meet-write");
+                }}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "scale(1.2)";
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "scale(1)";
+                }}
+            >
+                <img src={move} alt="" style={{ width: "60px", height: "60px" }} />
+            </div>
+        </div>
     );
 };
 
