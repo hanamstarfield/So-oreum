@@ -9,6 +9,7 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import SpeedMeetList from "@/pages/SpeedMeetList";
 import SpeedMeetDetail from "@/pages/SpeedMeetDetail";
 import SpeedMeetWrite from "@/pages/SpeedMeetWrite";
+import SpeedMeetEdit from "@/pages/SpeedMeetEdit";
 
 const Router = () => {
     return (
@@ -57,6 +58,14 @@ const Router = () => {
                         element={
                             <ProtectedRoute>
                                 <SpeedMeetWrite />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/speed-meet-edit/:id"
+                        element={
+                            <ProtectedRoute>
+                                <SpeedMeetEdit />
                             </ProtectedRoute>
                         }
                     />
