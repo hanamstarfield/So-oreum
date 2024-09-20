@@ -37,8 +37,6 @@ const MtCard = ({ mount, latlng, setSearchMt, searchMt }) => {
         return item;
     });
 
-    // const filteredSPList = data.filter((sp) => item.mntnid === sp.mntnid);
-
     if (isLoading) {
         return <div>로딩 중입니다...</div>;
     }
@@ -90,7 +88,7 @@ const MtCard = ({ mount, latlng, setSearchMt, searchMt }) => {
                     400m 이상
                 </button>
             </div>
-            <div className="flex flex-wrap w-[800px] h-[800px] leading-loose overflow-y-scroll cursor-pointer">
+            <div className="flex flex-wrap w-[800px] h-[750px] leading-loose overflow-y-scroll cursor-pointer">
                 {filteredByCategory.length > 0 ? (
                     filteredByCategory.map((item) => (
                         <div key={item.mntnid} className="flex w-[250px] h-[320px]">
