@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import LightningImg from "@/assets/Lightning.png";
-import SpCardDefaultImg from "@/assets/SpCardDefault.jpg";
+import SpCardDefaultImg from "@/assets/SpCardDefault.png";
 
 const MtDetail = () => {
     const navigate = useNavigate();
