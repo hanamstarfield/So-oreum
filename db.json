@@ -61,7 +61,7 @@
       "capacity": "3",
       "content": "정상에서의 뷰가 멋져요!",
       "chatLink": "http://naver.com/gaehwa-hike",
-      "attendance": 0,
+      "attendance": 1,
       "userId": "hihihi123",
       "createdAt": "2024-09-15T11:00:00.000Z"
     },
@@ -790,6 +790,11 @@
     {
       "id": "da65",
       "speedMeetId": "a7a4",
+      "userId": "hihihi333"
+    },
+    {
+      "id": "f562",
+      "speedMeetId": "1a2b",
       "userId": "hihihi333"
     }
   ],

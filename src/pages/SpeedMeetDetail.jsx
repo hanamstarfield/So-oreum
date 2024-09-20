@@ -29,9 +29,13 @@ const SpeedMeetDetail = () => {
     const { speedMeet, mntn } = result;
 
     const hasBeenAttendee = attendees.some((attendee) => attendee.userId === user.userId);
+    console.log("🚀 ~ SpeedMeetDetail ~ hasBeenAttendee:", hasBeenAttendee);
     const isDeadline = speedMeet.attendance >= speedMeet.capacity;
+    console.log("🚀 ~ SpeedMeetDetail ~ isDeadline:", isDeadline);
     const hasWrittenPost = user.userId === speedMeet.userId;
+    console.log("🚀 ~ SpeedMeetDetail ~ hasWrittenPost:", hasWrittenPost);
     const showChatLink = hasWrittenPost || hasBeenAttendee;
+    console.log("🚀 ~ SpeedMeetDetail ~ showChatLink:", showChatLink);
 
     const handleEnrollAttendee = () => {
         mutation.mutate({ speedMeetId: id, userId: user.userId });
@@ -46,97 +50,6 @@ const SpeedMeetDetail = () => {
         meetApi.deleteSpeedMeetById(id);
         navigate("/speed-meet/1");
     };
-
-    //     <div className="w-[150px] h-[300px] mx-auto flex flex-col items-center bg-white rounded-lg ">
-    //     <h2 className="text-xl">{user.nickname}</h2>
-    //     <span>{`참가인원 ${speedMeet?.attendance}명`}</span>
-    //     {!hasWrittenPost &&
-    //         (hasBeenAttendee ? (
-    //             <button className="bg-slate-600 cursor-default">신청완료</button>
-    //         ) : isDeadline ? (
-    //             <button className="bg-slate-600 cursor-default">신청마감</button>
-    //         ) : (
-    //             <button className="bg-cyan-600" onClick={handleEnrollAttendee}>
-    //                 신청하기
-    //             </button>
-    //         ))}
-    // </div>
-
-    //     <button
-    //     className="bg-yellow-400"
-    //     onClick={() => {
-    //         showToast({
-    //             message: "수정?",
-    //             position: "top-center",
-    //             confirm: (condition) => {
-    //                 if (condition) {
-    //                     handleUpdate();
-    //                 }
-    //             }
-    //         });
-    //     }}
-    // >
-    //     수정
-    // </button>
-    // <button
-    //     className="bg-red-400"
-    //     onClick={() => {
-    //         showToast({
-    //             message: "삭제?",
-    //             position: "top-center",
-    //             confirm: (condition) => {
-    //                 if (condition) {
-    //                     handleDelete();
-    //                 }
-    //             }
-    //         });
-    //     }}
-    // >
-    //     삭제
-    // </button>
-
-    // <div className="flex flex-col gap-3 w-[200px]">
-    //                 <div className="h-[600px] flex flex-col gap-6 border-[#214A00] border-2 rounded-lg p-2">
-    //                     <div className="flex flex-col gap-2">
-    //                         <div className="w-[70px] bg-gray-600 flex justify-center rounded-2xl p-1">
-    //                             <h2 className="text-lg text-white">등반일</h2>
-    //                         </div>
-    //                         <p>{speedMeet?.date}</p>
-    //                     </div>
-    //                     <div className="flex flex-col gap-2">
-    //                         <div className="w-[70px] bg-gray-600 flex justify-center rounded-2xl p-1">
-    //                             <h2 className="text-lg text-white">장소</h2>
-    //                         </div>
-    //                         <p>{speedMeet?.mntnnm}</p>
-    //                     </div>
-    //                     <div className="flex flex-col gap-2">
-    //                         <div className="w-[80px] bg-gray-600 flex justify-center rounded-2xl p-1">
-    //                             <h2 className="text-lg text-white">모집인원</h2>
-    //                         </div>
-    //                         <p>{`${speedMeet?.capacity}명`}</p>
-    //                     </div>
-    //                     <div className="flex flex-col gap-2">
-    //                         <div className="w-[80px] bg-gray-600 flex justify-center rounded-2xl p-1">
-    //                             <h2 className="text-lg text-white">오픈채팅</h2>
-    //                         </div>
-    //                         <div className="bg-slate-300">
-    //                             {showChatLink ? (
-    //                                 <p onClick={() => handleCopyClipBoard(speedMeet?.chatLink)}>
-    //                                     {speedMeet?.chatLink}
-    //                                 </p>
-    //                             ) : (
-    //                                 <p>{getUrlMasking(speedMeet?.chatLink)}</p>
-    //                             )}
-    //                         </div>
-    //                     </div>
-    //                     <div className="flex flex-col gap-2">
-    //                         <div className="w-[70px] bg-gray-600 flex justify-center rounded-2xl p-1">
-    //                             <h1 className="text-lg text-white">내용</h1>
-    //                         </div>
-    //                         <p>{speedMeet?.content}</p>
-    //                     </div>
-    //                 </div>
-    //             </div>
 
     return (
         <div className="flex flex-col justify-center gap-12 w-[70%] max-w-[1200px] min-w-[950px] bg-white rounded-[20px] mx-auto p-12">
@@ -157,57 +70,58 @@ const SpeedMeetDetail = () => {
                                     신청하기
                                 </button>
                             ))}
-                        <button className="bg-cyan-600" onClick={handleEnrollAttendee}>
-                            신청하기
-                        </button>
-                        <button
-                            className="bg-yellow-400"
-                            onClick={() => {
-                                showToast({
-                                    message: "수정?",
-                                    position: "top-center",
-                                    confirm: (condition) => {
-                                        if (condition) {
-                                            handleUpdate();
-                                        }
-                                    },
-                                    custom: {
-                                        icon: {
-                                            iconUrl: homeImg,
-                                            width: "48px",
-                                            height: "48px"
-                                        }
-                                    }
-                                });
-                            }}
-                        >
-                            수정
-                        </button>
-                        <button
-                            className="bg-red-400"
-                            onClick={() => {
-                                showToast({
-                                    message: "삭제?",
-                                    position: "top-center",
-                                    theme: "error",
-                                    bg: true,
-                                    confirm: (condition) => {
-                                        if (condition) {
-                                            handleDelete();
-                                        }
-                                    },
-                                    custom: {
-                                        icon: {
-                                            iconUrl: homeImg,
-                                            width: "48px",
-                                            height: "48px"
-                                        }
-                                    }
-                                });
-                            }}
-                        >
-                            삭제
-                        </button>
+                        {hasWrittenPost && (
+                            <>
+                                <button
+                                    className="bg-yellow-400"
+                                    onClick={() => {
+                                        showToast({
+                                            message: "수정?",
+                                            position: "top-center",
+                                            confirm: (condition) => {
+                                                if (condition) {
+                                                    handleUpdate();
+                                                }
+                                            },
+                                            custom: {
+                                                icon: {
+                                                    iconUrl: homeImg,
+                                                    width: "48px",
+                                                    height: "48px"
+                                                }
+                                            }
+                                        });
+                                    }}
+                                >
+                                    수정
+                                </button>
+                                <button
+                                    className="bg-red-400"
+                                    onClick={() => {
+                                        showToast({
+                                            message: "삭제?",
+                                            position: "top-center",
+                                            theme: "error",
+                                            bg: true,
+                                            confirm: (condition) => {
+                                                if (condition) {
+                                                    handleDelete();
+                                                }
+                                            },
+                                            custom: {
+                                                icon: {
+                                                    iconUrl: homeImg,
+                                                    width: "48px",
+                                                    height: "48px"
+                                                }
+                                            }
+                                        });
+                                    }}
+                                >
+                                    삭제
+                                </button>
+                            </>
+                        )}
                     </div>
                 </div>
             </section>
