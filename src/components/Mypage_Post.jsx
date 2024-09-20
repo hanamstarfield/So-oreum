@@ -54,7 +54,7 @@ const Mypage_Post = () => {
                                 <img src={openChat} alt="오픈채팅 링크" className="openChat" onClick={post.chatLink} />
                             </div>
                         ) : (
-                            "데이터 미출력"
+                            null
                         );
                     })}
             </div>
