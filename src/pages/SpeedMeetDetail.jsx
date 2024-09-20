@@ -79,6 +79,7 @@ const SpeedMeetDetail = () => {
         //     attendance
         // });
         navigate(`/speed-meet-edit/${id}`);
+
     };
 
     const handleDelete = () => {
