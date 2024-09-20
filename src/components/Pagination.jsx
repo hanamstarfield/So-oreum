@@ -6,9 +6,7 @@ const Pagination = ({ last, url, current }) => {
     const pagesPerSection = 5;
     // 현재 섹션 시작과 끝 페이지 계산
     const currentSectionStart = Math.floor((current - 1) / pagesPerSection) * pagesPerSection + 1;
-    console.log("🚀 ~ Pagination ~ currentSectionStart:", currentSectionStart);
     const currentSectionEnd = Math.min(currentSectionStart + pagesPerSection - 1, last);
-    console.log("🚀 ~ Pagination ~ currentSectionEnd:", currentSectionEnd);
 
     // 이전 섹션과 다음 섹션 페이지 번호 계산
     const hasPreviousSection = currentSectionStart > 1;

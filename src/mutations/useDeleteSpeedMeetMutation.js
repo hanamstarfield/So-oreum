@@ -2,16 +2,16 @@ import meetApi from "@/api/meet";
 import queryKey from "@/queries/queryKeys";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-const useCreateSpeedMeetMutation = () => {
+const useDeleteSpeedMeetMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (speedMeet) => meetApi.createSpeedMeet(speedMeet),
+    mutationFn: (id) => meetApi.deleteSpeedMeetById(id),
     onMutate: () => { },
     onSuccess: () => {
-      queryClient.invalidateQueries(queryKey.default.speedMeet)
+      queryClient.invalidateQueries(queryKey.default.speedMeet(1))
     }
   })
 
 }
 
-export default useCreateSpeedMeetMutation;
+export default useDeleteSpeedMeetMutation;
