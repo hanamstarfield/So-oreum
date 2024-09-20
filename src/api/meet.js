@@ -23,6 +23,7 @@ const createSpeedMeet = async (speedMeet) => {
 }
 
 const editSpeedMeet = async (id, edit) => {
+  debugger;
   await api.patch(`/speedMeets/${id}`, edit);
 }
 
