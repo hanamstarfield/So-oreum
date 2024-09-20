@@ -67,6 +67,7 @@ const SpeedMeetDetail = () => {
 
     const handleUpdate = () => {
         navigate(`/speed-meet-edit/${id}`);
+
     };
 
     const handleDelete = () => {
