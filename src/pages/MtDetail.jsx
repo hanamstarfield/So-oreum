@@ -66,9 +66,9 @@ const MtDetail = () => {
                                         className="min-w-[500px] w-[500px] max-h-[300px] h-[300px] object-cover"
                                         src={selectedMntn.mntnattchimageseq}
                                     />
-                                    <div className="flex flex-col justify-end w-[50px] h-[300px] ml-[10px] bg-gray-300 rounded">
+                                    <div className="flex flex-col justify-end w-[40px] h-[300px] ml-[10px] bg-gray-300 rounded">
                                         <div
-                                            className="bg-green-500 w-full rounded-b"
+                                            className="bg-[#bc6c25] w-full rounded-b"
                                             style={{
                                                 height: `${(selectedMntn.mntninfohght / 1000) * 100}%`
                                             }}
@@ -80,7 +80,7 @@ const MtDetail = () => {
                                         <strong>높이</strong> <br />
                                         고도 {selectedMntn.mntninfohght}m
                                     </p>
-                                    <p className="text-[19px]">
+                                    <p className="text-[19px] whitespace-pre-line">
                                         <strong>소재지</strong>
                                         <br />
                                         {selectedMntn.mntninfopoflc}
