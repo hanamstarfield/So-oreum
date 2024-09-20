@@ -67,7 +67,9 @@ const MtDetail = () => {
                                         src={selectedMntn.mntnattchimageseq}
                                         alt={selectedMntn.mntnnm}
                                     />
-                                    <div className="flex flex-col justify-end w-[40px] h-[300px] ml-[10px] bg-gray-300 rounded">
+                                    <div className="flex flex-col justify-end items-center w-[40px] h-[300px] ml-[10px] bg-gray-300 rounded">
+                                        <p className="text-[13px] text-[#525252]">{selectedMntn.mntninfohght}m</p>
+                                        <img src={SpCardDefaultImg} className="h-[30px] w-[30px] object-cover" />
                                         <div
                                             className="bg-[#bc6c25] w-full rounded-b"
                                             style={{
