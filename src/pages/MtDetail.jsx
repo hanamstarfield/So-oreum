@@ -1,23 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { useState } from "react";
 import LightningImg from "@/assets/Lightning.png";
 import SpCardDefaultImg from "@/assets/SpCardDefault.jpg";
 
 const MtDetail = () => {
     const navigate = useNavigate();
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const mntnId = searchParams.get("mntnId");
+    const [showDetails, setShowDetails] = useState(true);
 
     const MT_API_URL = "http://localhost:4000/items";
-
     const mtFetchData = async () => {
         const response = await axios.get(MT_API_URL);
         return response.data;
     };
 
     const List_API_URL = "http://localhost:4000/speedMeets";
-
     const listFetchData = async () => {
         const response = await axios.get(List_API_URL);
         return response.data;
@@ -31,6 +31,7 @@ const MtDetail = () => {
         queryKey: ["speedMeets"],
         queryFn: listFetchData
     });
+
     const {
         data: mntn,
         isLoading: mntnIsLoading,
@@ -53,72 +54,88 @@ const MtDetail = () => {
             {mntn.map((item) => {
                 if (item.mntnid === Number(mntnId)) {
                     return (
-                        <div classNamekey={item.mntnid}>
-                            <div className=" bg-[#214A00] min-w-[900px] w-[100%] ">
-                                <div className="flex flex-col justify-start items-center h-[561px] w-[900px] text-[#ffffff] m-[auto] pt-[30px] gap-[20px]">
-                                    <h2 className="text-[64px] font-bold">{item.mntnnm}</h2>
-                                    <div className="flex w-[900px] justify-start gap-[20px]">
-                                        <div className="mt-[40px]">
-                                            <img
-                                                className="min-w-[500px] w-[500px] max-h-[300px] h-[300px] object-cover"
-                                                src={item.mntnattchimageseq}
-                                            />
+                        <div key={item.mntnid}>
+                            <div key={item.mntnid}>
+                                <div className="flex relative flex-col bg-[#214A00] min-w-[1200px] w-[100%]">
+                                    <div className="flex flex-col justify-start items-center h-[561px] w-[1200px] text-[#ffffff] m-[auto] pt-[30px] gap-[20px]">
+                                        <h2 className="text-[64px] font-bold">{item.mntnnm}</h2>
+                                        <div className="flex w-[1200px] justify-start gap-[20px]">
+                                            <div className="mt-[40px]">
+                                                <img
+                                                    className="min-w-[500px] w-[500px] max-h-[300px] h-[300px] object-cover"
+                                                    src={item.mntnattchimageseq}
+                                                />
+                                            </div>
+                                            <div className="flex flex-col justify-end gap-[50px] leading-loose">
+                                                <p>
+                                                    <strong>높이</strong> <br />
+                                                    고도 {item.mntninfohght}m
+                                                </p>
+                                                <p>
+                                                    <strong>소재지</strong>
+                                                    <br />
+                                                    {item.mntninfopoflc}
+                                                </p>
+                                            </div>
                                         </div>
-
-                                        <div className="flex flex-col justify-end gap-[50px] leading-loose">
-                                            <p>
-                                                <strong>높이</strong> <br />
-                                                고도 {item.mntninfohght}m
-                                            </p>
-                                            <p>
-                                                <strong>소재지</strong>
-                                                <br />
-                                                {item.mntninfopoflc}
-                                            </p>
-                                        </div>
+                                    </div>
+                                    <div className="flex absolute bottom-[10%] right-[15%] gap-4">
+                                        <button
+                                            onClick={() => setShowDetails(true)}
+                                            className={`px-4 py-2 ${showDetails ? "bg-green-700" : "bg-gray-300"}`}
+                                        >
+                                            상세 정보
+                                        </button>
+                                        <button
+                                            onClick={() => setShowDetails(false)}
+                                            className={`px-4 py-2 ${!showDetails ? "bg-green-700" : "bg-gray-300"}`}
+                                        >
+                                            벙개 목록
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex flex-col justify-center items-start m-[auto] w-[900px] text-justify my-[50px] gap-[50px] leading-loose">
-                                <p>
-                                    <strong>개관</strong>
-                                    <br />
-                                    {item.mntninfodscrt}
-                                </p>
-                                <p>
-                                    <strong>상세정보</strong>
-                                    <br />
-                                    {item.mntninfodtlinfocont}
-                                </p>
-                                <div className="mt-[20px]">
-                                    <div className="flex items-center mb-[20px]">
-                                        <img src={LightningImg} className="w-[30px] h-[30px] object-cover" />
 
-                                        <h3>
-                                            <strong>벙개 목록</strong>
-                                        </h3>
+                            {showDetails ? (
+                                <div>
+                                    <div className="flex flex-col justify-center items-start m-[auto] w-[1200px] text-justify my-[50px] gap-[50px] leading-loose">
+                                        <p>
+                                            <strong>개관</strong>
+                                            <br />
+                                            {item.mntninfodscrt}
+                                        </p>
+                                        <p>
+                                            <strong>상세정보</strong>
+                                            <br />
+                                            {item.mntninfodtlinfocont}
+                                        </p>
                                     </div>
+                                </div>
+                            ) : (
+                                <div>
+                                    <div className="flex flex-col justify-center items-start m-[auto] w-[1200px] text-justify my-[50px] gap-[30px]">
+                                        <div className="flex items-center mb-[20px]">
+                                            <img src={LightningImg} className="w-[30px] h-[30px] object-cover" />
+                                            <h3>
+                                                <strong>벙개 목록</strong>
+                                            </h3>
+                                        </div>
 
-                                    <div>
-                                        {list
-                                            .filter((sp) => item.mntnid === sp.mntnid)
-                                            .map((sp) => {
-                                                return (
+                                        <div className="flex flex-wrap justify-start gap-[15px]">
+                                            {list
+                                                .filter((sp) => item.mntnid === sp.mntnid)
+                                                .map((sp) => (
                                                     <div
-                                                        className="flex flex-col justify-between w-[300px] h-[200px] border-[3px] rounded-[30px] p-[10px] box-contents bg-white brightness-100  hover:brightness-90 duration-100 cursor-pointer"
+                                                        className="flex flex-col justify-between w-[280px] h-[200px] border-[3px] rounded-[30px] p-[10px] box-contents bg-white brightness-100  hover:brightness-90 duration-100 cursor-pointer"
                                                         key={sp.id}
                                                         onClick={() => navigate(`/speed-meet-detail/${sp.id}`)}
                                                     >
                                                         <div className="flex justify-between px-[10px]">
-                                                            {/* <p className="text-[12px] text-start w-[100%]">
-                                                            방장: {sp.userId}
-                                                        </p> */}
                                                             <p className="text-[12px] ">{sp.title}</p>
                                                             <p className="text-[12px]">
                                                                 {sp.attendance}/{sp.capacity}
                                                             </p>
                                                         </div>
-
                                                         <img
                                                             src={SpCardDefaultImg}
                                                             className="flex m-[auto] w-[100%] h-[130px] object-cover rounded-[30px]"
@@ -127,11 +144,11 @@ const MtDetail = () => {
                                                             <p className="text-[12px]">{sp.date}</p>
                                                         </div>
                                                     </div>
-                                                );
-                                            })}
+                                                ))}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            )}
                         </div>
                     );
                 }

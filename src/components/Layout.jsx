@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
     return (
         <div>
             <header className="h-[60px] box-border py-[15px] pl-[50px] pr-[100px]">
-                <nav className="flex flex-row justify-between text-[16px] min-w-[800px]">
+                <nav className="flex flex-row justify-between text-[16px] min-w-[1100px]">
                     <Link to="/">홈</Link>
                     <Link to="/speed-meet/1">등산 같이할사람</Link>
 
