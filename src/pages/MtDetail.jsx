@@ -65,6 +65,7 @@ const MtDetail = () => {
                                     <img
                                         className="min-w-[500px] w-[500px] max-h-[300px] h-[300px] object-cover"
                                         src={selectedMntn.mntnattchimageseq}
+                                        alt={selectedMntn.mntnnm}
                                     />
                                     <div className="flex flex-col justify-end w-[40px] h-[300px] ml-[10px] bg-gray-300 rounded">
                                         <div
@@ -132,7 +133,7 @@ const MtDetail = () => {
                     <div>
                         <div className="flex flex-col justify-center items-start m-[auto] w-[1200px] text-justify my-[50px]">
                             <div className="flex items-center mb-[20px]">
-                                <img src={LightningImg} className="w-[30px] h-[30px] object-cover" />
+                                <img src={LightningImg} alt="LightningImg" className="w-[30px] h-[30px] object-cover" />
                                 <h3 className="text-[22px]">
                                     <strong>벙개 목록</strong>
                                 </h3>
