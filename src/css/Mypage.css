@@ -31,6 +31,10 @@
         margin-right: 20px;
     }
 
+    .Profile > p {
+        font-size: 25px;
+    }
+
     .cowProfile {
         width: 200px;
         height: auto;
@@ -51,6 +55,16 @@
     .post {
         border-bottom: 1px solid #909090;
         padding: 3px 10px;
+        display: flex;
+        flex-direction: row;
+        position: relative;
+    }
+
+    .openChat {
+        width: 21px;
+        height: 21px;
+        position: absolute;
+        right: 40px;
     }
 
     .pagination {
@@ -81,7 +95,7 @@
     }
     ul.pagination li.active {
         background-color: #214a00;
-         border-radius: 30px;
+        border-radius: 30px;
     }
     ul.pagination li a:hover,
     ul.pagination li a.active {

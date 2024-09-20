@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "../css/dlatl.css";
 
 const KakaoMap = ({ mount }) => {
     const navigate = useNavigate();
@@ -81,7 +82,8 @@ const KakaoMap = ({ mount }) => {
             id="map"
             style={{
                 width: "800px",
-                height: "800px"
+                height: "830px",
+                borderRadius: "20px"
             }}
         ></div>
     );

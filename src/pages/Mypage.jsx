@@ -15,7 +15,7 @@ const Mypage = () => {
             <div className="main_Container">
                 <div className="Profile">
                     <img src={cow1} alt="소오름 프로필" className="cowProfile" />
-                    <div>{user.nickname}</div>
+                    <p>{user.nickname}</p>
                 </div>
                 <div>
                     <Mypage_Post />

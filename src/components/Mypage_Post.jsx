@@ -1,10 +1,11 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useUserStore from "../zustand/useUserStore";
 import "../css/Mypage.css";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 import Pagination from "react-js-pagination";
+import openChat from "../img/chat.png";
 
 const Mypage_Post = () => {
     // const { data: PostData, isPending: postPending } = getPostData();
@@ -42,8 +43,15 @@ const Mypage_Post = () => {
                 {PostData.slice(items * (page - 1), items * (page - 1) + items) //slice를 이용해 보여주고싶은 게시물 제어
                     .map((post) => {
                         return user.userId === post.userId ? (
-                            <div className="post" onClick={() => { navigate(`/speed-meet-detail/${post.id}`); }}>
-                                {post.title}
+                            <div className="post">
+                                <p
+                                    onClick={() => {
+                                        navigate(`/speed-meet-detail/${post.id}`);
+                                    }}
+                                >
+                                    {post.title}
+                                </p>
+                                <img src={openChat} alt="오픈채팅 링크" className="openChat" onClick={post.chatLink} />
                             </div>
                         ) : (
                             "데이터 미출력"
