@@ -8,13 +8,10 @@ const SearchBox = ({ list, handleSetMountain }) => {
                     <li
                         key={item.id}
                         onClick={(e) => {
-                            console.log("click");
                             e.stopPropagation();
                             handleSetMountain(item);
                         }}
-                        onMouseEnter={() => {
-                            console.log("onHover");
-                        }}
+                        onMouseEnter={() => {}}
                     >
                         {item.mntnnm}
                     </li>
