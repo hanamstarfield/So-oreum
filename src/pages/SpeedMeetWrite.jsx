@@ -66,7 +66,7 @@ const SpeedMeetWrite = () => {
 
     return (
         <div className="flex bg-[#214A00] w-[100%] h-svh items-center m-0">
-            <div className="w-[1200px] h-[500px] mx-auto flex flex-col justify-center items-start gap-4 bg-white">
+            <div className="w-[1200px] h-[500px] mx-auto flex flex-col justify-center items-start gap-4 bg-white ">
                 <input type="text" name="title" value={formState.title} onChange={handleChange} placeholder="제목" />
                 <div className="relative">
                     <input type="date" name="date" min={today} value={formState.date} onChange={handleChange} />
