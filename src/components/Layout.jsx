@@ -29,7 +29,6 @@ const Layout = ({ children }) => {
                     <Link to="/">
                         <img src={homeImg} alt="홈" className="w-[40px]" />
                     </Link>
-
                     {user.success ? (
                         <div className="flex gap-[15px]">
                             <Link to="/speed-meet/1">벙개!</Link>
