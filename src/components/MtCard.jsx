@@ -5,7 +5,7 @@ import MtCardDefaultImg from "@/assets/MtCardDefault.jpg";
 import LightningImg from "@/assets/Lightning.png";
 import { useState } from "react";
 
-const MtCard = ({ mount, latlng, setSearchMt, searchMt }) => {
+const MtCard = ({ mount, latlng }) => {
     const API_URL = "http://localhost:4000/speedMeets";
 
     const fetchData = async () => {
@@ -21,6 +21,7 @@ const MtCard = ({ mount, latlng, setSearchMt, searchMt }) => {
     const navigate = useNavigate();
     const { swLatlng, nwLatlng } = latlng;
     const [selectedCategory, setSelectedCategory] = useState("all");
+    const [searchMt, setSearchMt] = useState("");
 
     const filteredMntns = mount.filter(
         (item) =>
@@ -37,6 +38,8 @@ const MtCard = ({ mount, latlng, setSearchMt, searchMt }) => {
         return item;
     });
 
+    const filteredBySearch = filteredByCategory.filter((item) => item.mntnnm.includes(searchMt));
+
     if (isLoading) {
         return <div>로딩 중입니다...</div>;
     }
@@ -46,15 +49,13 @@ const MtCard = ({ mount, latlng, setSearchMt, searchMt }) => {
     }
     return (
         <div>
-            <div className="flex justify-center mb-[10px] mt-[10px]">
-                <input type="text" placeholder="산 검색" onChange={(e) => setSearchMt(e.target.value)} />
-                <button
-                    onClick={() => {
-                        setSearchMt(searchMt);
-                    }}
-                >
-                    검색
-                </button>
+            <div className="flex justify-center mb-[10px] mt-[10px] mr-10">
+                <input
+                    type="text"
+                    placeholder="산 검색"
+                    onChange={(e) => setSearchMt(e.target.value)}
+                    className="border p-2 rounded"
+                />
                 <button
                     className={`mx-2 px-3 py-1 rounded-full ${
                         selectedCategory === "all" ? "bg-lime-600 text-white" : "bg-gray-300"
@@ -89,8 +90,8 @@ const MtCard = ({ mount, latlng, setSearchMt, searchMt }) => {
                 </button>
             </div>
             <div className="flex flex-wrap w-[800px] h-[750px] leading-loose overflow-y-scroll cursor-pointer">
-                {filteredByCategory.length > 0 ? (
-                    filteredByCategory.map((item) => (
+                {filteredBySearch.length > 0 ? (
+                    filteredBySearch.map((item) => (
                         <div key={item.mntnid} className="flex w-[250px] h-[320px]">
                             <div
                                 className="bg-white rounded-[15px] p-[15px] my-[10px] mx-[5px] box-contents brightness-100 hover:brightness-90 duration-100"

@@ -38,7 +38,7 @@ const Signup = () => {
 
     return (
         <div
-            className="flex h-screen bg-green-200 items-center justify-center p-8"
+            className="flex h-screen bg-fefae0 items-center justify-center p-8"
             style={{ backgroundImage: `url(${MtSign})`, backgroundSize: "cover", backgroundPosition: "center" }}
         >
             <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-md border border-gray-300">

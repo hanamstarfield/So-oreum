@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../css/dlatl.css";
 import move from "../assets/VectorIcon.png";
 
-const KakaoMap = ({ mount, setLatlng, searchMt }) => {
+const KakaoMap = ({ mount, setLatlng }) => {
     const navigate = useNavigate();
 
     const debounce = (calback, delay) => {
@@ -55,17 +55,6 @@ const KakaoMap = ({ mount, setLatlng, searchMt }) => {
                     infowindow.open(map, marker);
                 });
             });
-
-            if (searchMt) {
-                const filteredMount = mount.filter((item) => item.mntnnm.includes(searchMt));
-                if (filteredMount.length > 0) {
-                    const targetItem = filteredMount[0];
-                    const position = new kakao.maps.latLng(targetItem.latitude, targetItem.longitude);
-                    map.panTo(position);
-                    map.setLevel(6);
-                }
-            }
-
             kakao.maps.event.addListener(
                 map,
                 "bounds_changed",
