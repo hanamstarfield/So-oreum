@@ -42,7 +42,7 @@ const MtInfoTop = ({ selectedMntn, showDetails, setShowDetails }) => {
                     </div>
                 </div>
 
-                <div className="flex absolute bottom-[15%] right-[19%] gap-4 text-[#ffffff]">
+                <div className="flex absolute bottom-[15%] right-[15%] gap-4 text-[#ffffff]">
                     <button
                         onClick={() => setShowDetails(true)}
                         className={`px-4 py-2 rounded-lg transition-all duration-200  ${
