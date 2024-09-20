@@ -14,23 +14,23 @@ export const getToday = () => {
 
 
 export const getUrlMasking = (url) => {
-  const urlPattern = /^(https?:\/\/)?([^\/]+)(\/.*)?$/;
-  const match = url.match(urlPattern);
+  if (url) {
+    const urlPattern = /^(https?:\/\/)?([^\/]+)(\/.*)?$/;
+    const match = url.match(urlPattern);
 
-  if (match) {
-    const protocol = match[1] || "";
-    const domain = match[2];
-    const path = match[3] || "";
+    if (match) {
+      const protocol = match[1] || "";
+      const domain = match[2];
+      const path = match[3] || "";
 
-    // 도메인 마스킹: "example.com" -> "e*****.com"
-    // const maskedDomain = domain.charAt(0) + "*****" + domain.slice(domain.lastIndexOf("."));
-    const maskedDomain = domain;
+      const maskedDomain = domain;
 
-    // 경로 마스킹: "/path/to/resource" -> "/path/***"
-    const maskedPath = path.length > 0 ? path.replace(/[^\/]+$/, "***") : "";
+      const maskedPath = path.length > 0 ? path.replace(/[^\/]+$/, "***") : "";
 
-    return `${protocol}${maskedDomain}${maskedPath}`;
+      return `${protocol}${maskedDomain}${maskedPath}`;
+    }
+
+    return url;
   }
-
-  return url;
+  return "";
 };
