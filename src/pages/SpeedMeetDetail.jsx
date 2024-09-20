@@ -31,11 +31,12 @@ const SpeedMeetDetail = () => {
         return <>...로딩중</>;
     }
 
+    console.log("result", result);
     const { speedMeet, mntn } = result;
 
     const hasBeenAttendee = attendees?.some((attendee) => attendee.userId === user.userId);
-    const isDeadline = speedMeet.attendance >= speedMeet.capacity;
-    const hasWrittenPost = user.userId === speedMeet.userId;
+    const isDeadline = speedMeet?.attendance >= speedMeet?.capacity;
+    const hasWrittenPost = user?.userId === speedMeet?.userId;
     const showChatLink = hasWrittenPost || hasBeenAttendee;
 
     const handleEnrollAttendee = () => {
@@ -43,41 +44,28 @@ const SpeedMeetDetail = () => {
     };
 
     const getMasking = (url) => {
-        const urlPattern = /^(https?:\/\/)?([^\/]+)(\/.*)?$/;
-        const match = url.match(urlPattern);
+        if (url) {
+            const urlPattern = /^(https?:\/\/)?([^\/]+)(\/.*)?$/;
+            const match = url.match(urlPattern);
 
-        if (match) {
-            const protocol = match[1] || "";
-            const domain = match[2];
-            const path = match[3] || "";
+            if (match) {
+                const protocol = match[1] || "";
+                const domain = match[2];
+                const path = match[3] || "";
 
-            // 도메인 마스킹: "example.com" -> "e*****.com"
-            // const maskedDomain = domain.charAt(0) + "*****" + domain.slice(domain.lastIndexOf("."));
-            const maskedDomain = domain;
+                const maskedDomain = domain;
 
-            // 경로 마스킹: "/path/to/resource" -> "/path/***"
-            const maskedPath = path.length > 0 ? path.replace(/[^\/]+$/, "***") : "";
+                const maskedPath = path.length > 0 ? path.replace(/[^\/]+$/, "***") : "";
 
-            return `${protocol}${maskedDomain}${maskedPath}`;
+                return `${protocol}${maskedDomain}${maskedPath}`;
+            }
+
+            return url;
         }
-
-        return url;
+        return "";
     };
 
     const handleUpdate = () => {
-        const { title, date, capacity, content, chatLink, attendance } = speedMeet;
-        const { mntnid, mntnnm } = mntn;
-
-        // setFormState({
-        //     title,
-        //     date,
-        //     mntnid,
-        //     mntnnm,
-        //     capacity,
-        //     content,
-        //     chatLink,
-        //     attendance
-        // });
         navigate(`/speed-meet-edit/${id}`);
 
     };
@@ -87,6 +75,8 @@ const SpeedMeetDetail = () => {
         meetApi.deleteSpeedMeetById(id);
         navigate("/speed-meet/1");
     };
+
+    console.log("mntn", mntn);
 
     return (
         <div className="flex bg-[#214A00] w-[100%] h-svh items-center">
@@ -140,7 +130,7 @@ const SpeedMeetDetail = () => {
                     </button>
                 </div>
                 <div className="flex items-center justify-center">
-                    <h1 className="text-4xl">{speedMeet.title}</h1>
+                    <h1 className="text-4xl">{speedMeet?.title}</h1>
                 </div>
                 <div className="w-[100%] flex justify-start p-4 gap-8">
                     <div className="flex flex-col gap-3 w-[200px]">
@@ -149,19 +139,19 @@ const SpeedMeetDetail = () => {
                                 <div className="w-[70px] bg-gray-600 flex justify-center rounded-2xl p-1">
                                     <h2 className="text-lg text-white">등반일</h2>
                                 </div>
-                                <p>{speedMeet.date}</p>
+                                <p>{speedMeet?.date}</p>
                             </div>
                             <div className="flex flex-col gap-2">
                                 <div className="w-[70px] bg-gray-600 flex justify-center rounded-2xl p-1">
                                     <h2 className="text-lg text-white">장소</h2>
                                 </div>
-                                <p>{speedMeet.mntnnm}</p>
+                                <p>{speedMeet?.mntnnm}</p>
                             </div>
                             <div className="flex flex-col gap-2">
                                 <div className="w-[80px] bg-gray-600 flex justify-center rounded-2xl p-1">
                                     <h2 className="text-lg text-white">모집인원</h2>
                                 </div>
-                                <p>{`${speedMeet.capacity}명`}</p>
+                                <p>{`${speedMeet?.capacity}명`}</p>
                             </div>
                             <div className="flex flex-col gap-2">
                                 <div className="w-[80px] bg-gray-600 flex justify-center rounded-2xl p-1">
@@ -169,11 +159,11 @@ const SpeedMeetDetail = () => {
                                 </div>
                                 <div className="bg-slate-300">
                                     {showChatLink ? (
-                                        <p onClick={() => handleCopyClipBoard(speedMeet.chatLink)}>
-                                            {speedMeet.chatLink}
+                                        <p onClick={() => handleCopyClipBoard(speedMeet?.chatLink)}>
+                                            {speedMeet?.chatLink}
                                         </p>
                                     ) : (
-                                        <p>{getMasking(speedMeet.chatLink)}</p>
+                                        <p>{getMasking(speedMeet?.chatLink)}</p>
                                     )}
                                 </div>
                             </div>
@@ -181,18 +171,20 @@ const SpeedMeetDetail = () => {
                                 <div className="w-[70px] bg-gray-600 flex justify-center rounded-2xl p-1">
                                     <h1 className="text-lg text-white">내용</h1>
                                 </div>
-                                <p>{speedMeet.content}</p>
+                                <p>{speedMeet?.content}</p>
                             </div>
                         </div>
                     </div>
                     <div className="w-[500px] flex flex-col">
-                        <KakaoMapSpeedMeet
-                            lat={mntn?.latitude}
-                            lng={mntn?.longitude}
-                            width="720px"
-                            height="600px"
-                            borderRadius="8px"
-                        />
+                        {mntn && (
+                            <KakaoMapSpeedMeet
+                                lat={mntn.latitude}
+                                lng={mntn.longitude}
+                                width="720px"
+                                height="600px"
+                                borderRadius="8px"
+                            />
+                        )}
                     </div>
                 </div>
             </div>

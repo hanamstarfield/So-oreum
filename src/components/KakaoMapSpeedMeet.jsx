@@ -6,24 +6,25 @@ const KakaoMapSpeedMeet = ({ lat, lng, ...style }) => {
     }, []);
 
     const mapscript = () => {
-        kakao.maps.load(() => {
+        // 리액트 카카오 맵 SDK 라이브러리
+        window.kakao.maps.load(() => {
             const mapContainer = document.getElementById("map");
             if (!mapContainer) return;
 
             const mapOption = {
-                center: new kakao.maps.LatLng(lat, lng),
+                center: new window.kakao.maps.LatLng(lat, lng),
                 level: 5
             };
 
-            const map = new kakao.maps.Map(mapContainer, mapOption);
+            const map = new window.kakao.maps.Map(mapContainer, mapOption);
 
             // map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
-            const infowindow = new kakao.maps.InfoWindow({
+            const infowindow = new window.kakao.maps.InfoWindow({
                 removable: true
             });
 
-            const markerPosition = new kakao.maps.LatLng(lat, lng);
-            const marker = new kakao.maps.Marker({
+            const markerPosition = new window.kakao.maps.LatLng(lat, lng);
+            const marker = new window.kakao.maps.Marker({
                 position: markerPosition
             });
             marker.setMap(map);
