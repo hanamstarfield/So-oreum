@@ -143,7 +143,7 @@ const MtDetail = () => {
 
                                                 <img
                                                     src={SpCardDefaultImg}
-                                                    className="flex m-[auto] w-[100%] h-[130px] object-cover rounded-[30px]"
+                                                    className="flex m-[auto] w-[100px] h-[130px] object-cover rounded-[30px]"
                                                 />
                                                 <div className="flex justify-end px-[10px]">
                                                     <p className="text-[12px]">{sp.date}</p>
