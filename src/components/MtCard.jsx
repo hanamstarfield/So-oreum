@@ -49,7 +49,7 @@ const MtCard = ({ mount, latlng }) => {
     }
     return (
         <div>
-            <div className="flex justify-center mb-[10px] mt-[10px]">
+            <div className="flex justify-center mb-[10px] mt-[10px] mr-10">
                 <input
                     type="text"
                     placeholder="산 검색"
