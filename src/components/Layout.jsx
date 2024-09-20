@@ -55,7 +55,7 @@ const Layout = ({ children }) => {
                             <Link to="https://gecko0012.tistory.com/">
                                 <img src={tlog} alt="tlog" />
                             </Link>
-                            <Link to="https://github.com/za0012" className="block mt-2">
+                            <Link to="https://github.com/za0012">
                                 <img src={github} alt="github" />
                             </Link>
                         </li>
@@ -64,7 +64,7 @@ const Layout = ({ children }) => {
                             <Link to="https://reactjy2.tistory.com/">
                                 <img src={tlog} alt="tlog" />
                             </Link>
-                            <Link to="https://github.com/LeeJY97" className="block mt-2">
+                            <Link to="https://github.com/LeeJY97">
                                 <img src={github} alt="github" />
                             </Link>
                         </li>
@@ -73,7 +73,7 @@ const Layout = ({ children }) => {
                             <Link to="https://onetwothreechachacha.tistory.com/">
                                 <img src={tlog} alt="tlog" />
                             </Link>
-                            <Link to="https://github.com/hansub1n" className="block mt-2">
+                            <Link to="https://github.com/hansub1n">
                                 <img src={github} alt="github" />
                             </Link>
                         </li>
@@ -82,7 +82,7 @@ const Layout = ({ children }) => {
                             <Link to="https://velog.io/@qnfdmlto/">
                                 <img src={velog} alt="velog" />
                             </Link>
-                            <Link to="https://github.com/hanamstarfield" className="block mt-2">
+                            <Link to="https://github.com/hanamstarfield">
                                 <img src={github} alt="github" />
                             </Link>
                         </li>
@@ -91,7 +91,7 @@ const Layout = ({ children }) => {
                             <Link to="https://svt012.tistory.com/">
                                 <img src={tlog} alt="tlog" />
                             </Link>
-                            <Link to="https://github.com/leeyeram84" className="block mt-2">
+                            <Link to="https://github.com/leeyeram84">
                                 <img src={github} alt="github" />
                             </Link>
                         </li>
