@@ -81,7 +81,7 @@ const KakaoMap = ({ mount, setLatlng }) => {
             id="map"
             style={{
                 width: "800px",
-                height: "830px"
+                height: "850px"
             }}
         ></div>
     );

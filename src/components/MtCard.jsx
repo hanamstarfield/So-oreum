@@ -47,7 +47,7 @@ const MtCard = ({ mount, latlng }) => {
     }
     return (
         <div>
-            <div className="flex justify-center mb-[10px]">
+            <div className="flex justify-center mb-[10px] mt-[10px]">
                 <button
                     className={`mx-2 px-3 py-1 rounded-full ${
                         selectedCategory === "all" ? "bg-lime-600 text-white" : "bg-gray-300"
