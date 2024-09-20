@@ -138,11 +138,11 @@ const SpeedMeetDetail = () => {
     //             </div>
 
     return (
-        <div className="flex flex-col justify-center gap-12 w-[60%] max-w-[1200px] min-w-[700px] bg-white rounded-lg mx-auto p-4">
+        <div className="flex flex-col justify-center gap-12 w-[70%] max-w-[1200px] min-w-[700px] bg-white rounded-[20px] mx-auto p-12">
             <section className="flex justify-between border-b-2">
                 <div className="flex flex-col gap-4">
                     <h1 className="text-4xl text-[#214A00]">{speedMeet?.mntnnm}</h1>
-                    <h3 className="text-2xl">{speedMeet?.title}</h3>
+                    <h3 className="text-2xl pb-6">{speedMeet?.title}</h3>
                 </div>
                 <div>
                     <div className="text-2xl">
@@ -159,53 +159,60 @@ const SpeedMeetDetail = () => {
                     </div>
                 </div>
             </section>
-            <section className="flex flex-col gap-2">
-                <h1 className="text-4xl text-[#214A00]">등반일</h1>
-                <p>{speedMeet?.date}</p>
-            </section>
-            <section className="flex flex-col gap-2">
-                <h1 className="text-4xl text-[#214A00]">장소</h1>
-                <p>{speedMeet?.mntnnm}</p>
-            </section>
-            <section className="flex flex-col gap-2">
-                <h1 className="text-4xl text-[#214A00]">모집인원</h1>
-                <p>
-                    {speedMeet?.attendance}/{speedMeet?.capacity}명
-                </p>
-            </section>
-            <section className="flex flex-col gap-2">
-                <h1 className="text-4xl text-[#214A00]">오픈채팅</h1>
-                <div>
-                    {showChatLink ? (
-                        <span
-                            className="bg-slate-600 cursor-pointer"
-                            onClick={() => handleCopyClipBoard(speedMeet?.chatLink)}
-                        >
-                            {speedMeet?.chatLink}
-                        </span>
-                    ) : (
-                        <p>{getUrlMasking(speedMeet?.chatLink)}</p>
-                    )}
+            <div className="flex gap-4 w-[100%]">
+                <div className="flex flex-col gap-12 w-[50%] ">
+                    <div className="flex justify-start gap-10">
+                        <section className="flex flex-col gap-2">
+                            <h1 className="text-2xl text-[#214A00]">등반일</h1>
+                            <p>{speedMeet?.date}</p>
+                        </section>
+                        <section className="flex flex-col gap-2">
+                            <h1 className="text-2xl text-[#214A00]">장소</h1>
+                            <p>{speedMeet?.mntnnm}</p>
+                        </section>
+                        <section className="flex flex-col gap-2">
+                            <h1 className="text-2xl text-[#214A00]">모집인원</h1>
+                            <p>
+                                {speedMeet?.attendance}/{speedMeet?.capacity}명
+                            </p>
+                        </section>
+                    </div>
+                    <section className="flex flex-col gap-2">
+                        <h1 className="text-2xl text-[#214A00]">오픈채팅</h1>
+                        <div>
+                            {showChatLink ? (
+                                <span
+                                    className="bg-slate-600 cursor-pointer"
+                                    onClick={() => handleCopyClipBoard(speedMeet?.chatLink)}
+                                >
+                                    {speedMeet?.chatLink}
+                                </span>
+                            ) : (
+                                <p>{getUrlMasking(speedMeet?.chatLink)}</p>
+                            )}
+                        </div>
+                    </section>
+                    <section className="flex flex-col gap-2">
+                        <h1 className="text-2xl text-[#214A00]">내용</h1>
+                        <pre>{speedMeet?.content}</pre>
+                    </section>
                 </div>
-            </section>
-            <section className="flex flex-col gap-2">
-                <h1 className="text-4xl text-[#214A00]">내용</h1>
-                <pre>{speedMeet?.content}</pre>
-            </section>
-
-            <section className="w-[100%] flex flex-col justify-start gap-4">
-                <h1 className="text-4xl text-[#214A00]">위치</h1>
-                <p>{mntn.mntninfopoflc}</p>
-                {mntn && (
-                    <KakaoMapSpeedMeet
-                        lat={mntn.latitude}
-                        lng={mntn.longitude}
-                        width="100%"
-                        height="300px"
-                        borderRadius="8px"
-                    />
-                )}
-            </section>
+                <div className="flex flex-col gap-12 w-[50%]">
+                    <section className="w-[100%] flex flex-col justify-start gap-4">
+                        <h1 className="text-2xl text-[#214A00]">위치</h1>
+                        <p>{mntn.mntninfopoflc}</p>
+                        {mntn && (
+                            <KakaoMapSpeedMeet
+                                lat={mntn.latitude}
+                                lng={mntn.longitude}
+                                width="100%"
+                                height="300px"
+                                borderRadius="8px"
+                            />
+                        )}
+                    </section>
+                </div>
+            </div>
         </div>
     );
 };

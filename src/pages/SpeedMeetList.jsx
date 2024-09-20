@@ -15,6 +15,9 @@ const SpeedMeetList = () => {
     const speedMeetList = data.data;
 
     console.log("speedMeetList", speedMeetList);
+    // 산, 제목 조금 띄우기
+    // 페이지 버튼이랑 게시글 띄우기 (패딩)
+    // 보더래디우스 주기
 
     return (
         <div className="h-lvh bg-[#214A00] flex flex-col justify-center items-center">
