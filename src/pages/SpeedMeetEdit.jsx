@@ -5,8 +5,9 @@ import { getToday } from "@/utils/common";
 import { useNavigate, useParams } from "react-router-dom";
 import { showToast } from "@/toast/showToast";
 import useGetSpeedMeetByIdQuery from "@/queries/useGetSpeedMeetByIdQuery";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useGetMountainQuery from "@/queries/useGetMountainQuery";
+import usePatchSpeedMeetMutation from "@/mutations/usePatchSpeedMeetMutation";
 
 const SpeedMeetEdit = () => {
     // TODO 여기부터 하면됨 Detail 값 받아와서 뭐 알아서 해보셈
@@ -15,6 +16,7 @@ const SpeedMeetEdit = () => {
     const [selectedMountain, setSelectedMountain] = useState(null);
     const [searchBoxVisible, setSearchBoxVisible] = useState(false);
     const [mountainSearchResult, setMountainSearchResult] = useState(null);
+    const { data: speedMeet, isPending: isSpeedMeetPending } = useGetSpeedMeetByIdQuery(id);
     const [formState, setFormState] = useState({
         title: "",
         date: "",
@@ -25,12 +27,26 @@ const SpeedMeetEdit = () => {
         chatLink: "",
         attendance: 0
     });
-    const { data: speedMeet, isPending: isSpeedMeetPending } = useGetSpeedMeetByIdQuery(id);
+
+    useEffect(() => {
+        setFormState((prev) => {
+            return {
+                title: speedMeet?.title,
+                date: speedMeet?.date,
+                mntnid: speedMeet?.mntnid,
+                mntnnm: speedMeet?.mntnnm,
+                capacity: speedMeet?.capacity,
+                content: speedMeet?.content,
+                chatLink: speedMeet?.chatLink,
+                attendance: speedMeet?.attendance
+            };
+        });
+    }, [speedMeet]);
     const { data: mountains = [], isMountainsPending } = useGetMountainQuery();
 
     console.log("speedMeet", speedMeet);
 
-    const mutation = useCreateSpeedMeetMutation();
+    const mutation = usePatchSpeedMeetMutation();
     const navigate = useNavigate();
 
     const today = getToday();
@@ -76,6 +92,23 @@ const SpeedMeetEdit = () => {
         setSearchBoxVisible(false);
     };
 
+    const handleMountainNameBlur = () => {
+        if (!searchBoxVisible) {
+            return;
+        }
+
+        setFormState((prev) => {
+            setSelectedMountain(mountainSearchResult[0]);
+            setSearchBoxVisible(false);
+
+            return {
+                ...prev,
+                mntnnm: mountainSearchResult[0].mntnnm,
+                mntnid: mountainSearchResult[0].mntnid
+            };
+        });
+    };
+
     const handleWrite = () => {
         const { title, date, mntnid, mntnnm, capacity, content, chatLink } = formState;
         const toast = {
@@ -109,7 +142,7 @@ const SpeedMeetEdit = () => {
             return;
         }
 
-        mutation.mutate({ ...formState, userId: user.userId });
+        mutation.mutate({ id, ...formState });
         navigate("/speed-meet/1");
     };
 
