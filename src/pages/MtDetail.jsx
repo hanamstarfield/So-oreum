@@ -41,8 +41,6 @@ const MtDetail = () => {
         queryFn: mtFetchData
     });
 
-    const selectedMntn = mntn ? mntn.find((item) => item.mntnid === Number(mntnId)) : null;
-
     if (mntnIsLoading || listIsLoading) {
         return <div>로딩 중입니다...</div>;
     }
@@ -51,9 +49,7 @@ const MtDetail = () => {
         return <div>데이터 조회 중 오류가 발생했습니다...</div>;
     }
 
-    if (!selectedMntn) {
-        return <div>선택된 산 정보가 없습니다. 다른 산을 선택해 주세요.</div>;
-    }
+    const selectedMntn = mntn.find((item) => item.mntnid === Number(mntnId));
 
     return (
         <div key={mntn.id}>
