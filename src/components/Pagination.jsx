@@ -21,9 +21,11 @@ const Pagination = ({ last, url, current, onMouseOver }) => {
     return (
         <div className="w-[100%] h-[30px] flex justify-center items-center gap-4 text-2xl">
             {hasPreviousSection && (
-                <Link to={`${url}/${currentSectionStart - pagesPerSection}`}>
-                    <span>◁ </span>
-                </Link>
+                <div onMouseOver={() => onMouseOver(currentSectionStart - pagesPerSection)}>
+                    <Link to={`${url}/${currentSectionStart - pagesPerSection}`}>
+                        <span>◁ </span>
+                    </Link>
+                </div>
             )}
 
             {pages.map((page) => {

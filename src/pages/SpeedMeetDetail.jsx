@@ -10,6 +10,7 @@ import handleCopyClipBoard from "@/utils/clipBoard";
 import { getUrlMasking } from "@/utils/common";
 import useUserStore from "@/zustand/useUserStore";
 import { useNavigate, useParams } from "react-router-dom";
+import SpeedMeetDetailSkelton from "@/components/SpeedMeetDetailSkelton";
 
 const SpeedMeetDetail = () => {
     const { id } = useParams();
@@ -18,24 +19,22 @@ const SpeedMeetDetail = () => {
     const { user } = useUserStore((state) => state);
     const mutation = useCreateAttendeeMutation();
 
+    // const { data: result, isPending: speedMeetPending } = useGetSpeedMeetAndMountainQuery(id);
+    // TODO enabled: !isPending
     const { data: result, isPending: speedMeetPending } = useGetSpeedMeetAndMountainQuery(id);
     const { data: attendees, isPending: attendeePending } = useGetAttendees(id);
     const deleteMutation = useDeleteSpeedMeetMutation();
 
     if (speedMeetPending || attendeePending) {
-        return <>...로딩중</>;
+        return <SpeedMeetDetailSkelton />;
     }
 
     const { speedMeet, mntn } = result;
 
     const hasBeenAttendee = attendees.some((attendee) => attendee.userId === user.userId);
-    console.log("🚀 ~ SpeedMeetDetail ~ hasBeenAttendee:", hasBeenAttendee);
     const isDeadline = speedMeet.attendance >= speedMeet.capacity;
-    console.log("🚀 ~ SpeedMeetDetail ~ isDeadline:", isDeadline);
     const hasWrittenPost = user.userId === speedMeet.userId;
-    console.log("🚀 ~ SpeedMeetDetail ~ hasWrittenPost:", hasWrittenPost);
     const showChatLink = hasWrittenPost || hasBeenAttendee;
-    console.log("🚀 ~ SpeedMeetDetail ~ showChatLink:", showChatLink);
 
     const handleEnrollAttendee = () => {
         mutation.mutate({ speedMeetId: id, userId: user.userId });
