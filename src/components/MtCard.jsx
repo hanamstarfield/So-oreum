@@ -5,7 +5,7 @@ import MtCardDefaultImg from "@/assets/MtCardDefault.jpg";
 import LightningImg from "@/assets/Lightning.png";
 import { useState } from "react";
 
-const MtCard = ({ mount, latlng }) => {
+const MtCard = ({ mount, latlng, setSelectedLocation }) => {
     const API_URL = "http://localhost:4000/speedMeets";
 
     const fetchData = async () => {
@@ -22,6 +22,7 @@ const MtCard = ({ mount, latlng }) => {
     const { swLatlng, nwLatlng } = latlng;
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [searchMt, setSearchMt] = useState("");
+    const [showSuggestions, setShowSuggestions] = useState(false);
 
     const filteredMntns = mount.filter(
         (item) =>
@@ -38,7 +39,16 @@ const MtCard = ({ mount, latlng }) => {
         return item;
     });
 
-    const filteredBySearch = filteredByCategory.filter((item) => item.mntnnm.includes(searchMt));
+    const searchSuggestions = filteredByCategory.filter((item) => item.mntnnm.includes(searchMt));
+
+    const handleSearchChange = (e) => {
+        setSearchMt(e.target.value);
+        setShowSuggestions(true);
+    };
+
+    const handleMountainClick = (latitude, longitude) => {
+        setSelectedLocation({ latitude, longitude });
+    };
 
     if (isLoading) {
         return <div>로딩 중입니다...</div>;
@@ -49,13 +59,31 @@ const MtCard = ({ mount, latlng }) => {
     }
     return (
         <div>
-            <div className="flex justify-center mb-[10px] mt-[10px] mr-10">
+            <div className="flex justify-center mb-[10px] mt-[10px] mr-10 relative">
                 <input
                     type="text"
                     placeholder="산 검색"
-                    onChange={(e) => setSearchMt(e.target.value)}
+                    value={searchMt}
+                    onChange={handleSearchChange}
                     className="border p-2 rounded"
                 />
+                {showSuggestions && searchMt && (
+                    <ul className="absolute bg-white border rounded mt-1 w-[200px] max-h-[150px] overflow-y-auto top-full left-16 z-10">
+                        {searchSuggestions.map((item) => (
+                            <li
+                                key={item.mntnid}
+                                className="px-3 py-2 cursor-pointer hover:bg-gray-200"
+                                onClick={() => {
+                                    handleMountainClick(item.latitude, item.longitude);
+                                    setSearchMt(item.mntnnm);
+                                    setShowSuggestions(false);
+                                }}
+                            >
+                                {item.mntnnm}
+                            </li>
+                        ))}
+                    </ul>
+                )}
                 <button
                     className={`mx-2 px-3 py-1 rounded-full ${
                         selectedCategory === "all" ? "bg-lime-600 text-white" : "bg-gray-300"
@@ -90,33 +118,35 @@ const MtCard = ({ mount, latlng }) => {
                 </button>
             </div>
             <div className="flex flex-wrap w-[800px] h-[750px] leading-loose overflow-y-scroll cursor-pointer">
-                {filteredBySearch.length > 0 ? (
-                    filteredBySearch.map((item) => (
-                        <div key={item.mntnid} className="flex w-[250px] h-[320px]">
-                            <div
-                                className="bg-white rounded-[15px] p-[15px] my-[10px] mx-[5px] box-contents brightness-100 hover:brightness-90 duration-100"
-                                onClick={() => navigate(`/mntn-detail?mntnId=${item.mntnid}`)}
-                            >
-                                <div className="flex justify-end items-center px-[10px] text-[13px]">
-                                    <img src={LightningImg} className="w-[20px] h-[20px] object-cover" />
-                                    <span> {data.filter((sp) => item.mntnid === sp.mntnid).length}</span>
-                                </div>
-                                <img
-                                    className="w-[220px] h-[150px] object-cover rounded-[15px]"
-                                    src={item.mntnattchimageseq}
-                                    alt={`${item.mntnnm} 이미지`}
-                                />
-                                <div className="flex justify-between items-center mt-[5px] px-[10px]">
-                                    <p>
-                                        <strong>{item.mntnnm}</strong>
-                                    </p>
-                                    <p className="text-[12px]">정상 {item.mntninfohght}m</p>
-                                </div>
-                                <p className="text-[12px] px-[10px] ">{item.mntninfopoflc}</p>
+                {filteredByCategory.map((item) => (
+                    <div key={item.mntnid} className="flex w-[250px] h-[320px]">
+                        <div
+                            className="bg-white rounded-[15px] p-[15px] my-[10px] mx-[5px] box-contents brightness-100 hover:brightness-90 duration-100"
+                            onClick={() => {
+                                handleMountainClick(item.latitude, item.longitude);
+                                navigate(`/mntn-detail?mntnId=${item.mntnid}`);
+                            }}
+                        >
+                            <div className="flex justify-end items-center px-[10px] text-[13px]">
+                                <img src={LightningImg} className="w-[20px] h-[20px] object-cover" />
+                                <span> {data.filter((sp) => item.mntnid === sp.mntnid).length}</span>
                             </div>
+                            <img
+                                className="w-[220px] h-[150px] object-cover rounded-[15px]"
+                                src={item.mntnattchimageseq}
+                                alt={`${item.mntnnm} 이미지`}
+                            />
+                            <div className="flex justify-between items-center mt-[5px] px-[10px]">
+                                <p>
+                                    <strong>{item.mntnnm}</strong>
+                                </p>
+                                <p className="text-[12px]">정상 {item.mntninfohght}m</p>
+                            </div>
+                            <p className="text-[12px] px-[10px] ">{item.mntninfopoflc}</p>
                         </div>
-                    ))
-                ) : (
+                    </div>
+                ))}
+                {filteredByCategory.length === 0 && (
                     <img src={MtCardDefaultImg} className="flex mt-[150px] w-[600px] h-[400px] object-cover" />
                 )}
             </div>
