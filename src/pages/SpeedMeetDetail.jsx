@@ -61,13 +61,13 @@ const SpeedMeetDetail = () => {
                     <div>
                         <div className="text-2xl">
                             {!hasWrittenPost &&
-                                (hasBeenAttendee ? (
-                                    <button className="bg-slate-600 cursor-default py-[3px] px-[10px] rounded-[7px] mr-[10px] text-white">
-                                        신청완료
-                                    </button>
-                                ) : isDeadline ? (
+                                (isDeadline ? (
                                     <button className="bg-[#e56b6f] cursor-default py-[3px] px-[10px] rounded-[7px] mr-[10px] text-white">
                                         신청마감
+                                    </button>
+                                ) : hasBeenAttendee ? (
+                                    <button className="bg-slate-600 cursor-default py-[3px] px-[10px] rounded-[7px] mr-[10px] text-white">
+                                        신청완료
                                     </button>
                                 ) : (
                                     <button
