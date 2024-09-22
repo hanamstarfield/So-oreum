@@ -10,7 +10,7 @@ const SpeedMeetList = () => {
     const queryClient = useQueryClient();
 
     const { page } = useParams();
-    const { data, isPending } = useGetSpeedMeetsQuery(page);
+    const { data: speedMeetList, isPending } = useGetSpeedMeetsQuery(page);
 
     const onPageMouseOver = (page) => {
         queryClient.prefetchQuery({
@@ -22,12 +22,7 @@ const SpeedMeetList = () => {
     if (isPending) {
         return <>... 로딩</>;
     }
-
-    const last = data.last;
-
-    const speedMeetList = data.data;
-
-    console.log("speedMeetList", speedMeetList);
+    const last = speedMeetList.last;
 
     return (
         <div className="h-lvh bg-[#214A00] flex flex-col justify-center items-center">
