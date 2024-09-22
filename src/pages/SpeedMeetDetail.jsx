@@ -60,10 +60,10 @@ const SpeedMeetDetail = () => {
                 <div>
                     <div className="text-2xl">
                         {!hasWrittenPost &&
-                            (hasBeenAttendee ? (
-                                <button className="bg-slate-600 cursor-default">신청완료</button>
-                            ) : isDeadline ? (
+                            (isDeadline ? (
                                 <button className="bg-slate-600 cursor-default">신청마감</button>
+                            ) : hasBeenAttendee ? (
+                                <button className="bg-slate-600 cursor-default">신청완료</button>
                             ) : (
                                 <button className="bg-cyan-600" onClick={handleEnrollAttendee}>
                                     신청하기
