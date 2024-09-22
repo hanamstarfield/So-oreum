@@ -14,7 +14,7 @@ const Home = () => {
     const [selectedLocation, setSelectedLocation] = useState(null);
 
     const fetchMount = async () => {
-        const response = await axios.get("http://localhost:4000/items");
+        const response = await axios.get("https://hushed-violet-polo.glitch.me/items");
         return response.data;
     };
 

@@ -11,7 +11,7 @@ const getSpeedMeetById = async (id) => {
 }
 
 const getDummyMountain = async () => {
-  const { data } = await axios.get(`http://localhost:4000/dummyMnt`);
+  const { data } = await axios.get(`https://hushed-violet-polo.glitch.me/dummyMnt`);
   return data;
 }
 
@@ -65,8 +65,8 @@ const meetApi = {
 }
 
 const api = axios.create({
-  baseURL: "http://localhost:4000",
-})
+    baseURL: "https://hushed-violet-polo.glitch.me"
+});
 
 
 export default meetApi;

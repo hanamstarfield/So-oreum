@@ -646,7 +646,7 @@
       "capacity": "4",
       "content": "고요한 아침을 맞이해요",
       "chatLink": "http://naver.com/guryongsan-morning",
-      "attendance": 2,
+      "attendance": 3,
       "userId": "hihihi456",
       "createdAt": "2024-11-01T11:00:00.000Z"
     },
@@ -805,6 +805,11 @@
     {
       "id": "d326",
       "speedMeetId": "7s8t",
+      "userId": "hihihi333"
+    },
+    {
+      "id": "a9ef",
+      "speedMeetId": "1c2d",
       "userId": "hihihi333"
     }
   ],

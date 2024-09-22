@@ -6,7 +6,7 @@ import LightningImg from "@/assets/Lightning.png";
 import { useState } from "react";
 
 const MtCard = ({ mount, latlng, setSelectedLocation }) => {
-    const API_URL = "http://localhost:4000/speedMeets";
+    const API_URL = "https://hushed-violet-polo.glitch.me/speedMeets";
 
     const fetchData = async () => {
         const response = await axios.get(API_URL);
