@@ -15,29 +15,29 @@ const KakaoMap = ({ mount, setLatlng, selectedLocation }) => {
     };
 
     useEffect(() => {
-        kakao.maps.load(() => {
+        window.kakao.maps.load(() => {
             const mapContainer = document.getElementById("map");
             if (!mapContainer) return;
 
             const mapOption = {
-                center: new kakao.maps.LatLng(37.566535, 126.9779692),
+                center: new window.kakao.maps.LatLng(37.566535, 126.9779692),
                 level: 9
             };
 
-            const map = new kakao.maps.Map(mapContainer, mapOption);
-            map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
-            const infowindow = new kakao.maps.InfoWindow({
+            const map = new window.kakao.maps.Map(mapContainer, mapOption);
+            map.addOverlayMapTypeId(window.kakao.maps.MapTypeId.TERRAIN);
+            const infowindow = new window.kakao.maps.InfoWindow({
                 removable: true
             });
 
             mount.forEach((item) => {
-                const markerPosition = new kakao.maps.LatLng(item.latitude, item.longitude);
-                const marker = new kakao.maps.Marker({
+                const markerPosition = new window.kakao.maps.LatLng(item.latitude, item.longitude);
+                const marker = new window.kakao.maps.Marker({
                     position: markerPosition
                 });
                 marker.setMap(map);
 
-                kakao.maps.event.addListener(marker, "click", () => {
+                window.kakao.maps.event.addListener(marker, "click", () => {
                     const content = `
                         <div class="p-4 w-64 rounded-lg shadow-lg">
                             <img src="${item.mntnattchimageseq}" class="w-full h-32 object-cover rounded-md mb-2""/>
@@ -54,7 +54,7 @@ const KakaoMap = ({ mount, setLatlng, selectedLocation }) => {
                     infowindow.open(map, marker);
                 });
             });
-            kakao.maps.event.addListener(
+            window.kakao.maps.event.addListener(
                 map,
                 "bounds_changed",
                 debounce(() => {
@@ -74,7 +74,7 @@ const KakaoMap = ({ mount, setLatlng, selectedLocation }) => {
                 }, 300)
             );
             if (selectedLocation) {
-                const moveLatLng = new kakao.maps.LatLng(selectedLocation.latitude, selectedLocation.longitude);
+                const moveLatLng = new window.kakao.maps.LatLng(selectedLocation.latitude, selectedLocation.longitude);
                 map.setCenter(moveLatLng);
                 map.setLevel(5);
             }
