@@ -74,7 +74,7 @@ const KakaoMap = ({ mount, setLatlng, selectedLocation }) => {
                 }, 300)
             );
             if (selectedLocation) {
-                const moveLatLng = new window.kakao.maps.LatLng(selectedLocation.latitude, selectedLocation.longitude);
+                const moveLatLng = new kakao.maps.LatLng(selectedLocation.latitude, selectedLocation.longitude);
                 map.setCenter(moveLatLng);
                 map.setLevel(5);
             }
