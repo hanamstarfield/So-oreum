@@ -54,8 +54,12 @@ https://어쩌구 ..
 -   [x] 페이지 분리 (Home, Login, Signup, MtDetail, Mypage, SpeedMeet(Detail, Write, Edit, List))
     -   [x] 페이지 라우팅
 -   [x] `Home`
+    -   [x] 산 목록 표시(지도 기반 / 고도에 따른 산 목록 필터링)
 -   [x] `Login/Signup`
+    -   [x] 로그인 및 회원가입
 -   [x] `MtDetail`
+    -   [x] 산 정보 표시
+    -   [x] 관련 벙개 목록 표시
 -   [x] `SpeedMeet`
     -   [x] `SpeedMeetWrite`
         -   [x] 게시글 작성 가능
@@ -93,6 +97,8 @@ https://어쩌구 ..
 
 ## 🗂️ 파일 구조
 
+<details>
+<summary>프로젝트 구조</summary>
 ```
 📦src
 ┣ 📂api
@@ -196,3 +202,4 @@ https://어쩌구 ..
 ┣ 📜index.css
 ┗ 📜main.jsx
 ```
+</details>
