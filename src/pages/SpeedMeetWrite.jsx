@@ -66,7 +66,7 @@ const SpeedMeetWrite = () => {
 
     return (
         <div className="flex bg-[#214A00] w-[100%] h-svh items-center m-0">
-            <div className="w-[1200px] h-[500px] mx-auto flex flex-col justify-center items-start gap-4 bg-white ">
+            <div className="w-[1200px] h-[500px] mx-auto flex flex-col justify-center items-start gap-4 bg-white p-20 rounded-[20px]">
                 <input type="text" name="title" value={formState.title} onChange={handleChange} placeholder="제목" />
                 <div className="relative">
                     <input type="date" name="date" min={today} value={formState.date} onChange={handleChange} />
@@ -138,7 +138,7 @@ const SpeedMeetWrite = () => {
                     placeholder="오픈카톡 링크"
                 />
                 {/* TODO 글 작성 진행중 */}
-                <button className="bg-slate-500 rounded-sm" onClick={handleWrite}>
+                <button className="bg-slate-500 py-[5px] px-[15px] rounded-[7px]" onClick={handleWrite}>
                     작성
                 </button>
             </div>

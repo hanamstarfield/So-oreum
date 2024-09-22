@@ -17,7 +17,7 @@ const Mypage_Post = () => {
 
     const getPost = async () => {
         const { data } = await axios.get("http://localhost:4000/speedMeets");
-        return data;
+        return data.filter((data) => user.userId === data.userId);
     };
 
     const { data: PostData, isLoading: postLoading } = useQuery({
@@ -39,22 +39,26 @@ const Mypage_Post = () => {
     return (
         <div className="postBody">
             <div className="postMainBody">
-                {" "}
                 {PostData.slice(items * (page - 1), items * (page - 1) + items) //slice를 이용해 보여주고싶은 게시물 제어
                     .map((post) => {
-                        return user.userId === post.userId ? (
+                        return (
                             <div className="post">
                                 <p
                                     onClick={() => {
                                         navigate(`/speed-meet-detail/${post.id}`);
                                     }}
                                 >
-                                    <span style={{color:"#383838"}}>[{post.mntnnm}]</span> {post.title}
+                                    <span style={{ color: "#383838" }}>[{post.mntnnm}]</span> {post.title}
                                 </p>
-                                <img src={openChat} alt="오픈채팅 링크" className="openChat" onClick={post.chatLink} />
+                                <img
+                                    src={openChat}
+                                    alt="오픈채팅 링크"
+                                    className="openChat"
+                                    onClick={() => {
+                                        post.chatLink + console.log(post.chatLink);
+                                    }}
+                                />
                             </div>
-                        ) : (
-                            null
                         );
                     })}
             </div>
