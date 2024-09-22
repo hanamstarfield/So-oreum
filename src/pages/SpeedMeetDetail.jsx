@@ -62,9 +62,13 @@ const SpeedMeetDetail = () => {
                         <div className="text-2xl">
                             {!hasWrittenPost &&
                                 (hasBeenAttendee ? (
-                                    <button className="bg-slate-600 cursor-default">신청완료</button>
+                                    <button className="bg-slate-600 cursor-default py-[3px] px-[10px] rounded-[7px] mr-[10px] text-white">
+                                        신청완료
+                                    </button>
                                 ) : isDeadline ? (
-                                    <button className="bg-slate-600 cursor-default">신청마감</button>
+                                    <button className="bg-[#e56b6f] cursor-default py-[3px] px-[10px] rounded-[7px] mr-[10px] text-white">
+                                        신청마감
+                                    </button>
                                 ) : (
                                     <button
                                         className="bg-[#588157] py-[3px] px-[10px] rounded-[7px] mr-[10px] text-white"
@@ -154,7 +158,6 @@ const SpeedMeetDetail = () => {
                                 }`}
                                 onClick={showChatLink ? () => handleCopyClipBoard(speedMeet?.chatLink) : () => {}}
                             >
-                                <div className="bg-slate-900 w-4 h-4 top-3 right-2 absolute"></div>
                                 {showChatLink ? (
                                     <span>{speedMeet?.chatLink}</span>
                                 ) : (

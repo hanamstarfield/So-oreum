@@ -39,7 +39,7 @@ const MtCard = ({ mount, latlng, setSelectedLocation }) => {
         return item;
     });
 
-    const searchSuggestions = filteredByCategory.filter((item) => item.mntnnm.includes(searchMt));
+    const searchSuggestions = mount.filter((item) => item.mntnnm.includes(searchMt));
 
     const handleSearchChange = (e) => {
         setSearchMt(e.target.value);
