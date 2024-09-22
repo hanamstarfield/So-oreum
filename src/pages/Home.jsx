@@ -11,6 +11,8 @@ const Home = () => {
         nwLatlng: { La: 127.24016828673027, Ma: 37.7991147734346 }
     });
 
+    const [selectedLocation, setSelectedLocation] = useState(null);
+
     const fetchMount = async () => {
         const response = await axios.get("http://localhost:4000/items");
         return response.data;
@@ -35,8 +37,8 @@ const Home = () => {
     return (
         <div className="cardMt">
             <div className="flex mx-[50px]">
-                <MtCard mount={mount} latlng={latlng} />
-                <KakaoMap mount={mount} setLatlng={setLatlng} />
+                <MtCard mount={mount} latlng={latlng} setSelectedLocation={setSelectedLocation} />
+                <KakaoMap mount={mount} setLatlng={setLatlng} selectedLocation={selectedLocation} />
             </div>
         </div>
     );
