@@ -113,7 +113,7 @@
       "capacity": "4",
       "content": "자연을 느끼며 트레킹!",
       "chatLink": "http://naver.com/dobongsan-trekking",
-      "attendance": 0,
+      "attendance": 1,
       "userId": "hihihi654",
       "createdAt": "2024-09-20T15:00:00.000Z"
     },
@@ -790,6 +790,21 @@
     {
       "id": "da65",
       "speedMeetId": "a7a4",
+      "userId": "hihihi333"
+    },
+    {
+      "id": "43c2",
+      "speedMeetId": "5i6j",
+      "userId": "hihihi333"
+    },
+    {
+      "id": "9906",
+      "speedMeetId": "8t9u",
+      "userId": "hihihi333"
+    },
+    {
+      "id": "d326",
+      "speedMeetId": "7s8t",
       "userId": "hihihi333"
     }
   ],

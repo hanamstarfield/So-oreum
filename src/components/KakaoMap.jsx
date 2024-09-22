@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import "../css/dlatl.css";
 import move from "../assets/VectorIcon.png";
 
-const KakaoMap = ({ mount, setLatlng, searchMt }) => {
+const KakaoMap = ({ mount, setLatlng, selectedLocation }) => {
     const navigate = useNavigate();
 
-    const debounce = (calback, delay) => {
+    const debounce = (callback, delay) => {
         let timer;
         return () => {
             if (timer) clearTimeout(timer);
-            timer = setTimeout(calback, delay);
+            timer = setTimeout(callback, delay);
         };
     };
 
@@ -25,7 +25,6 @@ const KakaoMap = ({ mount, setLatlng, searchMt }) => {
             };
 
             const map = new kakao.maps.Map(mapContainer, mapOption);
-
             map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
             const infowindow = new kakao.maps.InfoWindow({
                 removable: true
@@ -55,17 +54,6 @@ const KakaoMap = ({ mount, setLatlng, searchMt }) => {
                     infowindow.open(map, marker);
                 });
             });
-
-            if (searchMt) {
-                const filteredMount = mount.filter((item) => item.mntnnm.includes(searchMt));
-                if (filteredMount.length > 0) {
-                    const targetItem = filteredMount[0];
-                    const position = new kakao.maps.latLng(targetItem.latitude, targetItem.longitude);
-                    map.panTo(position);
-                    map.setLevel(6);
-                }
-            }
-
             kakao.maps.event.addListener(
                 map,
                 "bounds_changed",
@@ -85,8 +73,13 @@ const KakaoMap = ({ mount, setLatlng, searchMt }) => {
                     });
                 }, 300)
             );
+            if (selectedLocation) {
+                const moveLatLng = new kakao.maps.LatLng(selectedLocation.latitude, selectedLocation.longitude);
+                map.setCenter(moveLatLng);
+                map.setLevel(5);
+            }
         });
-    }, [mount]);
+    }, [mount, selectedLocation]);
 
     return (
         <div

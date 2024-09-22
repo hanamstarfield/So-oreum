@@ -17,6 +17,15 @@
 }
 
 @layer components {
+    .tabButton {
+        width: 50%;
+        font-size: 18px;
+        border-bottom: 3px solid #909090;
+    }
+    .tabButton:focus {
+        border-bottom: 3px solid #028b1d;
+    }
+
     .up_container {
         display: flex;
         justify-content: center;
@@ -57,7 +66,7 @@
     }
 
     .postMainBody {
-        border-top: 3px solid #909090;
+        /* border-top: 3px solid #909090; */
         border-bottom: 2px solid #909090;
     }
 
@@ -67,6 +76,7 @@
         display: flex;
         flex-direction: row;
         position: relative;
+        font-size: 18px;
     }
 
     .openChat {

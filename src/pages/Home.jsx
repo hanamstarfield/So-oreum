@@ -6,11 +6,12 @@ import { useState } from "react";
 import "../css/dlatl.css";
 
 const Home = () => {
-    const [searchMt, setSearchMt] = useState("");
     const [latlng, setLatlng] = useState({
         swLatlng: { La: 126.74830859822728, Ma: 37.33778210260892 },
         nwLatlng: { La: 127.24016828673027, Ma: 37.7991147734346 }
     });
+
+    const [selectedLocation, setSelectedLocation] = useState(null);
 
     const fetchMount = async () => {
         const response = await axios.get("http://localhost:4000/items");
@@ -36,8 +37,8 @@ const Home = () => {
     return (
         <div className="cardMt">
             <div className="flex mx-[50px]">
-                <MtCard mount={mount} latlng={latlng} setSearchMt={setSearchMt} searchMt={searchMt} />
-                <KakaoMap mount={mount} setLatlng={setLatlng} searchMt={searchMt} />
+                <MtCard mount={mount} latlng={latlng} setSelectedLocation={setSelectedLocation} />
+                <KakaoMap mount={mount} setLatlng={setLatlng} selectedLocation={selectedLocation} />
             </div>
         </div>
     );
