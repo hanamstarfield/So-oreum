@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Pagination = ({ last, url, current }) => {
+const Pagination = ({ last, url, current, onMouseOver }) => {
     // 한 섹션에 표시할 페이지 수
     const pagesPerSection = 5;
     // 현재 섹션 시작과 끝 페이지 계산
@@ -21,14 +21,16 @@ const Pagination = ({ last, url, current }) => {
     return (
         <div className="w-[100%] h-[30px] flex justify-center items-center gap-4 text-2xl">
             {hasPreviousSection && (
-                <Link to={`${url}/${currentSectionStart - pagesPerSection}`}>
-                    <span>◁ </span>
-                </Link>
+                <div onMouseOver={() => onMouseOver(currentSectionStart - pagesPerSection)}>
+                    <Link to={`${url}/${currentSectionStart - pagesPerSection}`}>
+                        <span>◁ </span>
+                    </Link>
+                </div>
             )}
 
             {pages.map((page) => {
                 return (
-                    <div key={page} className="w-[30px]">
+                    <div key={page} className="w-[30px]" onMouseOver={() => onMouseOver(page)}>
                         <Link to={`${url}/${page}`}>
                             <span className={current == page ? "text-white" : ""}>{page}</span>
                         </Link>
@@ -37,9 +39,11 @@ const Pagination = ({ last, url, current }) => {
             })}
 
             {hasNextSection && (
-                <Link to={`${url}/${currentSectionEnd + 1}`}>
-                    <span> ▷</span>
-                </Link>
+                <div onMouseOver={() => onMouseOver(currentSectionEnd + 1)}>
+                    <Link to={`${url}/${currentSectionEnd + 1}`}>
+                        <span> ▷</span>
+                    </Link>
+                </div>
             )}
         </div>
     );

@@ -61,7 +61,7 @@
             "capacity": "3",
             "content": "정상에서의 뷰가 멋져요!",
             "chatLink": "http://naver.com/gaehwa-hike",
-            "attendance": 0,
+            "attendance": 1,
             "userId": "hihihi123",
             "createdAt": "2024-09-15T11:00:00.000Z"
         },
@@ -75,7 +75,7 @@
             "content": "아름다운 일출을 함께해요",
             "chatLink": "http://naver.com/guryongsan-sunrise",
             "attendance": 2,
-            "userId": "hihihi456",
+            "userId": "hihihi333",
             "createdAt": "2024-09-17T12:00:00.000Z"
         },
         {
@@ -88,7 +88,7 @@
             "content": "자연을 만끽하며 하이킹해요",
             "chatLink": "http://naver.com/gungsan-hike",
             "attendance": 1,
-            "userId": "hihihi789",
+            "userId": "hihihi333",
             "createdAt": "2024-09-18T13:00:00.000Z"
         },
         {
@@ -101,7 +101,7 @@
             "content": "정상에서 인증샷 찍어요",
             "chatLink": "http://naver.com/daemosan-photo",
             "attendance": 3,
-            "userId": "hihihi321",
+            "userId": "hihihi333",
             "createdAt": "2024-09-19T14:00:00.000Z"
         },
         {
@@ -114,7 +114,7 @@
             "content": "자연을 느끼며 트레킹!",
             "chatLink": "http://naver.com/dobongsan-trekking",
             "attendance": 0,
-            "userId": "hihihi654",
+            "userId": "hihihi333",
             "createdAt": "2024-09-20T15:00:00.000Z"
         },
         {
@@ -127,7 +127,7 @@
             "content": "야경이 아름다운 곳",
             "chatLink": "http://naver.com/mangusan-nightview",
             "attendance": 2,
-            "userId": "hihihi987",
+            "userId": "hihihi333",
             "createdAt": "2024-09-21T16:00:00.000Z"
         },
         {
@@ -140,7 +140,7 @@
             "content": "소풍가기 좋은 날",
             "chatLink": "http://naver.com/gaehwa-picnic",
             "attendance": 1,
-            "userId": "hihihi543",
+            "userId": "hihihi333",
             "createdAt": "2024-09-22T17:00:00.000Z"
         },
         {
@@ -153,7 +153,7 @@
             "content": "봄의 꽃을 함께 즐겨요",
             "chatLink": "http://naver.com/guryongsan-flowers",
             "attendance": 2,
-            "userId": "hihihi654",
+            "userId": "hihihi333",
             "createdAt": "2024-09-23T18:00:00.000Z"
         },
         {
@@ -166,7 +166,7 @@
             "content": "일출을 카메라에 담아요",
             "chatLink": "http://naver.com/gungsan-sunrise",
             "attendance": 1,
-            "userId": "hihihi765",
+            "userId": "hihihi333",
             "createdAt": "2024-09-24T19:00:00.000Z"
         },
         {
@@ -179,7 +179,7 @@
             "content": "캠프 파이어와 함께",
             "chatLink": "http://naver.com/daemosan-camping",
             "attendance": 0,
-            "userId": "hihihi876",
+            "userId": "hihihi333",
             "createdAt": "2024-09-25T20:00:00.000Z"
         },
         {
@@ -217,7 +217,7 @@
             "capacity": "3",
             "content": "저녁의 평화를 느껴요",
             "chatLink": "http://naver.com/gaehwa-evening",
-            "attendance": 0,
+            "attendance": 1,
             "userId": "hihihi654",
             "createdAt": "2024-09-28T23:00:00.000Z"
         },
@@ -243,7 +243,7 @@
             "capacity": "4",
             "content": "가을의 정취를 느끼며",
             "chatLink": "http://naver.com/daemosan-autumn",
-            "attendance": 2,
+            "attendance": 3,
             "userId": "hihihi123",
             "createdAt": "2024-10-01T10:00:00.000Z"
         },
@@ -738,7 +738,7 @@
             "content": "자연 속에서 조깅을 즐겨요",
             "chatLink": "http://naver.com/gungsan-jogging",
             "attendance": 3,
-            "userId": "hihihi543",
+            "userId": "hihihi333",
             "createdAt": "2024-11-08T18:00:00.000Z"
         },
         {
@@ -751,7 +751,7 @@
             "content": "역사를 배우는 소중한 시간",
             "chatLink": "http://naver.com/daemosan-history",
             "attendance": 2,
-            "userId": "hihihi654",
+            "userId": "hihihi333",
             "createdAt": "2024-11-09T19:00:00.000Z"
         },
         {
@@ -764,19 +764,42 @@
             "content": "자연을 배우는 탐방",
             "chatLink": "http://naver.com/dobongsan-ecology",
             "attendance": 3,
-            "userId": "hihihi987",
+            "userId": "hihihi333",
             "createdAt": "2024-11-10T20:00:00.000Z"
+        },
+        {
+            "id": "81d4",
+            "title": "인왕산 하드 먹을사람 ?",
+            "date": "2024-09-26",
+            "mntnid": 20000527,
+            "mntnnm": "인왕산",
+            "capacity": "4",
+            "content": "너만 오면 ㄱ",
+            "chatLink": "https://open.kakao.com/o/gd73n2Pg",
+            "attendance": 0,
+            "userId": "hihihi333",
+            "createdAt": "2024-09-20T15:20:37.479Z"
         }
     ],
     "speedMeetAttendee": [
         {
-            "id": "efd1",
-            "speedMeetId": null,
-            "userId": "hihihi444"
-        },
-        {
             "id": "da65",
             "speedMeetId": "a7a4",
+            "userId": "hihihi333"
+        },
+        {
+            "id": "f562",
+            "speedMeetId": "1a2b",
+            "userId": "hihihi333"
+        },
+        {
+            "id": "a0d8",
+            "speedMeetId": "7e8f",
+            "userId": "hihihi333"
+        },
+        {
+            "id": "1ca6",
+            "speedMeetId": "4y5z",
             "userId": "hihihi333"
         }
     ],

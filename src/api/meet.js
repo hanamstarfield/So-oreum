@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const getSpeedMeets = async (pageParam = 1) => {
+  console.log('pageParam', pageParam);
   const data = (await api.get(`/speedMeets?_page=${pageParam}&_per_page=10&_sort=-createdAt`)).data;
   return data;
 }

@@ -1,4 +1,5 @@
 import meetApi from "@/api/meet";
+import homeImg from "../assets/SpCardDefault.png";
 import KakaoMapSpeedMeet from "@/components/KakaoMapSpeedMeet";
 import useCreateAttendeeMutation from "@/mutations/useCreateAttendeeMutation";
 import useDeleteSpeedMeetMutation from "@/mutations/useDeleteSpeedMeetMutation";
@@ -9,6 +10,7 @@ import handleCopyClipBoard from "@/utils/clipBoard";
 import { getUrlMasking } from "@/utils/common";
 import useUserStore from "@/zustand/useUserStore";
 import { useNavigate, useParams } from "react-router-dom";
+import SpeedMeetDetailSkelton from "@/components/SpeedMeetDetailSkelton";
 
 const SpeedMeetDetail = () => {
     const { id } = useParams();
@@ -17,12 +19,14 @@ const SpeedMeetDetail = () => {
     const { user } = useUserStore((state) => state);
     const mutation = useCreateAttendeeMutation();
 
+    // const { data: result, isPending: speedMeetPending } = useGetSpeedMeetAndMountainQuery(id);
+    // TODO enabled: !isPending
     const { data: result, isPending: speedMeetPending } = useGetSpeedMeetAndMountainQuery(id);
     const { data: attendees, isPending: attendeePending } = useGetAttendees(id);
     const deleteMutation = useDeleteSpeedMeetMutation();
 
     if (speedMeetPending || attendeePending) {
-        return <>...로딩중</>;
+        return <SpeedMeetDetailSkelton />;
     }
 
     const { speedMeet, mntn } = result;
@@ -46,99 +50,8 @@ const SpeedMeetDetail = () => {
         navigate("/speed-meet/1");
     };
 
-    //     <div className="w-[150px] h-[300px] mx-auto flex flex-col items-center bg-white rounded-lg ">
-    //     <h2 className="text-xl">{user.nickname}</h2>
-    //     <span>{`참가인원 ${speedMeet?.attendance}명`}</span>
-    //     {!hasWrittenPost &&
-    //         (hasBeenAttendee ? (
-    //             <button className="bg-slate-600 cursor-default">신청완료</button>
-    //         ) : isDeadline ? (
-    //             <button className="bg-slate-600 cursor-default">신청마감</button>
-    //         ) : (
-    //             <button className="bg-cyan-600" onClick={handleEnrollAttendee}>
-    //                 신청하기
-    //             </button>
-    //         ))}
-    // </div>
-
-    //     <button
-    //     className="bg-yellow-400"
-    //     onClick={() => {
-    //         showToast({
-    //             message: "수정?",
-    //             position: "top-center",
-    //             confirm: (condition) => {
-    //                 if (condition) {
-    //                     handleUpdate();
-    //                 }
-    //             }
-    //         });
-    //     }}
-    // >
-    //     수정
-    // </button>
-    // <button
-    //     className="bg-red-400"
-    //     onClick={() => {
-    //         showToast({
-    //             message: "삭제?",
-    //             position: "top-center",
-    //             confirm: (condition) => {
-    //                 if (condition) {
-    //                     handleDelete();
-    //                 }
-    //             }
-    //         });
-    //     }}
-    // >
-    //     삭제
-    // </button>
-
-    // <div className="flex flex-col gap-3 w-[200px]">
-    //                 <div className="h-[600px] flex flex-col gap-6 border-[#214A00] border-2 rounded-lg p-2">
-    //                     <div className="flex flex-col gap-2">
-    //                         <div className="w-[70px] bg-gray-600 flex justify-center rounded-2xl p-1">
-    //                             <h2 className="text-lg text-white">등반일</h2>
-    //                         </div>
-    //                         <p>{speedMeet?.date}</p>
-    //                     </div>
-    //                     <div className="flex flex-col gap-2">
-    //                         <div className="w-[70px] bg-gray-600 flex justify-center rounded-2xl p-1">
-    //                             <h2 className="text-lg text-white">장소</h2>
-    //                         </div>
-    //                         <p>{speedMeet?.mntnnm}</p>
-    //                     </div>
-    //                     <div className="flex flex-col gap-2">
-    //                         <div className="w-[80px] bg-gray-600 flex justify-center rounded-2xl p-1">
-    //                             <h2 className="text-lg text-white">모집인원</h2>
-    //                         </div>
-    //                         <p>{`${speedMeet?.capacity}명`}</p>
-    //                     </div>
-    //                     <div className="flex flex-col gap-2">
-    //                         <div className="w-[80px] bg-gray-600 flex justify-center rounded-2xl p-1">
-    //                             <h2 className="text-lg text-white">오픈채팅</h2>
-    //                         </div>
-    //                         <div className="bg-slate-300">
-    //                             {showChatLink ? (
-    //                                 <p onClick={() => handleCopyClipBoard(speedMeet?.chatLink)}>
-    //                                     {speedMeet?.chatLink}
-    //                                 </p>
-    //                             ) : (
-    //                                 <p>{getUrlMasking(speedMeet?.chatLink)}</p>
-    //                             )}
-    //                         </div>
-    //                     </div>
-    //                     <div className="flex flex-col gap-2">
-    //                         <div className="w-[70px] bg-gray-600 flex justify-center rounded-2xl p-1">
-    //                             <h1 className="text-lg text-white">내용</h1>
-    //                         </div>
-    //                         <p>{speedMeet?.content}</p>
-    //                     </div>
-    //                 </div>
-    //             </div>
-
     return (
-        <div className="flex flex-col justify-center gap-12 w-[70%] max-w-[1200px] min-w-[700px] bg-white rounded-[20px] mx-auto p-12">
+        <div className="flex flex-col justify-center gap-12 w-[70%] max-w-[1200px] min-w-[950px] bg-white rounded-[20px] mx-auto p-12">
             <section className="flex justify-between border-b-2">
                 <div className="flex flex-col gap-4">
                     <h1 className="text-4xl text-[#214A00]">{speedMeet?.mntnnm}</h1>
@@ -156,41 +69,58 @@ const SpeedMeetDetail = () => {
                                     신청하기
                                 </button>
                             ))}
-                        <button className="bg-cyan-600" onClick={handleEnrollAttendee}>
-                            신청하기
-                        </button>
-                        <button
-                            className="bg-yellow-400"
-                            onClick={() => {
-                                showToast({
-                                    message: "수정?",
-                                    position: "top-center",
-                                    confirm: (condition) => {
-                                        if (condition) {
-                                            handleUpdate();
-                                        }
-                                    }
-                                });
-                            }}
-                        >
-                            수정
-                        </button>
-                        <button
-                            className="bg-red-400"
-                            onClick={() => {
-                                showToast({
-                                    message: "삭제?",
-                                    position: "top-center",
-                                    confirm: (condition) => {
-                                        if (condition) {
-                                            handleDelete();
-                                        }
-                                    }
-                                });
-                            }}
-                        >
-                            삭제
-                        </button>
+                        {hasWrittenPost && (
+                            <>
+                                <button
+                                    className="bg-yellow-400"
+                                    onClick={() => {
+                                        showToast({
+                                            message: "수정?",
+                                            position: "top-center",
+                                            confirm: (condition) => {
+                                                if (condition) {
+                                                    handleUpdate();
+                                                }
+                                            },
+                                            custom: {
+                                                icon: {
+                                                    iconUrl: homeImg,
+                                                    width: "48px",
+                                                    height: "48px"
+                                                }
+                                            }
+                                        });
+                                    }}
+                                >
+                                    수정
+                                </button>
+                                <button
+                                    className="bg-red-400"
+                                    onClick={() => {
+                                        showToast({
+                                            message: "삭제?",
+                                            position: "top-center",
+                                            theme: "error",
+                                            bg: true,
+                                            confirm: (condition) => {
+                                                if (condition) {
+                                                    handleDelete();
+                                                }
+                                            },
+                                            custom: {
+                                                icon: {
+                                                    iconUrl: homeImg,
+                                                    width: "48px",
+                                                    height: "48px"
+                                                }
+                                            }
+                                        });
+                                    }}
+                                >
+                                    삭제
+                                </button>
+                            </>
+                        )}
                     </div>
                 </div>
             </section>
@@ -214,18 +144,22 @@ const SpeedMeetDetail = () => {
                     </div>
                     <section className="flex flex-col gap-2">
                         <h1 className="text-2xl text-[#214A00]">오픈채팅</h1>
-                        <div>
+                        <div
+                            className={`bg-gray-200 h-[60px] p-4 flex justify-center items-center rounded-lg relative ${
+                                showChatLink ? "cursor-pointer" : ""
+                            }`}
+                            onClick={showChatLink ? () => handleCopyClipBoard(speedMeet?.chatLink) : () => {}}
+                        >
+                            <div className="bg-slate-900 w-4 h-4 top-3 right-2 absolute"></div>
                             {showChatLink ? (
-                                <span
-                                    className="bg-slate-600 cursor-pointer"
-                                    onClick={() => handleCopyClipBoard(speedMeet?.chatLink)}
-                                >
-                                    {speedMeet?.chatLink}
-                                </span>
+                                <span>{speedMeet?.chatLink}</span>
                             ) : (
-                                <p>{getUrlMasking(speedMeet?.chatLink)}</p>
+                                <span>{getUrlMasking(speedMeet?.chatLink)}</span>
                             )}
                         </div>
+                        <a href="https://open.kakao.com/o/gd73n2Pg" target="_blank">
+                            오픈 카톡
+                        </a>
                     </section>
                     <section className="flex flex-col gap-2">
                         <h1 className="text-2xl text-[#214A00]">내용</h1>
