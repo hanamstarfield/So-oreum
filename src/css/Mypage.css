@@ -24,6 +24,7 @@
         flex-direction: row;
         text-align: center;
         list-style-type: none;
+        cursor: pointer;
     }
     .tabButton {
         width: 50%;
@@ -79,6 +80,7 @@
     .postMainBody {
         /* border-top: 3px solid #909090; */
         border-bottom: 2px solid #909090;
+        cursor: pointer;
     }
 
     .post {
