@@ -192,11 +192,12 @@ const SpeedMeetEdit = () => {
                             }}
                         />
                         {searchBoxVisible && !selectedMountain && (
-                            <ul className="absolute top-0 left-52 bg-slate-300 w-[150px]">
+                            <ul className="absolute bg-white border rounded mt-1 w-[200px] max-h-[150px] overflow-y-auto top-full left-0 z-10">
                                 {mountainSearchResult.map((item) => {
                                     return (
                                         <li
                                             key={item.id}
+                                            className="px-3 py-2 cursor-pointer hover:bg-gray-200"
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 handleSetMountain(item);
