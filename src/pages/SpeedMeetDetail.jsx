@@ -151,7 +151,6 @@ const SpeedMeetDetail = () => {
                                 }`}
                                 onClick={showChatLink ? () => handleCopyClipBoard(speedMeet?.chatLink) : () => {}}
                             >
-                                <div className="bg-slate-900 w-4 h-4 top-3 right-2 absolute"></div>
                                 {showChatLink ? (
                                     <span>{speedMeet?.chatLink}</span>
                                 ) : (

@@ -17,12 +17,23 @@
 }
 
 @layer components {
+    .tabButton1 {
+        width: 100%;
+        font-size: 18px;
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        list-style-type: none;
+    }
     .tabButton {
         width: 50%;
         font-size: 18px;
         border-bottom: 3px solid #909090;
     }
-    .tabButton:focus {
+
+    .focus {
+        width: 50%;
+        font-size: 18px;
         border-bottom: 3px solid #028b1d;
     }
 

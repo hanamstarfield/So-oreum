@@ -16,7 +16,7 @@ const Mypage_Post = () => {
     const navigate = useNavigate();
 
     const getPost = async () => {
-        const { data } = await axios.get("http://localhost:4000/speedMeets");
+        const { data } = await axios.get("https://hushed-violet-polo.glitch.me/speedMeets");
         return data.filter((data) => user.userId === data.userId);
     };
 
