@@ -36,7 +36,7 @@ https://so-oreum-kfrmwhu6y-hanamstarfields-projects.vercel.app
     <td align="center"><b>Frontend</b></td>
   </tr>
   <tr>
-    <td align="center"><img src="" width="100px" /></td>
+    <td align="center"><img src="https://avatars.githubusercontent.com/za0012" width="100px" width="100px" /></td>
     <td align="center"><img src="https://avatars.githubusercontent.com/LeeJY97" width="100px" /></td>
     <td align="center"><img src="" width="100px" /></td>
     <td align="center"><img src="https://avatars.githubusercontent.com/hansub1n" width="100px" /></td>
@@ -81,7 +81,8 @@ https://so-oreum-kfrmwhu6y-hanamstarfields-projects.vercel.app
 
 ### 현지
 
--
+-   마이페이지 담당
+    -   내가 쓴 게시글 조회, 내가 신청한 게시글 조회
 
 ### 준열
 
