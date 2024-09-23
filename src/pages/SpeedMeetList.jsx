@@ -34,7 +34,7 @@ const SpeedMeetList = () => {
                     <span className="w-[]">작성자</span>
                     <div className="ml-auto">
                         <Link to="/speed-meet-write">
-                            <button className="bg-[#3768ee] py-[3px] px-[10px] rounded-[7px] mr-[10px] text-white">
+                            <button className="bg-[#ff9f1c] py-[3px] px-[10px] rounded-[7px] mr-[10px] text-white">
                                 글쓰기
                             </button>
                         </Link>

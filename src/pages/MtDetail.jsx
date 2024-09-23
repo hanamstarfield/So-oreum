@@ -11,13 +11,13 @@ const MtDetail = () => {
     const mntnId = searchParams.get("mntnId");
     const [showDetails, setShowDetails] = useState(true);
 
-    const MT_API_URL = "http://localhost:4000/items";
+    const MT_API_URL = "https://hushed-violet-polo.glitch.me/items";
     const mtFetchData = async () => {
         const response = await axios.get(MT_API_URL);
         return response.data;
     };
 
-    const List_API_URL = "http://localhost:4000/speedMeets";
+    const List_API_URL = "https://hushed-violet-polo.glitch.me/speedMeets";
     const listFetchData = async () => {
         const response = await axios.get(List_API_URL);
         return response.data;

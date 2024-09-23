@@ -22,16 +22,16 @@ const Mypage = () => {
                     <p>{user.nickname}</p>
                 </div>
                 <div className="postBody">
-                    <div>
+                    <div className="tabButton1">
                         {TabData.map((tab) => (
-                            <button
-                                className="tabButton"
+                            <li
+                                className={activeTab === tab.id ? "focus" : "tabButton"}
                                 key={tab.id}
                                 data-active={activeTab === tab.id ? "true" : "false"}
                                 onClick={() => setActiveTab(tab.id)}
                             >
                                 {tab.button}
-                            </button>
+                            </li>
                         ))}
                     </div>
                     {activeTab === 2 ? <Mypage_Attendee /> : <Mypage_Post />}

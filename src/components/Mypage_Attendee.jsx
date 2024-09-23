@@ -15,33 +15,10 @@ const Mypage_Post = () => {
 
     const navigate = useNavigate();
 
-    // const getAttendee = async () => {
-    //     const { data } = await axios.get(
-    //         `https://hushed-violet-polo.glitch.me/speedMeetAttendee?userId=${user.userId}`
-    //     );
-    //     return data;
-    // };
-
-    // const { data: AttendeeData, isLoading: attendeeLoading } = useQuery({
-    //     queryKey: ["attendance"],
-    //     queryFn: getAttendee
-    // });
-    
-    // console.log(user);
-    // console.log("AttendeeData", AttendeeData);
-
     const getPostAttendance = async () => {
         const { data } = await axios.get(`https://hushed-violet-polo.glitch.me/speedMeets?_embed=speedMeetAttendee`);
         return data.filter((data) => {
-            const aaa = data.speedMeetAttendee.filter((speedMeetAttendee) => {
-                console.log(speedMeetAttendee.userId);
-                console.log(user.userId);
-                console.log(speedMeetAttendee);
-                return speedMeetAttendee.userId === user.userId;
-            },
-                console.log(aaa)) ===
-                user.userId;
-            
+           return data.speedMeetAttendee.some((attendee) => attendee.userId === user.userId);
         });
     };
     const { data: AttendeePostData, isLoading: attendeePostLoading } = useQuery({
