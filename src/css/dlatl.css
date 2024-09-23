@@ -7,11 +7,54 @@
         display: none;
     }
 
-    .cardMt{
+    .cardMt {
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 20px;
-        background-color: #fff;
+        background-color: #ffffff80;
+    }
+
+    .inputSpeedTitle {
+        border-bottom: 2px solid #344e41;
+        width: 300px;
+        outline: none;
+        font-size: 25px;
+    }
+
+    .inputSpeedMt {
+        border-bottom: 2px solid #344e41;
+        width: 150px;
+        margin-right: 20px;
+    }
+
+    .inputSpeedMt:focus {
+        border-bottom: 2px solid #344e41;
+        outline: none;
+    }
+
+    .textareaWrite {
+        width: 100%;
+        padding: 5px 5px 0 15px;
+        height: 100%;
+        outline: none;
+        border: 2px solid #344e41;
+        border-radius: 10px;
+        font-size: 18px;
+    }
+
+    .textareaWrite:focus {
+        border: 2px solid #344e41;
+        border-radius: 10px;
+    }
+
+    .inputSpeedLink {
+        border-bottom: 2px solid #344e41;
+        width: 300px;
+        outline: none;
+    }
+
+    .inputSpeedLink:focus {
+        border-bottom: 2px solid #344e41;
     }
 }
