@@ -16,7 +16,7 @@
 
 ## 배포 링크
 
-https://어쩌구 ..
+https://so-oreum-kfrmwhu6y-hanamstarfields-projects.vercel.app
 
 ## 📚 기술 스택
 
