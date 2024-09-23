@@ -11,12 +11,30 @@ const handleCreateAttendee = async (attendee) => {
 
 }
 
-const useCreateAttendeeMutation = () => {
+const useCreateAttendeeMutation = (id) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: handleCreateAttendee,
     onSuccess: () => {
-      queryClient.invalidateQueries(queryKey.default.speedMeet)
+      queryClient.invalidateQueries(queryKey.default.speedMeet(id))
+    },
+    onMutate: async (newSpeedMeet) => {
+      await queryClient.cancelQueries({ queryKey: queryKey.default.speedMeet(id) });
+      const prevSpeedMeet = queryClient.getQueryData([queryKey.default.speedMeet(id)]);
+
+
+      queryClient.setQueryData([queryKey.default.speedMeet(id)], (old) => {
+        return {
+          ...old,
+          speedMeet: {
+            ...old.speedMeet,
+            attendance: old.speedMeet.attendance + 1,
+          }
+        }
+      })
+
+      return { prevSpeedMeet };
+
     }
   })
 }

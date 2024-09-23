@@ -22,8 +22,6 @@ const useSpeedMeetWrite = () => {
 
   const { data: mountains = [], isPending } = useGetMountainQuery();
 
-  console.log('mountains', mountains);
-
   const handleMountainChange = (e) => {
     const mntnnm = e.target.value;
     setFormState((prev) => {
@@ -71,7 +69,6 @@ const useSpeedMeetWrite = () => {
   };
 
   const handleSetMountain = (mountain) => {
-    console.log('mountain', mountain);
     setFormState((prev) => {
       return {
         ...prev,

@@ -13,9 +13,6 @@ const useSpeedMeetStore = create((set) => ({
   //   attendance: 0
   // },
   setFormState: (data) => {
-    console.log('data', data);
-
-
     set((state) => ({
       formState: {
         ...state.formState,

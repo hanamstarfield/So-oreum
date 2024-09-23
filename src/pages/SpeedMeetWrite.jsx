@@ -64,8 +64,6 @@ const SpeedMeetWrite = () => {
 
     let test = true;
 
-    console.log("formState", formState);
-
     return (
         <div className="flex flex-col bg-[#214A00] w-[100%] h-[90vh] justify-center items-center m-0">
             <h1 className="text-white text-[30px] pb-10">글 작성</h1>
