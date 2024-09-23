@@ -45,8 +45,6 @@ const SpeedMeetEdit = () => {
     }, [speedMeet]);
     const { data: mountains = [], isMountainsPending } = useGetMountainQuery();
 
-    console.log("speedMeet", speedMeet);
-
     const mutation = usePatchSpeedMeetMutation();
     const navigate = useNavigate();
 
@@ -80,7 +78,6 @@ const SpeedMeetEdit = () => {
     };
 
     const handleSetMountain = (mountain) => {
-        console.log("mountain", mountain);
         setFormState((prev) => {
             return {
                 ...prev,
@@ -148,8 +145,6 @@ const SpeedMeetEdit = () => {
     };
 
     let test = true;
-
-    console.log("formState", formState);
 
     return (
         <div className="flex flex-col bg-[#214A00] w-[100%] h-[90vh] justify-center items-center m-0">

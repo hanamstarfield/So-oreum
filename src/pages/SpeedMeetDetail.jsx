@@ -17,7 +17,7 @@ const SpeedMeetDetail = () => {
     const navigate = useNavigate();
 
     const { user } = useUserStore((state) => state);
-    const mutation = useCreateAttendeeMutation();
+    const mutation = useCreateAttendeeMutation(id);
 
     // const { data: result, isPending: speedMeetPending } = useGetSpeedMeetAndMountainQuery(id);
     // TODO enabled: !isPending
@@ -37,7 +37,28 @@ const SpeedMeetDetail = () => {
     const showChatLink = hasWrittenPost || hasBeenAttendee;
 
     const handleEnrollAttendee = () => {
-        mutation.mutate({ speedMeetId: id, userId: user.userId });
+        showToast({
+            message: "신청하시겠습니까?",
+            position: "top-center",
+            confirm: (condition) => {
+                if (condition) {
+                    mutation.mutate({ speedMeetId: id, userId: user.userId });
+                    showToast({
+                        message: "신청이 완료되었습니다!",
+                        theme: "success",
+                        time: 3000,
+                        showProgress: true
+                    });
+                }
+            },
+            custom: {
+                icon: {
+                    iconUrl: homeImg,
+                    width: "48px",
+                    height: "48px"
+                }
+            }
+        });
     };
 
     const handleUpdate = () => {
@@ -165,7 +186,11 @@ const SpeedMeetDetail = () => {
                                 )}
                             </div>
                             {showChatLink && (
-                                <a className="text-[18px]" href="https://open.kakao.com/o/gd73n2Pg" target="_blank">
+                                <a
+                                    className="text-[18px] h-[10px]"
+                                    href="https://open.kakao.com/o/gd73n2Pg"
+                                    target="_blank"
+                                >
                                     오픈 카톡 (Click!)
                                 </a>
                             )}
