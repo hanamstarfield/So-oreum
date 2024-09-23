@@ -10,7 +10,7 @@ const SpeedMeetList = () => {
     const queryClient = useQueryClient();
 
     const { page } = useParams();
-    const { data, isPending } = useGetSpeedMeetsQuery(page);
+    const { data: speedMeetList, isPending } = useGetSpeedMeetsQuery(page);
 
     const onPageMouseOver = (page) => {
         queryClient.prefetchQuery({
@@ -22,23 +22,21 @@ const SpeedMeetList = () => {
     if (isPending) {
         return <>... 로딩</>;
     }
-
-    const last = data.last;
-
-    const speedMeetList = data.data;
-
-    console.log("speedMeetList", speedMeetList);
+    const last = speedMeetList.last;
 
     return (
         <div className="h-lvh bg-[#214A00] flex flex-col justify-center items-center">
             <div className="bg-white w-[1200px] rounded-xl flex flex-col mb-6">
-                <div className="w-[100%] h-[50px] flex p-4 border-b-4 border-slate-500">
+                <div className="w-[100%] h-[50px] flex p-4 border-b-4 border-slate-500 items-center">
                     <span className="w-[15%]">산</span>
                     <span className="w-[50%]">제목</span>
-                    <span className="w-[]">모집인원</span>
+                    <span className="w-[10%]">모집인원</span>
+                    <span className="w-[]">작성자</span>
                     <div className="ml-auto">
                         <Link to="/speed-meet-write">
-                            <button className="bg-lime-300">글쓰기</button>
+                            <button className="bg-[#3768ee] py-[3px] px-[10px] rounded-[7px] mr-[10px] text-white">
+                                글쓰기
+                            </button>
                         </Link>
                     </div>
                 </div>
@@ -57,7 +55,8 @@ const SpeedMeetList = () => {
                                         <p>{item.title}</p>
                                     </Link>
                                 </div>
-                                <span>{`${item.attendance}/${item.capacity}`}</span>
+                                <span className="w-[10%]">{`${item.attendance}/${item.capacity}`}</span>
+                                <span>{item.userId}</span>
                             </li>
                         );
                     })}

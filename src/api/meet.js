@@ -2,7 +2,15 @@ import axios from "axios";
 
 const getSpeedMeets = async (pageParam = 1) => {
   console.log('pageParam', pageParam);
-  const data = (await api.get(`/speedMeets?_page=${pageParam}&_per_page=10&_sort=-createdAt`)).data;
+  const response = await api.get(`/speedMeets?_page=${pageParam}&_limit=10&_sort=createdAt&_order=desc`);
+
+  const data = response.data;
+  const totalCount = parseInt(response.headers['x-total-count'], 10);
+  const itemsPerPage = 10;
+  const lastPage = Math.ceil(totalCount / itemsPerPage);
+
+  data.last = lastPage;
+
   return data;
 }
 
@@ -65,7 +73,8 @@ const meetApi = {
 }
 
 const api = axios.create({
-  baseURL: "http://localhost:4000",
+  // baseURL: "http://localhost:4000",
+  baseURL: "https://hushed-violet-polo.glitch.me",
 })
 
 

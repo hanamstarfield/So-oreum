@@ -61,7 +61,7 @@
       "capacity": "3",
       "content": "정상에서의 뷰가 멋져요!",
       "chatLink": "http://naver.com/gaehwa-hike",
-      "attendance": 0,
+      "attendance": 1,
       "userId": "hihihi123",
       "createdAt": "2024-09-15T11:00:00.000Z"
     },
@@ -75,7 +75,7 @@
       "content": "아름다운 일출을 함께해요",
       "chatLink": "http://naver.com/guryongsan-sunrise",
       "attendance": 2,
-      "userId": "hihihi456",
+      "userId": "hihihi333",
       "createdAt": "2024-09-17T12:00:00.000Z"
     },
     {
@@ -88,7 +88,7 @@
       "content": "자연을 만끽하며 하이킹해요",
       "chatLink": "http://naver.com/gungsan-hike",
       "attendance": 1,
-      "userId": "hihihi789",
+      "userId": "hihihi333",
       "createdAt": "2024-09-18T13:00:00.000Z"
     },
     {
@@ -101,7 +101,7 @@
       "content": "정상에서 인증샷 찍어요",
       "chatLink": "http://naver.com/daemosan-photo",
       "attendance": 3,
-      "userId": "hihihi321",
+      "userId": "hihihi333",
       "createdAt": "2024-09-19T14:00:00.000Z"
     },
     {
@@ -113,8 +113,8 @@
       "capacity": "4",
       "content": "자연을 느끼며 트레킹!",
       "chatLink": "http://naver.com/dobongsan-trekking",
-      "attendance": 1,
-      "userId": "hihihi654",
+      "attendance": 0,
+      "userId": "hihihi333",
       "createdAt": "2024-09-20T15:00:00.000Z"
     },
     {
@@ -127,7 +127,7 @@
       "content": "야경이 아름다운 곳",
       "chatLink": "http://naver.com/mangusan-nightview",
       "attendance": 2,
-      "userId": "hihihi987",
+      "userId": "hihihi333",
       "createdAt": "2024-09-21T16:00:00.000Z"
     },
     {
@@ -140,7 +140,7 @@
       "content": "소풍가기 좋은 날",
       "chatLink": "http://naver.com/gaehwa-picnic",
       "attendance": 1,
-      "userId": "hihihi543",
+      "userId": "hihihi333",
       "createdAt": "2024-09-22T17:00:00.000Z"
     },
     {
@@ -153,7 +153,7 @@
       "content": "봄의 꽃을 함께 즐겨요",
       "chatLink": "http://naver.com/guryongsan-flowers",
       "attendance": 2,
-      "userId": "hihihi654",
+      "userId": "hihihi333",
       "createdAt": "2024-09-23T18:00:00.000Z"
     },
     {
@@ -166,7 +166,7 @@
       "content": "일출을 카메라에 담아요",
       "chatLink": "http://naver.com/gungsan-sunrise",
       "attendance": 1,
-      "userId": "hihihi765",
+      "userId": "hihihi333",
       "createdAt": "2024-09-24T19:00:00.000Z"
     },
     {
@@ -179,7 +179,7 @@
       "content": "캠프 파이어와 함께",
       "chatLink": "http://naver.com/daemosan-camping",
       "attendance": 0,
-      "userId": "hihihi876",
+      "userId": "hihihi333",
       "createdAt": "2024-09-25T20:00:00.000Z"
     },
     {
@@ -217,7 +217,7 @@
       "capacity": "3",
       "content": "저녁의 평화를 느껴요",
       "chatLink": "http://naver.com/gaehwa-evening",
-      "attendance": 0,
+      "attendance": 1,
       "userId": "hihihi654",
       "createdAt": "2024-09-28T23:00:00.000Z"
     },
@@ -243,7 +243,7 @@
       "capacity": "4",
       "content": "가을의 정취를 느끼며",
       "chatLink": "http://naver.com/daemosan-autumn",
-      "attendance": 2,
+      "attendance": 3,
       "userId": "hihihi123",
       "createdAt": "2024-10-01T10:00:00.000Z"
     },
@@ -738,7 +738,7 @@
       "content": "자연 속에서 조깅을 즐겨요",
       "chatLink": "http://naver.com/gungsan-jogging",
       "attendance": 3,
-      "userId": "hihihi543",
+      "userId": "hihihi333",
       "createdAt": "2024-11-08T18:00:00.000Z"
     },
     {
@@ -751,7 +751,7 @@
       "content": "역사를 배우는 소중한 시간",
       "chatLink": "http://naver.com/daemosan-history",
       "attendance": 2,
-      "userId": "hihihi654",
+      "userId": "hihihi333",
       "createdAt": "2024-11-09T19:00:00.000Z"
     },
     {
@@ -764,47 +764,55 @@
       "content": "자연을 배우는 탐방",
       "chatLink": "http://naver.com/dobongsan-ecology",
       "attendance": 3,
-      "userId": "hihihi987",
+      "userId": "hihihi333",
       "createdAt": "2024-11-10T20:00:00.000Z"
     },
     {
-      "id": "8432",
-      "title": "링크 테슷트",
-      "date": "2024-09-20",
-      "mntnid": 20000155,
-      "mntnnm": "도봉산(자운봉)",
-      "capacity": "3",
-      "content": "카톡링크 테스트 해봅니다아",
-      "chatLink": "https://noonnu.cc/index?order_by=pd&locale=ko&category_style_ids=7",
+      "id": "81d4",
+      "title": "인왕산 하드 먹을사람 ?",
+      "date": "2024-09-26",
+      "mntnid": 20000527,
+      "mntnnm": "인왕산",
+      "capacity": "4",
+      "content": "너만 오면 ㄱ",
+      "chatLink": "https://open.kakao.com/o/gd73n2Pg",
       "attendance": 0,
       "userId": "hihihi333",
-      "createdAt": "2024-09-20T12:18:49.592Z"
+      "createdAt": "2024-09-20T15:20:37.479Z"
+    },
+    {
+      "id": "5922",
+      "title": "쿠쿠루삥봉산",
+      "date": "2024-09-26",
+      "mntnid": 20000155,
+      "mntnnm": "도봉산(자운봉)",
+      "capacity": "2",
+      "content": "쿠쿠쿠루루루삥뽕빵삥",
+      "chatLink": "asdf/asdf",
+      "attendance": 0,
+      "userId": "hihihi333",
+      "createdAt": "2024-09-22T14:34:01.740Z"
     }
   ],
   "speedMeetAttendee": [
-    {
-      "id": "efd1",
-      "speedMeetId": null,
-      "userId": "hihihi444"
-    },
     {
       "id": "da65",
       "speedMeetId": "a7a4",
       "userId": "hihihi333"
     },
     {
-      "id": "43c2",
-      "speedMeetId": "5i6j",
+      "id": "f562",
+      "speedMeetId": "1a2b",
       "userId": "hihihi333"
     },
     {
-      "id": "9906",
-      "speedMeetId": "8t9u",
+      "id": "a0d8",
+      "speedMeetId": "7e8f",
       "userId": "hihihi333"
     },
     {
-      "id": "d326",
-      "speedMeetId": "7s8t",
+      "id": "1ca6",
+      "speedMeetId": "4y5z",
       "userId": "hihihi333"
     }
   ],
@@ -923,7 +931,7 @@
       "mntninfodscrt": "명산의 3대조건 구비한 바위의 성채 북한산은 성채다. 최고봉 백운대를 비롯하여 인수봉, 노적봉, 의상봉, 보현봉 등 걸출한 암봉들이 험준한 산세를 이루고 여기 의지하여 사람들이 진짜 성을 쌓았다. 썩 높은 산은 아니지만 주변에 어깨를 겨룰 대상이 없어 눈 닿는 곳이면 어디서나 보인다. 북으로 개성, 남으로 안성에 이르기까지. 백운산~운악산~용문산~치악산 라인 이서(以西)에는 덮을 자가 없는 것이다. 세 뿔처럼 솟은 정상부의 봉만미가 타의 추종을 불허하게 인상적이다. 우이동계곡, 북한산성계곡, 평창동계곡 등에는 폭포와 암반계류의 계곡미도 갖추었다. 정상에 서면 일의대수(一衣帶水) 한강이 햇볕에 반짝이고있다. 이야말로 명산의 3대 조건을 완벽하게 맞추고있는 것이다. 백운대에서 보현봉에 이르는 장엄한 주릉에서 원효봉능선, 상장봉능선, 진달래능선, 칼바위능선, 형제봉능선, 향로봉능선, 의상봉능선이 방추차의 실처럼 뻗어나가며 그만한 수의 계곡을 만든 까닭에 천만 서울사람들이 시도 때도 없이 찾아도 다 품어 안는다. 인수봉, 노적봉, 수리봉을 메주처럼 빚어놓고 “자일과 해머, 하켄, 카라비너로 젊음을 태워보세” 외치는 클라이머들 세계의 산을 누비도록 훈련시키기도 한다. 북한산은, 태어날 때부터 수도의 진산이 될 자격이 있었다.",
       "mntninfodtlinfocont": "서울의 진산 북한산은 조선조 초기에는 삼각산(三角山)으로 불렀다. 삼각산이란 이름은 〈신증동국여지승람〉에 '삼각산은 양주의 경계에 있다. 일명 화산(華山)이라 하고, 신라시대에는 부아악(負兒岳)이라고 불렀다.이 산은 경성(京城)의 진산으로 동명왕의 아들 온조가 한산(漢山)에 이르러 부아악에 올라가서 살 만한 곳을 살폈다'는 기록이 있으며, '백운봉 (白雲峰, 지금의 백운대), 인수봉 (仁壽峰), 만경봉 (萬景峰,지금의 만경대)등 세 봉우리가 있으므로 그렇게 이름한 것이다'라고 유래를 기록하고 있다. 북한산성에 대해서는 〈신증동국여지승람〉과 〈북한지〉에 상세히 기록되어 있다. 북한산성은 백제 온조왕이 터를 잡았고 그후 개루왕 때 성터를 쌓았다는 기록이 있으며, 조선시대에 임진왜란, 병자호란을 치른 뒤 숙종 37년(1711년)에 시작하여, 6개월 만인 그해 10월에 완공하였다 한다. 북한산성은 험한 산세를 이용하여 정상을 기점으로 서쪽 산자락부터 원효봉, 염초봉, 백운대, 만경대, 용암봉, 문수봉, 나한봉, 나월봉, 용출봉, 의상봉까지 연결하여 쌓은 산성으로 총 길이가 10km에 달한다. 당시 산성에는 14개의 성문을 냈는데, 산성의 정문 격인 대서문을 중심으로 북쪽으로 수문, 서암문(시구문), 북문, 백운대를 지나 위문, 용암문, 대동문, 보국문, 대성문, 대남문, 청수동암문, 대서문에서 북서쪽으로 이어지는 산성에는, 부황동암문, 가사동암문이 설치되었다. 현재는 대부분 성문을 복원하였다. 북한산에 수많은 등산로 거미줄 같이 얽혀 있어 산행시 주의를 요하는 곳이다. 북한산의 산행 들머리는 대표적으로 여섯 군데를 꼽고 있다. 우이동 기점, 4.19탑 기점, 정릉 기점, 세검정 기점, 불광동 기점, 구파발 북한산성 기점으로 구분할 수 있다.",
       "mntninfohght": 836,
-      "mntninfopoflc": "서울특별시 강북구ㆍ성북구ㆍ종로구ㆍ은평구, 경기도 고양시ㆍ양주시",
+      "mntninfopoflc": "서울특별시 강북구ㆍ성북구ㆍ종로구ㆍ은평구,\n경기도 고양시ㆍ양주시",
       "mntnnm": "북한산",
       "latitude": 37.660833,
       "longitude": 126.993333,
@@ -1031,7 +1039,7 @@
       "mntninfodscrt": "개관 정보 없음",
       "mntninfodtlinfocont": "서울시 서초구 양재동과 경기도 과천, 의왕, 성남시에 걸치고 있으며 서울 주변에서 숲과 계곡, 절, 공원 등을 한꺼번에 만날 수 있는 청계산은 청룡이 승천했던 곳이라 과거에는 청룡산으로도 불렸다. 남북으로 흐르는 능선을 중심으로 펼쳐진 산세가 수려하며 숲 또한 울창하고 계곡이 깊고 아늑하다. 과천의 서울대공원에서 바라보면 대공원 뒤에 병풍처럼 둘러있으며 바위로 되어 있는 정상인 망경대가 우뚝 솟아 보인다. 정상에 서면 북서쪽으로 펼쳐진 계곡 아래 과천시와 동물원, 식물원이 있는 서울대공원, 각종 놀이기구가 있는 서울랜드, 국립현대미술관, 과천 경마장이 한눈에 내려다보인다. 청계사에는 갖가지 명물이 많은데 그중 대표되는 것이 계단길이다. 시민의 손으로 산을 꾸미겠다는 취지로 얼마의 돈을 지불하면 계단 한 칸 마다 사연을 적어 꾸밀 수 있게 했다. 자신들의 소망, 기업이나 가게 홍보, 성경 구절 등으로 계단을 빼곡이 채우고 있어, 계단을 오를 때마다 읽어 가는 재미가 쏠쏠하다. 또 청계산은 역사적으로도 절의 곧은 선비들이 난세를 피해 은거한 충절의 산이라 할 수 있다. 대표적인 인물은 고려의 충신 이색과 조윤, 조선 중기의 김종직의 문하로 활동하던 일두 정여창이다. 망경대, 금수샘, 이수봉 등은 모두 그들과 관계되어 있다.",
       "mntninfohght": 873,
-      "mntninfopoflc": "서울특별시 서초구 신원동, 경기도 과천시 막계동, 의왕시 청계동, 성남시 수정구",
+      "mntninfopoflc": "서울특별시 서초구 신원동, 경기도 과천시 막계동,\n의왕시 청계동, 성남시 수정구",
       "mntnnm": "청계산",
       "latitude": 37.4141657,
       "longitude": 127.0415787,
