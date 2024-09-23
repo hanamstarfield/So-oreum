@@ -59,7 +59,7 @@ const MtCard = ({ mount, latlng, setSelectedLocation }) => {
     }
     return (
         <div>
-            <div className="flex justify-center mb-[10px] mt-[10px] mr-10 relative">
+            <div className="flex justify-center mb-[10px] mt-[10px] mr-10 relative rounded-[10px]">
                 <input
                     type="text"
                     placeholder="산 검색"
@@ -85,7 +85,7 @@ const MtCard = ({ mount, latlng, setSelectedLocation }) => {
                     </ul>
                 )}
                 <button
-                    className={`mx-2 px-3 py-1 rounded-full ${
+                    className={`mx-2 px-5 py-1 rounded-full ${
                         selectedCategory === "all" ? "bg-lime-600 text-white" : "bg-gray-300"
                     }`}
                     onClick={() => setSelectedCategory("all")}

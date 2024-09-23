@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import useUserStore from "../zustand/useUserStore";
 import homeImg from "../assets/SpCardDefault.png";
-import github from "../assets/test.png";
+import github from "../assets/GithubIcon.png";
 import velog from "../assets/VelogIcon.png";
 import tlog from "../assets/TstoryIcon.png";
 
@@ -46,7 +46,7 @@ const Layout = ({ children }) => {
                 </nav>
             </header>
             <main className="pt-[60px]">{children}</main>
-            <footer className="relative text-white py-3">
+            <footer className="relative text-[#214A00] py-3">
                 <div className="container mx-auto px-4">
                     <ul className="flex flex-wrap justify-center gap-8">
                         <li className="flex items-end gap-4">

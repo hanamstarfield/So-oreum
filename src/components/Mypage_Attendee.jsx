@@ -15,34 +15,62 @@ const Mypage_Post = () => {
 
     const navigate = useNavigate();
 
-    const getPost = async () => {
-        const { data } = await axios.get("http://localhost:4000/speedMeets");
-        return data.filter((data) => user.userId === data.userId);
-    };
+    // const getAttendee = async () => {
+    //     const { data } = await axios.get(
+    //         `https://hushed-violet-polo.glitch.me/speedMeetAttendee?userId=${user.userId}`
+    //     );
+    //     return data;
+    // };
 
-    const { data: PostData, isLoading: postLoading } = useQuery({
+    // const { data: AttendeeData, isLoading: attendeeLoading } = useQuery({
+    //     queryKey: ["attendance"],
+    //     queryFn: getAttendee
+    // });
+    
+    // console.log(user);
+    // console.log("AttendeeData", AttendeeData);
+
+    const getPostAttendance = async () => {
+        const { data } = await axios.get(`https://hushed-violet-polo.glitch.me/speedMeets?_embed=speedMeetAttendee`);
+        return data.filter((data) => {
+            const aaa = data.speedMeetAttendee.filter((speedMeetAttendee) => {
+                console.log(speedMeetAttendee.userId);
+                console.log(user.userId);
+                console.log(speedMeetAttendee);
+                return speedMeetAttendee.userId === user.userId;
+            },
+                console.log(aaa)) ===
+                user.userId;
+            
+        });
+    };
+    const { data: AttendeePostData, isLoading: attendeePostLoading } = useQuery({
         queryKey: ["post"],
-        queryFn: getPost
+        queryFn: getPostAttendance
     });
 
     const handlePageChange = (page) => {
         setPage(page);
     };
 
-    console.log(user);
-    console.log("PostData", PostData);
+    console.log("AttendeePostData", AttendeePostData);
 
-    if (postLoading) {
+    if ( attendeePostLoading) {
         return <div>로딩중...</div>;
     }
 
     return (
         <div>
             <div className="postMainBody">
-                {PostData.slice(items * (page - 1), items * (page - 1) + items) //slice를 이용해 보여주고싶은 게시물 제어
+                {AttendeePostData.slice(items * (page - 1), items * (page - 1) + items) //slice를 이용해 보여주고싶은 게시물 제어
                     .map((post) => {
                         return (
-                            <div className="post">
+                            <div
+                                className="post"
+                                onClick={() => {
+                                    console.log(post.speedMeetAttendee[0]);
+                                }}
+                            >
                                 <p
                                     onClick={() => {
                                         navigate(`/speed-meet-detail/${post.id}`);
@@ -60,6 +88,9 @@ const Mypage_Post = () => {
                                 />
                             </div>
                         );
+                        // ) : (
+                        //     "퇴각하라"
+                        // );
                     })}
             </div>
             <div>
@@ -69,7 +100,7 @@ const Mypage_Post = () => {
                     itemsCountPerPage={10}
                     prevPageText={"‹"}
                     nextPageText={"›"}
-                    totalItemsCount={PostData.length - 1}
+                    totalItemsCount={AttendeePostData.length - 1}
                     pageRangeDisplayed={5}
                     onChange={handlePageChange}
                 ></Pagination>
