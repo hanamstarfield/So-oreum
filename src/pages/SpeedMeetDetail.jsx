@@ -51,33 +51,26 @@ const SpeedMeetDetail = () => {
     };
 
     return (
-        <div className="flex flex-col bg-[#214A00] w-[100%] h-[91vh] justify-center items-center m-0">
-            <div className="flex flex-col justify-center gap-12 w-[70%] max-w-[1200px] min-w-[950px] bg-white rounded-[20px] mx-auto p-12">
-                <section className="flex justify-between border-b-2">
-                    <div className="flex flex-col gap-4">
-                        <h1 className="text-4xl text-[#214A00]">{speedMeet?.mntnnm}</h1>
-                        <h3 className="text-2xl pb-6">{speedMeet?.title}</h3>
-                    </div>
-                    <div>
-                        <div className="text-2xl">
-                            {!hasWrittenPost &&
-                                (isDeadline ? (
-                                    <button className="bg-[#e56b6f] cursor-default py-[3px] px-[10px] rounded-[7px] mr-[10px] text-white">
-                                        신청마감
-                                    </button>
-                                ) : hasBeenAttendee ? (
-                                    <button className="bg-slate-600 cursor-default py-[3px] px-[10px] rounded-[7px] mr-[10px] text-white">
-                                        신청완료
-                                    </button>
-                                ) : (
-                                    <button
-                                        className="bg-[#588157] py-[3px] px-[10px] rounded-[7px] mr-[10px] text-white"
-                                        onClick={handleEnrollAttendee}
-                                    >
-                                        신청하기
-                                    </button>
-                                ))}
-                            {hasWrittenPost && (
+     <div className="flex flex-col bg-[#214A00] w-[100%] h-[91vh] justify-center items-center m-0">                                                
+        <div className="flex flex-col justify-center gap-12 w-[70%] max-w-[1200px] min-w-[950px] bg-white rounded-[20px] mx-auto p-12">
+            <section className="flex justify-between border-b-2">
+                <div className="flex flex-col gap-4">
+                    <h1 className="text-4xl text-[#214A00]">{speedMeet?.mntnnm}</h1>
+                    <h3 className="text-2xl pb-6">{speedMeet?.title}</h3>
+                </div>
+                <div>
+                    <div className="text-2xl">
+                        {!hasWrittenPost &&
+                            (isDeadline ? (
+                                <button className="bg-[#e56b6f] cursor-default py-[3px] px-[10px] rounded-[7px] mr-[10px] text-white">신청마감</button>
+                            ) : hasBeenAttendee ? (
+                                <button className="bg-slate-600 cursor-default py-[3px] px-[10px] rounded-[7px] mr-[10px] text-white">신청완료</button>
+                            ) : (
+                                <button className="bg-[#588157] py-[3px] px-[10px] rounded-[7px] mr-[10px] text-white" onClick={handleEnrollAttendee}>
+                                    신청하기
+                                </button>
+                            ))}
+                        {hasWrittenPost && (
                                 <>
                                     <button
                                         className="bg-[#ffbe0b] py-[3px] px-[10px] rounded-[7px] mr-[10px] text-white"
