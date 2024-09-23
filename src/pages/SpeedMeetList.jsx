@@ -1,6 +1,7 @@
 import meetApi from "@/api/meet";
 import mntnApi from "@/api/mntn";
 import Pagination from "@/components/Pagination";
+import SpeedMeetListSkelton from "@/components/SpeedMeetListSkelton";
 import queryKey from "@/queries/queryKeys";
 import useGetSpeedMeetsQuery from "@/queries/useGetSpeedMeetsQuery";
 import { useQueryClient } from "@tanstack/react-query";
@@ -20,7 +21,7 @@ const SpeedMeetList = () => {
     };
 
     if (isPending) {
-        return <>... 로딩</>;
+        return <SpeedMeetListSkelton />;
     }
     const last = speedMeetList.last;
 
@@ -49,7 +50,7 @@ const SpeedMeetList = () => {
                                 className="w-[100%] flex p-4 border-b-2 border-zinc-600"
                                 // onMouseOver={() => onPostMouseOver(item.id)}
                             >
-                                <span className="w-[15%]">{item.mntnnm}</span>
+                                <span className="w-[15%] h-[25px]">{item.mntnnm}</span>
                                 <div className="w-[50%]">
                                     <Link to={`/speed-meet-detail/${item.id}`}>
                                         <p>{item.title}</p>
