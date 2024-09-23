@@ -137,9 +137,7 @@ https://so-oreum-kfrmwhu6y-hanamstarfields-projects.vercel.app
     이 방법 덕분에 페이지 전환 시 사용자 경험이 개선되었고, 불필요한 깜빡임 현상이 사라졌습니다.
     비록 사소한 문제처럼 보일 수 있지만, 이러한 디테일이 사용자에게 긍정적인 경험을 제공하는 데 큰 역할을 한다고 생각합니다. 결국,
     이러한 작은 개선이 전체적인 완성도를 높이고, 사용자 만족도를 증가시키는 데 기여할 수 있습니다.
-
-    <br>
-    3.송진우<br>
+    <br> 3. 송진우<br>
     [문제]
     연관 검색어로 검색으로 지도가 줌인 되는 기능을 구현할 때 줌인이 된 상태에서 다른 검색어를 입력했을 때 데이터가 없어 검색되지 않았습니다.<br>
     [해결]<br>
@@ -148,7 +146,20 @@ https://so-oreum-kfrmwhu6y-hanamstarfields-projects.vercel.app
     [문제]
     카카오 지도에서 여러개의 마커를 클릭하면 정보가 사라지지 않고 그대로 화면에 클릭된 마커들의 정보를 보여주고있었습니다.
     [해결]<br>
-    infowindow.setContent(); 메서드를 사용해 이전에 열린 정보창의 내용이 새로운 내용으로 덮어질 수 있도록하여 해결
+    infowindow.setContent(); 메서드를 사용해 이전에 열린 정보창의 내용이 새로운 내용으로 덮어질 수 있도록하여 해결<br>
+    <br> 3. 유현지<br>
+    [문제]
+    내가 신청한 글 문제 발생. 데이터를 출력하는데 걸러진 데이터가 같이 들어와서 페이지네이션의 데이터 번호가 출력해야하는 것보다 늘어나는 문제들이 발생, 데이터를 처음 불러올 때 필터링을 해야했다.
+    즉 Attendance를 불러와 그 안에 있는 유저아이디가 일치하는 객체를 가져와서 안의 게시글 id와 내가 신청한 게시글의 id가 같은 것만 불러오도록 해야하는 것이다. <br>
+    [해결]<br>
+    이를 해결하기 위해 지금 사용하고 있는 json-server의 버전을 낮추고 embed를 사용하는 것 그리하여
+    yarn remove json-server
+    yarn add json-server@0.17.4
+    를 입력하고 데이터를 불러오는 것에
+    `https://xn--glitch-go6zg94b/speedMeet?_embed=speedMeetAttendee%EC%9D%84` 넣어주었다. \_embed를 이용해 부모 아래에 있는 자식 데이터까지 한 번에 불러올 수 있게 되었다. 이렇게 되면 쉬워지는데, 데이터를 리턴할 때 필터링을 잘 넣어주기만 하면 되는 것이다.
+
+    return data.filter((data) => {
+    return data.speedMeetAttendee.some((attendee) => attendee.userId === user.userId);
 
 ## 🗂️ 파일 구조
 
